@@ -1,0 +1,83 @@
+body{
+  height: 1024px;
+  background: url('https://github.com/sihan9/oursapp/blob/master/images/Backstage/background.jpg?raw=true') no-repeat;
+  background-size: 100% 100%;
+}
+.box-1-1{
+  width: 100%;
+  height: 100px;
+}
+.box-1-1 img{
+  float: left;
+}
+.box-1-1 button{
+  font-size: 15px;
+  margin-left: 740px;
+  margin-top: 50px;
+  background: white;
+  border: 1px solid #c3c3c3;
+  height: 40px;
+  width: 80px;
+  border-radius: 5px;
+}
+.box-2{
+  background: #6485e4;
+  width: 220px;
+  height: 535px;
+  margin-left: 17px;
+  float: left;
+  margin-top: 50px;
+}
+.box-2-1{
+  width: 220px;
+  height: 60px;
+  border-bottom: 1px solid white;
+  padding-top: 20px;
+}
+.box-2-1 img{
+  width: 40px;
+  height: 40px;
+  padding-left: 30px;
+  float: left;
+}
+.box-2-1 a{
+  font-size: 23px;
+  color: white;
+  padding-left: 10px;
+  float: left;
+  padding-top: 10px;
+  text-decoration: none;
+}
+.box-3{
+  border: 2px solid #6485e4;
+  border-radius: 10px;
+  width: 700px;
+  height: 60px;
+  margin-top: 50px;
+  margin-left: 50px;
+  float: left;
+}
+.box-3 img{
+  width: 40px;
+  float: left;
+  padding-top: 10px;
+  padding-left: 25px;
+}
+.box-3 input{
+  border-radius: 5px;
+  border: 1px solid white;
+  width: 200px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 15px;
+  float: left;
+  font-size: 12px;
+  color: gray;
+}
+.component{
+  float: left;
+  width: 950px;
+  height: 500px;
+  margin-top: 25px;
+  margin-left: 50px;
+}
