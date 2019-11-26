@@ -1,3 +1,4 @@
+/* 框架样式 */
 body{
   height: 1024px;
   background: url('https://github.com/sihan9/oursapp/blob/master/images/Backstage/background.jpg?raw=true') no-repeat;
@@ -80,4 +81,23 @@ body{
   height: 500px;
   margin-top: 25px;
   margin-left: 50px;
+}
+
+/* 首页样式 */
+.shouye-1{
+  width: 950px;
+  height: 500px;
+}
+.shouye-1-2{
+  width: 140px;
+  height: 140px;
+  border: 1px solid #6585e5;
+  background: #6585e5;
+  border-radius: 25px;
+  float: left;
+  text-align: center;
+  color: white;
+  padding-top: 70px;
+  line-height: 40px;
+  font-size: 20px;
 }
