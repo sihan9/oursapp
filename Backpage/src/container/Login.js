@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import {Link,Route} from 'react-router-dom'
+import Shouye from './Shouye'
 export default class Login extends Component {
     render() {
         return (
@@ -22,11 +23,11 @@ export default class Login extends Component {
                         <div className='users'> 
                             <img className='user' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/Edit.png?raw=true'/>
                             <input className='code' placeholder="验证码"/>
-                            <button className='btn1'>JXP5</button>
+                            <canvas id="canvas" width="100" height="30" onClick={this.draw}></canvas>
                             <img className='update' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/update.png?raw=true'/>
                             <p>换一张</p>
                         </div>
-                        <button className='loginbtn'>登录</button>
+                        <Link to='/home'><input type='submit' className='loginbtn' value='登录'/></Link>
                     </form>
                 </div>
             </div>
