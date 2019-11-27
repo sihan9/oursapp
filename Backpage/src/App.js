@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Shouye from './container/Shouye'
+import Shouye from './pages/Shouye'
 import {BrowserRouter as Router,Route,Link,Switch,Redirect} from 'react-router-dom'
-import Login from './container/Login'
-import Home from './container/Home'
+import Login from './pages/Login'
+import Home from './pages/Home'
 
 
 export default class App extends Component {
