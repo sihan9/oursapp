@@ -1,3 +1,99 @@
+/* Login登录页面 */
+.Login{
+  width: 100%;
+  height: 1024px;
+  background: url('https://github.com/sihan9/oursapp/blob/master/images/Backstage/background.jpg?raw=true') no-repeat;
+}
+.head{
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+}
+.title1{
+  float: left;
+  display: inline;
+  left: 0;
+}
+.title2{
+  display: inline;
+  float: left;
+  margin-top: 30px;
+}
+.middle{
+  width: 100%;
+}
+.header{
+  margin-top:60px;
+  float: left;
+  margin-left: 560px;
+}
+.users{
+  width: 100%;
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.user{
+  margin-left: 370px;
+  float: left;
+}
+.username{
+  width: 380px;
+  height: 45px;
+  float: left;
+  margin-left: 30px;
+  margin-top: 2px;
+  padding-left: 10px;
+  border-radius: 18px;
+  border: 2px solid rgb(177, 176, 176);
+  background-color: transparent;
+}
+.code{
+  width: 160px;
+  height: 45px;
+  float: left;
+  margin-left: 30px;
+  margin-top: 2px;
+  padding-left: 10px;
+  border-radius: 18px;
+  border: 2px solid rgb(177, 176, 176);
+  background-color: transparent;
+}
+.btn1{
+  width: 160px;
+  height: 50px;
+  float: left;
+  margin-left: 30px;
+  margin-top: 2px;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 26px;
+  background-color:#6686e5;
+  border: none;
+}
+.update{
+  float: left;
+  margin-left: 30px;
+}
+.users p{
+  color: #6686e5;
+  font-size: 24px;
+  margin-left: 10px;
+  margin-top: 15px;
+  float: left;
+}
+.loginbtn{
+  width: 160px;
+  height: 50px;
+  float: left;
+  margin-left: 534px;
+  margin-top: 20px;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 26px;
+  background-color:#6686e5;
+  border: none;
+}
 /* 框架样式 */
 body{
   height: 1024px;

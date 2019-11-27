@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Shouye from './pages/Shouye'
+import Shouye from './container/Shouye'
 import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom'
 
 
@@ -59,4 +59,5 @@ export default class App extends Component {
     )
   }
 }
+
 
