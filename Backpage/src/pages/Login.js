@@ -1,7 +1,58 @@
 import React, { Component } from 'react'
-import {Link,Route} from 'react-router-dom'
-import Shouye from './Shouye'
 export default class Login extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            data:[],
+            user:'',
+            password:'',
+        }
+    }
+    componentDidMount(){
+        fetch('http://localhost:8080/login')
+        .then((res)=>res.json())
+        .then((res)=>{
+                this.setState({
+                    data:res.recordset
+                })
+        })
+        
+    }
+    componentDidUpdate(){
+
+        fetch('http://localhost:8080/login')
+            .then((res)=>res.json())
+            .then((res)=>{
+                    this.setState({data:res.recordset});
+                })
+}
+    handleName=(e)=>{
+        this.setState({
+            user:e.target.value
+        })
+    }
+    handlePwd=(e)=>{
+        this.setState({
+            password:e.target.value
+        })
+        
+    }
+    check=()=>{
+        var islogin =false;
+        for(var i=0;i<this.state.data.length;i++){
+            if(this.state.user === this.state.data[i].userName && this.state.password === this.state.data[i].password){
+                // this.props.history.push('/home/shouye')
+                islogin = true
+            }
+        }
+        console.log(islogin)
+        if(islogin){
+            this.props.history.push('/home/shouye')
+        }else{
+            alert('用户名密码错误！')
+        }
+    }
+
     render() {
         return (
             <div className='Login'>
@@ -14,11 +65,11 @@ export default class Login extends Component {
                     <form method='GET'>
                         <div className='users'> 
                             <img className='user' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/user.png?raw=true'/>
-                            <input className='username' placeholder="输入用户名"/>
+                            <input className='username' placeholder="输入用户名" onChange={this.handleName}/>
                         </div>
                         <div className='users'> 
                             <img className='user' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/pwd.png?raw=true'/>
-                            <input className='username' placeholder="输入密码"/>
+                            <input className='username' placeholder="输入密码" onChange={this.handlePwd}/>
                         </div>
                         <div className='users'> 
                             <img className='user' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/Edit.png?raw=true'/>
@@ -27,7 +78,7 @@ export default class Login extends Component {
                             <img className='update' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/update.png?raw=true'/>
                             <p>换一张</p>
                         </div>
-                        <Link to='/home'><input type='submit' className='loginbtn' value='登录'/></Link>
+                        <input type='submit' className='loginbtn' value='登录' onClick={this.check} />
                     </form>
                 </div>
             </div>
