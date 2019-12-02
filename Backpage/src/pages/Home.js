@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Shouye from './Shouye'
+import User from './User'
+import Title from './Title'
 import {BrowserRouter as Router,Route,Link,Switch,Redirect} from 'react-router-dom'
 export default class Home extends Component {
     render() {
@@ -43,8 +45,8 @@ export default class Home extends Component {
           <div className='component'>
             <Switch>
               <Route path='/home/shouye' component={Shouye}/>
-              <Route/>
-              <Route/>
+              <Route path='/home/user' component={User} />
+              <Route path='/home/post' component={Title}/>
               <Route/>
               <Route/>
               <Route/>

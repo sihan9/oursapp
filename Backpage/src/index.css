@@ -197,3 +197,79 @@ body{
   line-height: 40px;
   font-size: 20px;
 }
+
+/* 用户列表 */
+.user-1{
+  font-size: 20px;
+}
+.user-2{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+  height: 35px;
+}
+.user-2 p{
+  float: left;
+  margin: 0;
+  padding-left: 65px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+.user-2 input{
+  float: left;
+  margin-top: 13px;
+}
+.user-3{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+  height: 35px;
+}
+.user-3 p{
+  float: left;
+  margin: 0;
+  padding-left: 65px;
+  margin-top: 5px;
+  font-size: 15px;
+}
+.user-3 input{
+  float: left;
+  margin-top: 13px;
+}
+/* 帖子管理 */
+.title-1{
+  font-size: 20px;
+}
+.title-2{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+  height: 35px;
+}
+.title-2 p{
+  float: left;
+  margin: 0;
+  padding-left: 65px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+.title-2 input{
+  float: left;
+  margin-top: 13px;
+}
+.title-3{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+}
+.title-3 p{
+  float: left;
+  margin: 0;
+  padding-left: 65px;
+  margin-top: 5px;
+  font-size: 15px;
+}
+.title-3 input{
+  float: left;
+  margin-top: 13px;
+}
