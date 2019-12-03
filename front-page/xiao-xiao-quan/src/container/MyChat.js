@@ -62,7 +62,7 @@ export default class MyChat extends Component {
                     * 点击返回消息列表
                     */
                    leftContent={
-                    <Link to='/info'>
+                    <Link to='/home/info'>
                    <img src={ret} style={{width:"24%",height:"60%"}}/>
                  </Link>}
                   >

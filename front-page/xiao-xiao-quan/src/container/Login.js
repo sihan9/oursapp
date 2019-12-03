@@ -58,7 +58,7 @@ export default class Login extends Component {
         }
         console.log(islogin)
         if(islogin){
-            this.props.history.push('/app')
+            this.props.history.push('/home')
         }else{
             alert('用户名密码错误！')
         }

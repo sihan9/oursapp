@@ -16,8 +16,7 @@ export default class Home extends Component {
                <div >
                    
                     <Switch>    
-                        <Route exact path='/' component={Login}/>
-                        <Route path='/app' component={App}/>
+                        
                         <Route exact path='/community/publish' component={Publish} />
                         <Route exact path='/friend/:idx' component={Synopsis} />
                         <Route exact path='/my/set' component={Set}/>
@@ -26,7 +25,6 @@ export default class Home extends Component {
                         <Route path='/login' component={Login}/>
                         <Route path='/register' component={Register}/>
                         <Route path='/person' component={Person}/>
-                        {/* <Redirect to='/community'/>      */}
                         <Route path='/home' component={App}/>
                         <Route path='/' component={Login}/>
                        

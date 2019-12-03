@@ -48,7 +48,7 @@ export default class Count extends Component {
                    账号安全
                    
                     </NavBar>
-                    <div style={{width:'100%',backgroundColor:'#fff',height:'200px',paddingTop:'30px'}}>
+                    <div style={{width:'100%',backgroundColor:'#fff',height:'180px',paddingTop:'30px'}}>
                         <div id="user-photo" style={{margin:'0 auto',width:"100px",height:"100px"}} id="touxiang">
                             <img  src={this.state.imgUrl} alt='头像'  onClick={this.addImage}   id="avatar_img" style={{margin:'0 auto',width:"100px",height:"100px",marginTop:20,borderRadius:'100px'}}/>
                             <input type="file" id="file" accept="image/*"  onChange={this.handleImageChange} capture='camera' ref={(el) => { this.input = el }} style={{display:'none'}}></input>
@@ -56,19 +56,19 @@ export default class Count extends Component {
                     </div>
                     <div style={{width:'100%',height:'400px',backgroundColor:'#fff'}}>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            昵称
-                            <input name='name' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入昵称'/>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>昵称</p>
+                            <input name='name' style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入昵称'/>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            性别
-                            <select style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>性别</p>
+                            <select style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
                                 <option value ="boy" defaultValue="selected">男</option>
                                 <option value ="girl">女</option>
                             </select>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            学校
-                            <select style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学校</p>
+                            <select style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
                                 <option value ="hebeishida" defaultValue="selected">河北师范大学</option>
                                 <option value ="hebeikeda">河北科技大学</option>
                                 <option value="hebeidaxue">河北大学</option>
@@ -77,8 +77,12 @@ export default class Count extends Component {
                             </select>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            密码
-                            <input name='pwd' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>密码</p>
+                            <input type='password' name='pwd' style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
+                        </div>
+                        <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>确认密码</p>
+                            <input type='password' name='pwd' style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
                         </div>
                         <div>
                             <Link to='/my/set'>

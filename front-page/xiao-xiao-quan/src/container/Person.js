@@ -21,27 +21,27 @@ export default class Person extends Component {
                    资料设置
                    
                     </NavBar>
-                    <div >
-                    <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%',marginTop:'20%'}}>
-                            用户类型
+                    <div style={{paddingTop:'20%',backgroundColor:'#fff',paddingBottom:'18%'}}>
+                    <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%',backgroundColor:'#fff'}}>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>用户类型</p>
                             <select style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
                                 <option value ="personal" defaultValue="selected">个人</option>
                                 <option value ="team">宿舍</option>
                             </select>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            用户名
+                        <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>用户名</p>
                             <input name='name' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入用户名'/>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            性别
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>性别</p>
                             <select style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
                                 <option value ="boy" defaultValue="selected">男</option>
                                 <option value ="girl">女</option>
                             </select>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            学校
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学校</p>
                             <select style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
                                 <option value ="hebeishida" defaultValue="selected">河北师范大学</option>
                                 <option value ="hebeikeda">河北科技大学</option>
@@ -51,16 +51,16 @@ export default class Person extends Component {
                             </select>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            学号
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学号</p>
                             <input name='code' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='number' placeholder='请输入学号'/>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            密码
-                            <input name='pwd' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>密码</p>
+                            <input type='password' name='pwd' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            确认密码
-                            <input name='repwd' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>确认密码</p>
+                            <input type='password' name='repwd' style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
                         </div>
                         <div>
                             <Link to='/login'>
