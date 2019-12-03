@@ -10,7 +10,7 @@ export default class Set extends Component {
                    style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
                   
                    leftContent={
-                       <Link to='/home'>
+                       <Link to='/my'>
                       
                  
                       <img src={ret} style={{width:"24%",height:"60%"}}/>

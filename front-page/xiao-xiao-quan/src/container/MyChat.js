@@ -58,13 +58,12 @@ export default class MyChat extends Component {
             <div style={{width:'100%',height:'100%'}}>
                  <NavBar
                    style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
+                   /**
+                    * 点击返回消息列表
+                    */
                    leftContent={
-                    <Link to='/home'>
-                   
-              
+                    <Link to='/info'>
                    <img src={ret} style={{width:"24%",height:"60%"}}/>
-                
-                 
                  </Link>}
                   >
                   {this.userInfo.name}

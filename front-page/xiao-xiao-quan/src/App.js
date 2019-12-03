@@ -1,19 +1,17 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
+import {withRouter} from "react-router-dom";
 import Info from './container/Info';
 import Friend from './container/Friend';
 import My from './container/My';
-
+import Community from './container/Community';
 const requireContext = require.context('./image/tab', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext)
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedTab: 'blueTab',
-      
-    };
-  }
+
+
+ class App extends React.Component {
+  
+  
   render() {
     return (
 
@@ -45,17 +43,21 @@ export default class App extends React.Component {
                 height: '22px',
                 background: `url(${images[1]}) center center /  21px 21px no-repeat `}}
                 />
+                
                 }
-                selected={this.state.selectedTab === 'blueTab'}
+                
+                selected={
+                 
+                  this.props.location.pathname==='/'||
+                  this.props.location.pathname==='/community'
+                }
                 onPress={() => {
-                    this.setState({
-                        selectedTab: 'blueTab',
-                      
-                    });
-                    window.location='http://localhost:3000/#/home'
+                
+                   this.props.history.push('/community')
                 }}
+               
             >
-            社区
+          <Community/>
           </TabBar.Item>
         
          
@@ -76,16 +78,15 @@ export default class App extends React.Component {
             }
             title="朋友"
             key="friend"
-            selected={this.state.selectedTab === 'redTab'}
+            selected={
+             
+              this.props.location.pathname === '/friend'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'redTab'
-               
-              });
-              window.location='http://localhost:3000/#/friend'
+            
+              this.props.history.push('/friend')
             }}
           >
-            <Friend/>
+           <Friend/>
           </TabBar.Item>
           
         
@@ -107,12 +108,14 @@ export default class App extends React.Component {
             title="消息"
             key="info"
           
-            selected={this.state.selectedTab === 'greenTab'}
+            selected={
+           
+            this.props.location.pathname==='/info'
+          
+          }
             onPress={() => {
-              this.setState({
-                selectedTab: 'greenTab',
-              });
-              window.location='http://localhost:3000/#/info'
+             
+              this.props.history.push('/info')
             }}
           >
           <Info/>
@@ -136,13 +139,13 @@ export default class App extends React.Component {
             }
             title="我的"
             key="my"
-            selected={this.state.selectedTab === 'yellowTab'}
+            selected={
+             
+               this.props.location.pathname==='/my'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'yellowTab'
-               
-              });
-              window.location='http://localhost:3000/#/my'
+            
+              this.props.history.push('/my')
+             
             }}
           >
          
@@ -154,3 +157,4 @@ export default class App extends React.Component {
     );
   }
 }
+export default withRouter(App);
