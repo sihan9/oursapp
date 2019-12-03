@@ -9,7 +9,7 @@ export default class Login extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/manager')
+        fetch('http://101.37.172.74:3000/manager')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -20,7 +20,7 @@ export default class Login extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:8080/manager')
+        fetch('http://101.37.172.74:3000/manager')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});

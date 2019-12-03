@@ -8,7 +8,7 @@ export default class FeedBack extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/FeedBack')
+        fetch('http://101.37.172.74:3000/FeedBack')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -19,7 +19,7 @@ export default class FeedBack extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:8080/FeedBack')
+        fetch('http://101.37.172.74:3000/FeedBack')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});

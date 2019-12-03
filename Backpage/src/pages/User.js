@@ -7,7 +7,7 @@ export default class User extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/user')
+        fetch('http://101.37.172.74:3000/user')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -18,7 +18,7 @@ export default class User extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:8080/user')
+        fetch('http://101.37.172.74:3000/user')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
