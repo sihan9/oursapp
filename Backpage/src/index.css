@@ -150,9 +150,6 @@ body{
   border-radius: 10px;
   width: 700px;
   height: 60px;
-  margin-top: 50px;
-  margin-left: 50px;
-  float: left;
 }
 .box-3 img{
   width: 40px;
@@ -231,10 +228,19 @@ body{
   padding-left: 65px;
   margin-top: 5px;
   font-size: 15px;
+  text-align: center;
 }
 .user-3 input{
   float: left;
   margin-top: 13px;
+}
+.user-3 button{
+  margin-left: 43px;
+  margin-top: 5px;
+  background-color: #6485e4;
+  border-radius: 5px;
+  border: 1px solid #6485e4;
+  color: white;
 }
 /* 帖子管理 */
 .title-1{
@@ -272,4 +278,172 @@ body{
 .title-3 input{
   float: left;
   margin-top: 13px;
+}
+.title-3 button{
+  margin-left: 43px;
+  margin-top: 5px;
+  background-color: #6485e4;
+  border-radius: 5px;
+  border: 1px solid #6485e4;
+  color: white;
+}
+
+
+/* 反馈管理 */
+.feekback-1{
+  font-size: 20px;
+}
+.feekback-2{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+  height: 35px;
+}
+.feekback-2 p{
+  float: left;
+  margin: 0;
+  padding-left: 65px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+.feekback-2 input{
+  float: left;
+  margin-top: 13px;
+}
+.feekback-3{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+}
+.feekback-3 p{
+  float: left;
+  margin: 0;
+  padding-left: 61px;
+  margin-top: 5px;
+  font-size: 15px;
+}
+.feekback-3 input{
+  float: left;
+  margin-top: 13px;
+}
+.feekback-3 button{
+  margin-left: 43px;
+  margin-top: 5px;
+  background-color: #6485e4;
+  border-radius: 5px;
+  border: 1px solid #6485e4;
+  color: white;
+}
+
+
+/* 系统管理 */
+
+.manager-1{
+  font-size: 20px;
+}
+.manager-2{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+  height: 35px;
+}
+.manager-2 p{
+  float: left;
+  margin: 0;
+  padding-left: 65px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+.manager-2 input{
+  float: left;
+  margin-top: 13px;
+}
+.manager-3{
+  float: left;
+  width: 950px;
+  border: 2px solid #6485e4;
+  height: 35px;
+}
+.manager-3 p{
+  float: left;
+  margin: 0;
+  padding-left: 55px;
+  margin-top: 5px;
+  font-size: 15px;
+}
+.manager-3 input{
+  float: left;
+  margin-top: 13px;
+}
+.manager-3 button{
+  margin-left: 25px;
+  margin-top: 5px;
+  background-color: #6485e4;
+  border-radius: 5px;
+  border: 1px solid #6485e4;
+  color: white;
+}
+.manager-4{
+  float: left;
+  background-color: #6485e4;
+  border: 1px solid #6485e4;
+  height: 40px;
+  width: 90px;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 860px;
+  color: white;
+  font-size: 15px;
+}
+
+/* 添加管理员 */
+.add-1{
+  padding-left: 150px;
+}
+.add-1 div{
+  float: left;
+  width: 758px;
+  height: 55px;
+  padding-top: 10px;
+}
+.add-1 div p{
+  float: left;
+  font-size: 22px;
+  width: 75px;
+}
+.add-1 div input{
+  float: left;
+  margin-left: 50px;
+  margin-top: 25px;
+  height: 20px;
+  width: 200px;
+}
+.add-1 div{
+  float: left;
+  width: 700px;
+  height: 45px;
+}
+.add-2{
+  float: left;
+  background-color: #6485e4;
+  border: 1px solid #6485e4;
+  height: 40px;
+  width: 90px;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-left: 25px;
+  color: white;
+  font-size: 23px;
+}
+.add-1 button{
+  float: left;
+  background-color: #6485e4;
+  border: 1px solid #6485e4;
+  height: 40px;
+  width: 90px;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-left: 100px;
+  color: white;
+  font-size: 23px;
 }

@@ -25,7 +25,12 @@ export default class Login extends Component {
             .then((res)=>{
                     this.setState({data:res.content});
                 })
-}
+    }
+    componentWillUnmount = () => {
+        this.setState = (state,callback)=>{
+        return;
+        };
+    }
     handleName=(e)=>{
         this.setState({
             user:e.target.value
@@ -41,7 +46,6 @@ export default class Login extends Component {
         var islogin =false;
         for(var i=0;i<this.state.data.length;i++){
             if(this.state.user === this.state.data[i].username && this.state.password === this.state.data[i].password){
-                // this.props.history.push('/home/shouye')
                 islogin = true
             }
         }
