@@ -81,7 +81,7 @@ function Community (){
                         <p style={{float:"left",marginTop:3,marginLeft:4}}>6</p>
                         <div style={{display:showInput,width:"100%",float:"left"}}>
                             <input onKeyDown={(e)=>handleInput(e)} style={{backgroundColor:'#fff',width:"80%",height:30}} placeholder='说点什么吧'></input>
-                            <button onClick={showvalueCon} style={{border:0,backgroundColor:'#1296db',color:"#fff",height:30,width:"10%"}}>发送</button>
+                            <button onClick={(e)=>showvalueCon(e)} style={{border:0,backgroundColor:'#1296db',color:"#fff",height:30,width:"10%"}}>发送</button>
                         </div>
                         <ul style={{float:'left',width:"100%"}}>
                             {

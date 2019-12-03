@@ -48,12 +48,12 @@ const images = requireContext.keys().map(requireContext)
                 
                 selected={
                  
-                  this.props.location.pathname==='/'||
-                  this.props.location.pathname==='/community'
+                  this.props.location.pathname==='/home'||
+                  this.props.location.pathname==='/home/community'
                 }
                 onPress={() => {
                 
-                   this.props.history.push('/community')
+                   this.props.history.push('/home/community')
                 }}
                
             >
@@ -80,10 +80,10 @@ const images = requireContext.keys().map(requireContext)
             key="friend"
             selected={
              
-              this.props.location.pathname === '/friend'}
+              this.props.location.pathname === '/home/friend'}
             onPress={() => {
             
-              this.props.history.push('/friend')
+              this.props.history.push('/home/friend')
             }}
           >
            <Friend/>
@@ -110,12 +110,12 @@ const images = requireContext.keys().map(requireContext)
           
             selected={
            
-            this.props.location.pathname==='/info'
+            this.props.location.pathname==='/home/info'
           
           }
             onPress={() => {
              
-              this.props.history.push('/info')
+              this.props.history.push('/home/info')
             }}
           >
           <Info/>
@@ -141,10 +141,10 @@ const images = requireContext.keys().map(requireContext)
             key="my"
             selected={
              
-               this.props.location.pathname==='/my'}
+               this.props.location.pathname==='/home/my'}
             onPress={() => {
             
-              this.props.history.push('/my')
+              this.props.history.push('/home/my')
              
             }}
           >

@@ -24,8 +24,9 @@ export default class Home extends Component {
                         <Route path='/login' component={Login}/>
                         <Route path='/register' component={Register}/>
                         <Route path='/person' component={Person}/>
-                        <Route path='/' component={App}/>
-                        {/* <Redirect to='/community'/>      */}
+                        <Route path='/home' component={App}/>
+                        <Route path='/' component={Login}/>
+                       
                     </Switch>
                </div>
             </Router>

@@ -7,7 +7,7 @@ export default class Person extends Component {
         return (
             <div style={{width:'100%'}}>
                  <NavBar
-                   style={{backgroundColor:'#f5f5f9',color:'#000',width:"100%"}} 
+                   style={{backgroundColor:'#fff',color:'#000',width:"100%"}} 
                   
                    leftContent={
                        <Link to='/register'>
@@ -64,7 +64,7 @@ export default class Person extends Component {
                         </div>
                         <div>
                             <Link to='/login'>
-                            <input type='submit' value='立即登录' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'24%',backgroundColor:'#1296db',borderRadius:'20px'}}/>
+                            <input type='submit' value='立即登录' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'24%',backgroundColor:'#1296db',borderRadius:'20px',borderStyle:'none'}}/>
                             </Link>
                         </div>
                     </div>

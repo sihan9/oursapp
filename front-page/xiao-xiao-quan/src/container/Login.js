@@ -12,7 +12,7 @@ export default class Login extends Component {
         return (
             <div>
                   <NavBar
-                   style={{backgroundColor:'#f5f5f9',color:'grey',width:"100%"}} 
+                   style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
                   >
                    登录
                    
