@@ -5,9 +5,64 @@ import touxiang from '../image/set/头像更换.png';
 import usr from '../image/set/用户名.png';
 import pwd from '../image/set/密码.png';
 export default class Login extends Component {
-  
-      
-   
+    constructor(props){
+        super(props);
+        this.state={
+            data:[],
+            user:'',
+            password:'',
+        }
+    }
+    componentDidMount(){
+        fetch('http://101.37.172.74:3000/user')
+        .then((res)=>res.json())
+        .then((res)=>{
+                this.setState({
+                    data:res.content
+                })
+        })
+    }
+    componentDidUpdate(){
+        fetch('http://101.37.172.74:3000/user')
+            .then((res)=>res.json())
+            .then((res)=>{
+                    this.setState({data:res.content});
+                })
+    }
+    componentWillUnmount = () => {
+        this.setState = (state,callback)=>{
+        return;
+        };
+    }
+    handleName=(e)=>{
+        this.setState({
+            user:e.target.value
+        })
+    }
+    handlePwd=(e)=>{
+        this.setState({
+            password:e.target.value
+        })
+        
+    }
+    check=()=>{
+        var islogin =false;
+        console.log(this.state.user);
+        console.log(this.state.password);
+
+        for(var i=0;i<this.state.data.length;i++){
+            if(this.state.user === this.state.data[i].phone && this.state.password === this.state.data[i].password){
+                // this.props.history.push('/home/shouye')
+                islogin = true
+            }
+        }
+        console.log(islogin)
+        if(islogin){
+            this.props.history.push('/app')
+        }else{
+            alert('用户名密码错误！')
+        }
+    }
     render() {
         return (
             <div>
@@ -24,21 +79,16 @@ export default class Login extends Component {
                         </div>
                     </div>
                     <div style={{margin:'0 auto',width:"100%",height:"160px",backgroundColor:'#fff'}}>
-                            <form method='post' action='/#/' style={{width:'80%',margin:'0 auto'}}>
-                            <InputItem
-                                placeholder="用户名、账号"
-                                name='usr'
-                            ><img src={usr} style={{width:20,height:20}}/>
-                            </InputItem>
-                            <InputItem
-                                
-                                placeholder="密码"
-                                name='pwd'
-                            ><img src={pwd} style={{width:20,height:20}}/>
-                            </InputItem>
-                            <Link to='/home'>
-                            <input type='submit'  style={{marginLeft:'14%',fontSize:'18px',borderRadius:3,width:'70%',height:'50px',marginTop:'20px',color:'#fff',backgroundColor:'#1296db',borderRadius:'10px'}} value='登录'/>
-                            </Link>
+                            <form method='GET' style={{width:'80%',margin:'0 auto'}}>
+                            <div className='login'>
+                                <img src={usr} style={{width:20,height:20}}/>
+                                <input placeholder="用户名、账号" name='usr' onChange={this.handleName}/>
+                            </div>
+                            <div className='login'>
+                                <img src={pwd} style={{width:20,height:20}}/>
+                                <input type="password" placeholder="密码" name='password' onChange={this.handlePwd}/>
+                            </div>
+                            <input type='submit' onClick={this.check} style={{marginLeft:'14%',fontSize:'18px',borderRadius:3,width:'70%',height:'50px',marginTop:'20px',color:'#fff',backgroundColor:'#1296db',borderRadius:'10px'}} value='登录'/>
                             </form>
                     </div>
                     <div style={{width:'100%',height:'80px',backgroundColor:'#fff'}}>

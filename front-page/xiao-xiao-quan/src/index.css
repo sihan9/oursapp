@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+/* 登录框样式 */
+.login img{
+  margin-right: 10px;
+  padding-top: 15px;
+  float: left;
+}
+.login input{
+  float: left;
+  width: 250px;
+  height: 40px;
+  margin-bottom: 5px;
+  border-top:none ;
+  border-left: none;
+  border-right:none ;
+  border-bottom:1px solid black;
+}
