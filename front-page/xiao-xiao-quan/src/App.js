@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import Info from './container/Info';
 import Friend from './container/Friend';
 import My from './container/My';
-import Community from './container/Community';
+import Community from './container/css3-lava-lamp-menu/Community';
 const requireContext = require.context('./image/tab', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext)
 

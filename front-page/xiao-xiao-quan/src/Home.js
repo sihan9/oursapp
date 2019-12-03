@@ -7,7 +7,8 @@ import Count from './container/Count';
 import Chat from './container/MyChat';
 import Register from './container/Register';
 import Person from './container/Person';
-
+import Publish from './container/Publish';
+import Synopsis from './container/Synopsis';
 export default class Home extends Component {
     render() {
         return (
@@ -15,7 +16,8 @@ export default class Home extends Component {
                <div >
                    
                     <Switch>    
-                       
+                        <Route exact path='/community/publish' component={Publish} />
+                        <Route exact path='/friend/:idx' component={Synopsis} />
                         <Route exact path='/my/set' component={Set}/>
                         <Route exact path='/my/count' component={Count}/>
                         <Route exact path='/info/:id' component={Chat}/>
