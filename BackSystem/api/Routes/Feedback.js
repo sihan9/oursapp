@@ -14,7 +14,7 @@ router.get('/delete',(req,res)=>{
         data.push(req.query[i]);
     }
     console.log(data);
-    pool.query('DELETE FROM feedback WHERE id=$1',data)
+    pool.query('DELETE FROM feedback WHERE phone=$1',data)
     .catch(err=>{
         console.error(err)
     });

@@ -23,61 +23,48 @@ router.get('/delete',(req,res)=>{
 })
 //添加管理员接口
 router.post('/',(req,res)=>{
-    let user = {
-        id:'',
-        username:'',
-        name:'',
-        pwd:'',
-        sex:'',
-        work:'',
-        phone:'',
-        email:''
-    }
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1');
+    res.header("Content-Type", "application/json;charset=utf-8");
+
     var data = '';
     req.on('data',(chunk)=>{
       data += chunk;
     });
     req.on('end',()=>{
-        console.log(data);
-        var Data = decodeURIComponent(data);
-        Data = Data.split('&');
-        for(let i= 0 ;i<Data.length;i++){
-            Data[i]=Data[i].split('=');
-            user[Data[i][0]]=Data[i][1];
-            
-        }
-        console.log(user);
-        pool.query(selsql, (error,results,fields)=> {
+        data = JSON.parse(data);
+        pool.query('select * from manager', (error,results,fields)=> {
         //error,results,fields:错误对象，json数组，数据信息数组
             isregister = true;
             if (error) console.log(error.message);
-            for(let i=0;i<results.length;i++){
-                if(results[i].phone === user.phone && results[i].id === user.id){
+            for(var i=0;i<results.rows.length;i++){
+                console.log(results.rows[i]);
+                if(results.rows[i].phone === data.phone){
                     isregister = false;
                     break;
                 }
             }
-            if(!isregister){
-                console.log("Landing failed");
-                db = { state: 200, message: '注册失败', content: isregister };
-            }else{
+            if(isregister){
                 console.log("Landing successfully");
                 db = { state: 200, message: '注册成功', content: isregister };
                 var arr = [];
-                for(let i in user){
-                    arr.push(user[i]);
+                for(let i in data){
+                    arr.push(data[i]);
                 }
                 console.log(arr);
-                
                 pool.query(inssql,arr)
                 .catch(err=>{
                     console.error(err)
                 });
+                res.send(db);
+            }else{
+                console.log("Landing failed");
+                db = { state: 200, message: '注册失败', content: isregister };
+                res.send(db);
             };
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.json(db);
         });
-        
     });
 });
 module.exports = router;
