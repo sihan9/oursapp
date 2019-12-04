@@ -22,7 +22,7 @@ export default class Publish extends Component {
                 <NavBar
                     mode="light"
                     leftContent={[
-                        <Link style={{color:"#1296db"}} to='/community'>
+                        <Link style={{color:"#1296db"}} to='/home/community'>
                             {<Icon type="cross" />}
                         </Link>
                     ]}

@@ -13,7 +13,7 @@ export default class Synopsis extends Component {
                 <NavBar
                     mode="light"
                     leftContent={[
-                        <Link style={{color:"#1296db"}} to='/friend'>
+                        <Link style={{color:"#1296db"}} to='/home/friend'>
                             <Icon type="left" />
                         </Link>
                     ]}
