@@ -105,9 +105,10 @@ const images = requireContext.keys().map(requireContext)
                 background: `url(${images[7]}) center center /  21px 21px no-repeat`}}
               />
             }
+            badge={1}
             title="消息"
             key="info"
-          
+            
             selected={
            
             this.props.location.pathname==='/home/info'

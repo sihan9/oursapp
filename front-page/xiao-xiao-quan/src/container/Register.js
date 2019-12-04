@@ -4,12 +4,62 @@ import {Link} from 'react-router-dom';
 import ret from '../image/set/返回1.png';
 import { Checkbox } from 'antd-mobile';
 export default class Register extends Component {
+    constructor(){
+        super();
+        this.state={
+            phone:''
+        }
+    }
     data=[];
     displayResult=(e)=>{
-        var phone =e.target.value;
-        var Value = phone.replace(/\D/g,'');
-        e.target.value=Value;
+        var  re = /^1\d{10}$/
+        if(e.target.value){
+            if (re.test(e.target.value)) {
+                this.setState({
+                    phone:e.target.value
+                })
+            }
+            else{
+                alert('输入手机不合法')
+            } 
+        }
+        else{
+            alert('手机号不能为空')
+        }
+    
     }
+    handleChange=(e)=>{
+        this.setState({
+            phone:e.target.value
+        })
+        
+    }
+    onSubmit=(e)=> {
+        // 阻止事件传递
+        console.log(this.state.phone);
+       e.preventDefault();
+        // 把表单用的最终数据从state中提取出来,传入请求
+        const post ={
+            phone:this.state.phone
+        }
+        fetch('http://101.37.172.74:8080/user/register',{
+            // post提交
+            method:"POST",
+            body:JSON.stringify(post)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data)
+            if(data.content){
+                this.props.history.push('/person')
+            }
+            else{
+                alert('该手机号已经被占用')
+            }
+        })
+
+    }
+
     render() {
         return (
             <div style={{width:'100%',height:'100%',backgroundColor:'#fff'}}>
@@ -30,8 +80,8 @@ export default class Register extends Component {
                    
                     </NavBar>
                 <div style={{backgroundColor:'#fff',height:'600px'}}>
-                    <form action="" method="get">
-                        <input type='number' placeholder='请输入手机号' id="phone" maxLength="11" onKeyUp={this.displayResult} style={{marginLeft:'10%',width:'70%',height:'40px',marginTop:'30%',marginBottom:'10%',borderRadius:'10px',fontSize:'18px'}}/>
+                    <form onSubmit={this.onSubmit}>
+                        <input type='number' placeholder='请输入手机号' id="phone" maxLength="11" onChange={this.handleChange} onBlur={this.displayResult} style={{marginLeft:'10%',width:'70%',height:'40px',marginTop:'30%',marginBottom:'10%',borderRadius:'10px',fontSize:'18px'}}/>
                         <div style={{width:'100%',height:'150px'}}>
                             <input type='number' placeholder='验证码' id="check" maxLength="6"  style={{marginLeft:'10%',width:'50%',height:'40px',marginTop:'5%',marginBottom:'10%',borderRadius:'10px',fontSize:'18px',float:'left'}}/>
                             <button style={{float:'left',width:'24%',height:'40px',marginTop:'5%',marginBottom:'10%',borderRadius:'10px',fontSize:'12px',backgroundColor:'#108ee9',color:'#fff',marginRight:'10%',borderStyle:'none'}}>获取验证码</button>
@@ -39,9 +89,9 @@ export default class Register extends Component {
                         <Checkbox style={{marginLeft:'10%'}}>
                         我已阅读并同意保密协议和条款
                         </Checkbox>
-                        <Link to='/person'>
-                        <input type='button' value='注册' style={{width:'50%',height:'40px',backgroundColor:'#108ee9',color:'#fff',marginLeft:'25%',borderRadius:'5px',marginTop:'20px',borderStyle:'none'}}/>
-                        </Link>
+                       
+                        <input type='submit' value='注册' style={{width:'50%',height:'40px',backgroundColor:'#108ee9',color:'#fff',marginLeft:'25%',borderRadius:'5px',marginTop:'20px',borderStyle:'none'}}/>
+                     
                     </form>
                 </div>
             </div>
