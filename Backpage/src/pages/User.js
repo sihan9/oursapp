@@ -7,7 +7,7 @@ export default class User extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:3000/user')
+        fetch('http://101.37.172.74:8080/user')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -18,7 +18,7 @@ export default class User extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:3000/user')
+        fetch('http://101.37.172.74:8080/user')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
@@ -50,7 +50,7 @@ export default class User extends Component {
 
     delete=(idx)=>{
         console.log(idx)
-        fetch('http://101.37.172.74:3000/user/delete?id='+idx.id)
+        fetch('http://101.37.172.74:8080/user/delete?phone='+idx.phone)
             .then(res=>res.json())
             .then((res)=>{
                 console.log('ok')
@@ -67,23 +67,21 @@ export default class User extends Component {
                 <p className='user-1'>用户列表</p>
                 <div className='user-2'>
                     <input type='checkbox'/>
-                    <p style={{paddingLeft:'50px'}}>用户ID</p>
-                    <p style={{paddingLeft:'55px'}}>用户名</p>
-                    <p style={{paddingLeft:'51px'}}>性别</p>
-                    <p style={{paddingLeft:'110px'}}>学校</p>
-                    <p style={{paddingLeft:'170px'}}>手机号</p>
-                    <p style={{paddingLeft:'90px'}}>操作</p>
+                    <p>用户ID</p>
+                    <p>用户名</p>
+                    <p style={{paddingLeft:'92px'}}>性别</p>
+                    <p style={{paddingLeft:'155px'}}>学校</p>
+                    <p style={{paddingLeft:'195px'}}>操作</p>
                 </div>
                 {
                     this.state.data.map((item,idx)=>{
                         return(
                             <div className='user-3' key={idx}>
                                 <input type='checkbox'/>
-                                <p>{item.id}</p>
+                                <p>{item.phone}</p>
                                 <p style={{width:'60px'}}>{item.name}</p>
                                 <p>{item.sex}</p>
                                 <p style={{width:'160px'}}>{item.school}</p>
-                                <p style={{width:'150px'}}>{item.phone}</p>
                                 <button onClick={()=>this.delete(item)}>删除</button>
                             </div>
                         )

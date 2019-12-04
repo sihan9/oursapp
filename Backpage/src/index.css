@@ -208,7 +208,7 @@ body{
 .user-2 p{
   float: left;
   margin: 0;
-  padding-left: 65px;
+  padding-left: 85px;
   margin-top: 5px;
   font-size: 20px;
 }
@@ -226,6 +226,7 @@ body{
   float: left;
   margin: 0;
   padding-left: 65px;
+  width: 100px;
   margin-top: 5px;
   font-size: 15px;
   text-align: center;
@@ -235,7 +236,7 @@ body{
   margin-top: 13px;
 }
 .user-3 button{
-  margin-left: 43px;
+  margin-left: 135px;
   margin-top: 5px;
   background-color: #6485e4;
   border-radius: 5px;
@@ -255,7 +256,7 @@ body{
 .title-2 p{
   float: left;
   margin: 0;
-  padding-left: 65px;
+  padding-left: 50px;
   margin-top: 5px;
   font-size: 20px;
 }
@@ -269,9 +270,10 @@ body{
   border: 2px solid #6485e4;
 }
 .title-3 p{
+  text-align: center;
   float: left;
   margin: 0;
-  padding-left: 65px;
+  padding-left: 35px;
   margin-top: 5px;
   font-size: 15px;
 }
@@ -280,7 +282,7 @@ body{
   margin-top: 13px;
 }
 .title-3 button{
-  margin-left: 43px;
+  margin-left: 65px;
   margin-top: 5px;
   background-color: #6485e4;
   border-radius: 5px;
@@ -318,9 +320,10 @@ body{
 .feekback-3 p{
   float: left;
   margin: 0;
-  padding-left: 61px;
+  padding-left: 40px;
   margin-top: 5px;
   font-size: 15px;
+  text-align: center;
 }
 .feekback-3 input{
   float: left;

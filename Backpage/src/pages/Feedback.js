@@ -8,7 +8,7 @@ export default class FeedBack extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:3000/FeedBack')
+        fetch('http://101.37.172.74:8080/FeedBack')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -19,7 +19,7 @@ export default class FeedBack extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:3000/FeedBack')
+        fetch('http://101.37.172.74:8080/FeedBack')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
@@ -33,7 +33,7 @@ export default class FeedBack extends Component {
 
     delete=(idx)=>{
         console.log(idx)
-        fetch('http://101.37.172.74:3000/feedback/delete?id='+idx.id)
+        fetch('http://101.37.172.74:8080/feedback/delete?phone='+idx.phone)
             .then(res=>res.json())
             .then((res)=>{
                 console.log('ok')
@@ -49,23 +49,21 @@ export default class FeedBack extends Component {
                 <p className='feekback-1'>反馈列表</p>
                 <div className='feekback-2'>
                     <input type='checkbox'/>
-                    <p style={{paddingLeft:'50px'}}>用户ID</p>
-                    <p style={{paddingLeft:'45px'}}>反馈类型</p>
-                    <p style={{paddingLeft:'130px'}}>详细信息</p>
-                    <p style={{paddingLeft:'150px'}}>手机号</p>
-                    <p style={{paddingLeft:'90px'}}>邮箱</p>
-                    <p style={{paddingLeft:'90px'}}>操作</p>
+                    <p style={{paddingLeft:'60px'}}>用户ID</p>
+                    <p style={{paddingLeft:'85px'}}>反馈类型</p>
+                    <p style={{paddingLeft:'145px'}}>详细信息</p>
+                    <p style={{paddingLeft:'180px'}}>邮箱</p>
+                    <p style={{paddingLeft:'105px'}}>操作</p>
                 </div>
                 {
                     this.state.data.map((item,idx)=>{
                         return(
                             <div className='feekback-3' key={idx}>
                                 <input type='checkbox'/>
-                                <p>{item.id}</p>
-                                <p>{item.type}</p>
+                                <p style={{width:'100px'}}>{item.phone}</p>
+                                <p style={{width:'140px'}}>{item.type}</p>
                                 <p style={{width:'235px'}}>{item.content}</p>
-                                <p>{item.phone}</p>
-                                <p>{item.email}</p>
+                                <p style={{width:'160px'}}>{item.email}</p>
                                 <button onClick={()=>this.delete(item)}>删除</button>
                             </div>
                         )

@@ -9,7 +9,7 @@ export default class Login extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:3000/manager')
+        fetch('http://101.37.172.74:8080/manager')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -20,7 +20,7 @@ export default class Login extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:3000/manager')
+        fetch('http://101.37.172.74:8080/manager')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
@@ -73,7 +73,7 @@ export default class Login extends Component {
                         </div>
                         <div className='users'> 
                             <img className='user' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/pwd.png?raw=true'/>
-                            <input className='username' placeholder="输入密码" onChange={this.handlePwd}/>
+                            <input className='username' placeholder="输入密码" onChange={this.handlePwd} type='password'/>
                         </div>
                         <div className='users'> 
                             <img className='user' src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/Edit.png?raw=true'/>

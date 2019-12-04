@@ -8,7 +8,7 @@ export default class Title extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:3000/title')
+        fetch('http://101.37.172.74:8080/title')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -19,7 +19,7 @@ export default class Title extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:3000/title')
+        fetch('http://101.37.172.74:8080/title')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
@@ -32,7 +32,7 @@ export default class Title extends Component {
     }
     delete=(idx)=>{
         console.log(idx)
-        fetch('http://101.37.172.74:3000/title/delete?id='+idx.id)
+        fetch('http://101.37.172.74:8080/title/delete?phone='+idx.phone)
             .then(res=>res.json())
             .then((res)=>{
                 console.log('ok')
@@ -50,10 +50,10 @@ export default class Title extends Component {
                 <p className='title-1'>帖子管理</p>
                 <div className='title-2'>
                     <input type='checkbox'/>
-                    <p style={{paddingLeft:'50px'}}>用户ID</p>
-                    <p style={{paddingLeft:'63px'}}>标题</p>
-                    <p style={{paddingLeft:'225px'}}>内容</p>
-                    <p style={{paddingLeft:'265px'}}>时间</p>
+                    <p>用户ID</p>
+                    <p style={{paddingLeft:'110px'}}>标题</p>
+                    <p style={{paddingLeft:'220px'}}>内容</p>
+                    <p style={{paddingLeft:'200px'}}>时间</p>
                     <p style={{paddingLeft:'90px'}}>操作</p>
                 </div>
                 {
@@ -61,9 +61,9 @@ export default class Title extends Component {
                         return(
                             <div className='title-3' key={idx}>
                                 <input type='checkbox'/>
-                                <p>{item.id}</p>
-                                <p>{item.title}</p>
-                                <p style={{width:'375px'}}>{item.content}</p>
+                                <p style={{width:'100px'}}>{item.phone}</p>
+                                <p style={{width:'135px'}}>{item.title}</p>
+                                <p style={{width:'330px'}}>{item.content}</p>
                                 <p>{item.time}</p>
                                 <button onClick={()=>this.delete(item)}>删除</button>
                             </div>
