@@ -76,9 +76,10 @@ p{
 .navbar{
   
   width: 100%;
-  height: 430px;
+  height:auto;
   border-top: 0.5px solid #8a8a8a;
   margin-bottom: 10px;
+  overflow: hidden;
 }
 .img{
   margin-top: 15px;
