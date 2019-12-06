@@ -42,7 +42,7 @@ export default class info extends Component {
         return (
             <div style={{width:"100%"}}>
                 <NavBar
-                   style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
                   >
                    消息 
                    

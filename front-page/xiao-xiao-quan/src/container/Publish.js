@@ -22,12 +22,12 @@ export default class Publish extends Component {
                 <NavBar
                     mode="light"
                     leftContent={[
-                        <Link style={{color:"#1296db"}} to='/home/community'>
+                        <Link style={{color:"#f7cb3c"}} to='/home/community'>
                             {<Icon type="cross" />}
                         </Link>
                     ]}
                     rightContent={[
-                        <Button style={{color:'#1296db',position:"static "}}>发布</Button>
+                        <Button style={{color:'#f7cb3c',position:"static "}}>发布</Button>
                     ]}
                     >发布
                 </NavBar>

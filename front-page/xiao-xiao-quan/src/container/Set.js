@@ -7,7 +7,7 @@ export default class Set extends Component {
         return (
             <div>
                   <NavBar
-                   style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
                   
                    leftContent={
                        <Link to='/home/my'>
@@ -24,7 +24,7 @@ export default class Set extends Component {
                <div style={{width:'100%',marginTop:10}}>
                    <Link to='/my/count'>
                    <NoticeBar icon={null} mode="link" style={{height:50,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
-                      账号安全
+                      修改个人资料
                    </NoticeBar>
                   </Link>
                    <NoticeBar icon={null} mode="link" style={{height:50,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
@@ -51,9 +51,9 @@ export default class Set extends Component {
                </div>
                 <div style={{width:'100%'}}>
                     <Link key='login' to='/login'>
-                        <Button type="submit" style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#1296db',color:'#fff'}}>退出登录</Button>
+                        <Button type="submit" style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#f7cb3c',color:'#fff'}}>退出登录</Button>
                     </Link>
-                    <Button type="primary" style={{width:'80%',margin:'0 auto'}}>切换账户</Button>
+                    <Button type="primary" style={{width:'80%',margin:'0 auto',backgroundColor:'#f7cb3c'}}>切换账户</Button>
 
                 </div>
             </div>

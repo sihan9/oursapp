@@ -49,7 +49,8 @@ export default class Friend extends Component {
         return (
             <div>
                 <NavBar
-                    mode="light"
+                    // mode="light"
+                    style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
                     rightContent={[
                         <Popover mask
                             overlayClassName="fortest"

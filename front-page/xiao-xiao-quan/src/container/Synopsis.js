@@ -10,15 +10,12 @@ export default class Synopsis extends Component {
     render() {
         return (
             <div>
-                <NavBar
-                    mode="light"
-                    leftContent={[
-                        <Link style={{color:"#1296db"}} to='/home/friend'>
-                            <Icon type="left" />
+             
+                <div style={{width:'100%',height:'120px',backgroundImage:'url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575608605027&di=32d7252304fa4305fb172eb99910a788&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201709%2F01%2F20170901191657_sdBEf.thumb.700_0.jpeg")'}}>
+                        <Link style={{color:"#fff"}} to='/home/friend'>
+                            <Icon type="left" style={{width:'40px',height:'40px'}} />
                         </Link>
-                    ]}
-                    >好友
-                </NavBar>
+                </div>
                 <Item
                     arrow="horizontal"
                     thumb="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg"

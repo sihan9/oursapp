@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {NavBar,NoticeBar,Button} from 'antd-mobile';
 import ret from '../image/set/返回.png';
 import {Link} from 'react-router-dom';
-import touxiang from '../image/set/头像更换.png';
+
 
 /**
  * 账号安全界面
@@ -11,7 +11,7 @@ export default class Count extends Component {
     constructor(){
         super();
         this.state={
-            imgUrl:touxiang
+            imgUrl:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=347508467,3785403878&fm=26&gp=0.jpg'
         }
     }
     addImage = () => {
@@ -32,9 +32,10 @@ export default class Count extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{width:'100%',height:'100%'}}>
+                {/* <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity: 0.6}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575556526370&di=e564f89b7a1c3d1d1627cad9c00b8356&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2F200903%2F22%2F186651_12377164013a5x.jpg'/> */}
                  <NavBar
-                   style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
                   
                    leftContent={
                        <Link to='/my/set'>
@@ -45,7 +46,7 @@ export default class Count extends Component {
                     
                     </Link>}
                     >
-                   账号安全
+                   修改个人资料
                    
                     </NavBar>
                     <div style={{width:'100%',backgroundColor:'#fff',height:'180px',paddingTop:'30px'}}>
@@ -86,7 +87,7 @@ export default class Count extends Component {
                         </div>
                         <div>
                             <Link to='/my/set'>
-                            <input type='submit' value='保存' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'16%',backgroundColor:'#1296db',borderRadius:'20px',marginLeft:'20%'}}/>
+                            <input type='submit' value='保存' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'16%',backgroundColor:'#f7cb3c',borderRadius:'20px',marginLeft:'20%'}}/>
                             </Link>
                         </div>
                        

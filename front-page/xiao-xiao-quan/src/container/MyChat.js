@@ -57,7 +57,7 @@ export default class MyChat extends Component {
         return (
             <div style={{width:'100%',height:'100%'}}>
                  <NavBar
-                   style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
                    /**
                     * 点击返回消息列表
                     */

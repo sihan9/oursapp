@@ -10,7 +10,7 @@ function Community (){
     var name = '安好'
     let [img,setimg]=useState(images[3]);
     let [follow,setfollow] = useState('关注');
-    let [back,setback]=useState('#1296db');
+    let [back,setback]=useState('#f7cb3c');
     let [width,setwidth]=useState('40px');
     let [comment,setcomment] = useState(66);
     let [showInput,setshowInput] = useState("none");     //输入框显示隐藏
@@ -43,7 +43,7 @@ function Community (){
         return (
             <div>
                 <NavBar
-                mode="light"
+                 style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
                 rightContent={[
                     <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
                     <Icon key="1" type="plus" onClick={handle}/>,
