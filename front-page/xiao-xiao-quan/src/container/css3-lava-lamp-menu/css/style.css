@@ -10,6 +10,9 @@ p{
   margin: 0;
   padding: 0;
 }
+.navbar{
+  background-color: #fff;
+}
 .nav{
   height:70px;
   background:#fff;
@@ -71,11 +74,11 @@ p{
   text-decoration:none;
 }
 .navbar{
-  margin-top: 20px;
+  
   width: 100%;
   height: 430px;
   border-top: 0.5px solid #8a8a8a;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .img{
   margin-top: 15px;
