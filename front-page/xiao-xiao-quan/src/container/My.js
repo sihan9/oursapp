@@ -32,6 +32,7 @@ export default class My extends Component {
                    
                </NavBar>
                 <div style={{width:'100%',height:"120px",backgroundColor:'#fff',marginTop:10,padding:"10px 20px 10px 20px"}}>
+                    <Link to='/forum' style={{color:'#000'}}>
                     <div style={{margin:'0 auto',height:'76%',width:'100%',marginTop:10}}>
                         <img src={this.person.img} style={{width:"22%",height:'100%',float:'left',borderRadius:"50px"}}/>
                         <div style={{float:"left",width:"70%",marginLeft:"20px",height:'100%'}}>   
@@ -39,6 +40,7 @@ export default class My extends Component {
                             <p style={{width:"100%",margin:0,height:'40%'}}>{this.person.sign}</p>   
                         </div>
                     </div>
+                    </Link>
                 </div>
                 <div style={{width:'100%',marginTop:10}}>
                    

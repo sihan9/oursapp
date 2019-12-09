@@ -99,13 +99,7 @@ export default class Person extends Component {
                    
                     </NavBar>
                     <form onSubmit={this.onSubmit} style={{paddingTop:'20%',backgroundColor:'#fff',paddingBottom:'18%'}}>
-                        {/* <div  style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%',backgroundColor:'#fff'}}>
-                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>用户类型</p>
-                            <select onChange={this.handleType} style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',color:'#777'}}>
-                                <option name ="personal" defaultValue="selected">个人</option>
-                                <option name ="team">宿舍</option>
-                            </select>
-                        </div> */}
+                       
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                         <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>用户名</p>
                             <input name='name' onChange={this.handleName} style={{marginLeft:'10%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入用户名'/>

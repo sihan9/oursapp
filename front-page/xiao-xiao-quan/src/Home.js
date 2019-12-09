@@ -9,6 +9,7 @@ import Register from './container/Register';
 import Person from './container/Person';
 import Publish from './container/Publish';
 import Synopsis from './container/Synopsis';
+import Forum from './container/Forum';
 export default class Home extends Component {
     render() {
         return (
@@ -23,6 +24,7 @@ export default class Home extends Component {
                         <Route exact path='/my/count' component={Count}/>
                         <Route exact path='/info/:id' component={Chat}/>
                         <Route path='/login' component={Login}/>
+                        <Route path='/forum' component={Forum}/>
                         <Route path='/register' component={Register}/>
                         <Route path='/person' component={Person}/>
                         <Route path='/home' component={App}/>
