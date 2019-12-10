@@ -5,16 +5,20 @@ import {Link} from 'react-router-dom'
 const requireContext = require.context('../image/publish', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 const data = [];
+var fs1;
 export default class Publish extends Component {
     state = {
         files: data,
       }
-      onChange = (files, type, index) => {
-        console.log(files, type, index);
+    onChange = (files) => {
+        fs1 = files;
         this.setState({
           files,
         });
-      }
+    }
+    onClick = ()=>{
+        var data = document.getElementById("textarea").value;
+    }
     render() {
         const { files } = this.state;
         return (
@@ -27,7 +31,9 @@ export default class Publish extends Component {
                         </Link>
                     ]}
                     rightContent={[
-                        <Button style={{color:'#f7cb3c',position:"static "}}>发布</Button>
+                        <from action="#">
+                            <input type="submit" name="Submit"  style={{border:0,backgroundColor:"#fff",color:'#f7cb3c',position:"static "}} onClick={this.onClick} value="发布"/>
+                        </from>
                     ]}
                     >发布
                 </NavBar>
@@ -36,23 +42,27 @@ export default class Publish extends Component {
                     <p style={{marginLeft:10,marginTop:23,float:'left',width:"70%"}}>河北师范大学</p>
                     <p style={{marginLeft:10,float:"left",marginTop:5}}>安好</p>
                 </div>
+                {/* <form style={{float:"left",width:"100%",marginTop:20}} renderHeader={() => ''}>
+                    <textarea
+                        id="textarea"
+                        style={{paddingTop:10,width:"100%",border:0,}}
+                        placeholder="分享新鲜事/提问"
+                        rows="6"
+                    >
+                    </textarea>
+                </form> */}
                 <List style={{float:"left",width:"100%"}} renderHeader={() => ''}>
                     <TextareaItem
-                        title="标题"
-                        autoHeight
-                        labelNumber={5}
-                    />
-                    <TextareaItem
+                        id="textarea"
                         rows={3}
                         placeholder="分享新鲜事/提问"
                     />
-                </List>
+                    </List>
                 <div>
                     <ImagePicker
                         style={{float:"left",width:"100%"}}
                         files={files}
                         onChange={this.onChange}
-                        onImageClick={(index, fs) => console.log(index, fs)}
                         selectable={files.length < 5}
                         accept="image/gif,image/jpeg,image/jpg,image/png"
                     />

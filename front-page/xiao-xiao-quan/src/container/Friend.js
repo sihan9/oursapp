@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link,withRouter } from 'react-router-dom'
 import { NavBar, Icon,Popover,  } from 'antd-mobile';
 import { SearchBar, List,Accordion  } from 'antd-mobile';
 const requireContext = require.context('../image/friend', true, /^\.\/.*\.png$/)
@@ -7,7 +7,7 @@ const images = requireContext.keys().map(requireContext);
 const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 const myImg1= <img src={`${images[5]}`} className="am-icon am-icon-xs" alt="" />;
-export default class Friend extends Component {
+class Friend extends Component {
     data=[
         {
         img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
@@ -20,12 +20,12 @@ export default class Friend extends Component {
         },
         {
             img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
-            title:'南栀',
+            title:'遍地梧桐花',
         
         },
         {
             img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
-            title:'南栀',
+            title:'长安',
         },       
     
     ]
@@ -45,6 +45,14 @@ export default class Friend extends Component {
             visible,
         });
     };
+    Submit=(value)=>{
+        for(var i = 0 ; i < this.data.length ; i++){
+            if(this.data[i].title.indexOf(value)!=-1){
+                this.props.history.push('/friend/'+`${i}`);
+                console.log(this.props);
+            }
+        }
+    }
     render() {
         return (
             <div>
@@ -81,7 +89,10 @@ export default class Friend extends Component {
                     ]}
                     >朋友
                 </NavBar>
-                <SearchBar placeholder="搜索"/>
+                <SearchBar
+                    placeholder="搜索"
+                    onSubmit={this.Submit}
+                />
                 <div style={{ marginTop: 10, marginBottom: 10 }}>
                     <Accordion defaultActiveKey="0" onChange={this.onChange}>
                         <Accordion.Panel header="特别关心" style={{color:"#1296db"}}>
@@ -99,19 +110,10 @@ export default class Friend extends Component {
                                 }
                             </List>
                         </Accordion.Panel>
-                        {/* <Accordion.Panel header="朋友" className="pad">
-                            <List.Item>
-                                <img src={images[3]}/>
-                                <span style={{paddingLeft:15}}>{fllow[0]}</span>
-                            </List.Item>
-                            <List.Item>
-                                <img src={images[4]}/>
-                                <span style={{paddingLeft:15}}>{fllow[1]}</span>
-                            </List.Item>
-                        </Accordion.Panel> */}
                     </Accordion>
                 </div>
             </div>
         )
     }
 }
+export default withRouter(Friend);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar, Icon,Popover } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import { List } from 'antd-mobile';
 const Item = List.Item;
@@ -7,28 +7,75 @@ const Brief = Item.Brief;
 const requireContext = require.context('../image/Synopsis', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 export default class Synopsis extends Component {
+    state = {
+        visible: false,
+        selected: '',
+    };
+    onSelect = (opt) => {
+        this.setState({
+          visible: false,
+          selected: opt.props.value,
+        });
+    };
+    handleVisibleChange = (visible) => {
+        this.setState({
+          visible,
+        });
+    };
     render() {
         return (
             <div>
-             
-                <div style={{width:'100%',height:'120px',backgroundImage:'url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575608605027&di=32d7252304fa4305fb172eb99910a788&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201709%2F01%2F20170901191657_sdBEf.thumb.700_0.jpeg")'}}>
-                        <Link style={{color:"#fff"}} to='/home/friend'>
-                            <Icon type="left" style={{width:'40px',height:'40px'}} />
+            <div style={{width:'100%',backgroundColor:"#fff",paddingTop:10}}>
+                <NavBar
+                    mode="light"
+                    leftContent={
+                        <Link style={{color:"#707070"}} to='/home/friend'>
+                            <Icon type="left"/>
                         </Link>
-                </div>
-                <Item
+                    }
+                    rightContent={
+                        <Popover mask
+                            overlayClassName="fortest"
+                            overlayStyle={{ color: 'currentColor' }}
+                            visible={this.state.visible}
+                            overlay={[
+                            (<Item key="4" value="scan"  data-seed="logId">设置备注和标签</Item>),
+                            (<Item key="5" value="special" style={{ whiteSpace: 'nowrap' }}>删除</Item>),
+                            ]}
+                            align={{
+                            overflow: { adjustY: 0, adjustX: 0 },
+                            offset: [-10, 0],
+                            }}
+                            onVisibleChange={this.handleVisibleChange}
+                            onSelect={this.onSelect}
+                        >
+                            <div style={{
+                                height: '100%',
+                                padding: '0 15px',
+                                marginRight: '-15px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                }}
+                            >
+                                <Icon type="ellipsis" style={{color:"#707070"}} />
+                            </div>
+                        </Popover>
+                    }
+                >
+                </NavBar>
+            </div>
+                <Item style={{paddingBottom:20}}
                     arrow="horizontal"
                     thumb="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg"
-                    multipleLine
-                    onClick={() => {}}
+                    
                     >
-                    安好 <Brief>描述副标题</Brief>
+                    聂丹 <Brief>昵称：博君一肖</Brief>
                 </Item>
-                <div style={{borderTop:"1px solid #aaa",borderBottom:"1px solid #aaa"}}>
-                    <div style={{borderBottom:"0.5px solid #aaa",height:30,marginLeft:10,marginTop:13}}>
-                        <p>设置备注</p>
+                <div style={{backgroundColor:"#fff",borderTop:"0.5px solid #cdcdcd"}}>
+                    <div style={{borderBottom:"0.5px solid #cdcdcd",height:30,marginLeft:10,marginTop:13}}>
+                        <p>设置备注和标签</p>
                     </div>
-                    <div style={{borderBottom:"0.5px solid #aaa",height:30,marginLeft:10,marginTop:13}}>
+                    <div style={{borderBottom:"0.5px solid #cdcdcd",height:30,marginLeft:10,marginTop:13}}>
                         <p style={{float:"left"}}>帖子</p>
                         <img style={{width:20,height:20,marginLeft:10}} src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg"></img>
                     </div>
@@ -36,12 +83,12 @@ export default class Synopsis extends Component {
                         <p>更多</p>
                     </div>
                 </div>
-                <div style={{float:"left",width:"100%",height:40,borderTop:"1px solid #aaa",borderBottom:"1px solid #aaa",marginTop:20}}>
+                <div style={{backgroundColor:"#fff",float:"left",width:"100%",height:40,borderBottom:"0.5px solid #cdcdcd",marginTop:10}}>
                     
                     <img style={{width:30,height:30,float:"left",marginTop:5,marginLeft:"30%"}} src={images[0]}></img>
                     <p style={{float:"left",marginTop:10,marginLeft:10}}>发消息</p>
                 </div>
-                <div style={{float:"left",width:"100%",height:40,borderBottom:"1px solid #aaa"}}>
+                <div style={{backgroundColor:"#fff",float:"left",width:"100%",height:40}}>
                     
                     <img style={{width:30,height:30,float:"left",marginTop:5,marginLeft:"30%"}} src={images[1]}></img>
                     <p style={{float:"left",marginTop:10,marginLeft:10}}>音视频通话</p>

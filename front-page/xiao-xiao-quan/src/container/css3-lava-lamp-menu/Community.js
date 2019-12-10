@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
 import { NavBar, Icon } from 'antd-mobile';
-import "./css/style.css";
+import "./css/style.css"; 
 import {useHistory,withRouter} from 'react-router-dom'
 const requireContext = require.context('./image', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
-
+const {chapterList} = require('../Data');
 function Community (){
+    console.log(chapterList);
     let history = useHistory();
     var name = '安好'
     let [img,setimg]=useState(images[3]);
@@ -26,10 +27,6 @@ function Community (){
     }
     const handleClick=()=> {
         setshowInput('block');
-    }
-    const showvalueCon=(e)=>{
-            setvalueCon([...valueCon,e.target.value]);
-            setshowInput('none')
     }
     const handleInput=(e)=>{
         if(e.keyCode === 13){
@@ -67,21 +64,20 @@ function Community (){
                 <div className = "navbar">
                     <img className='img' src = "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1574758744&di=eabb518b61f0414d63271a1f607e3a2d&src=http://wx1.sinaimg.cn/orj360/8018b0d1ly1g8kjftn048j20sg0qgn1q.jpg"/>
                     <div className='follow'>
-                        <p className='username'>{name}</p>
+                        <p className='username'>{chapterList[0].name}</p>
                         <button onClick={Follow} style={{backgroundColor:`${back}`,width:`${width}`}} className='tabFllow'>{follow}</button>
                     </div>
-                    <p className="school">河北科技大学</p>
-                    <p className="comment">心情就像天气一样变化无穷！！！</p>
+                    <p className="school">{chapterList[0].school}</p>
+                    <p className="comment">{chapterList[0].title}</p>
                     <img className="commentImg" src={images[0]}   />
                     <div style={{float:"left",width:"100%",paddingTop:10,paddingLeft:10}}>
-                        <p style={{float:"left",marginLeft:"50%",marginTop:2}}>11/8</p>
+                        <p style={{float:"left",marginLeft:"50%",marginTop:2}}>{chapterList[0].publishTimer}</p>
                         <img onClick={Comment} style={{width:22,float:"left",marginLeft:15}} src={img}/>
-                        <p style={{float:"left",marginTop:3,marginLeft:7}}>{comment}</p>
+                        <p style={{float:"left",marginTop:3,marginLeft:7}}>{chapterList[0].good}</p>
                             <img onClick={handleClick} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
-                        <p style={{float:"left",marginTop:3,marginLeft:4}}>6</p>
+                            <p style={{float:"left",marginTop:3,marginLeft:4}}>{chapterList[0].comment}</p>
                         <div style={{display:showInput,width:"100%",float:"left"}}>
                             <input onKeyDown={(e)=>handleInput(e)} style={{backgroundColor:'#fff',width:"80%",height:30}} placeholder='说点什么吧'></input>
-                            <button onClick={(e)=>showvalueCon(e)} style={{border:0,backgroundColor:'#1296db',color:"#fff",height:30,width:"10%"}}>发送</button>
                         </div>
                         <ul style={{float:'left',width:"100%"}}>
                             {
