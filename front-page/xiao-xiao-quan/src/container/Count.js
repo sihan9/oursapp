@@ -30,6 +30,23 @@ export default class Count extends Component {
         param.append('file',file);
 
     }
+     getData=(e)=>{
+        e.preventDefault(); 
+        if(this.state.pwd!==this.state.rePwd)
+            console.log('密码输入不一致');
+        fetch('http://101.37.172.74:8080/user/information',{
+           
+        })
+            .then(res =>res.json())
+            .then(data =>{
+                console.log(data)
+                if(data.content){
+                    this.props.history.push('/my/set')
+                }
+            })
+        
+    }
+
     render() {
         return (
             <div style={{width:'100%',height:'100%'}}>
@@ -49,8 +66,8 @@ export default class Count extends Component {
                    修改个人资料
                    
                     </NavBar>
-                    {/* <form onSubmit={this.onSubmitex}> */}
-                    <form  action="http://101.37.172.74:3000/test/information" method='post' enctype="multipart/form-data">
+                    {/* <form onSubmit={this.onSubmit}> */}
+                    <form action="http://101.37.172.74:8080/user/information" method='post' enctype="multipart/form-data">
                     <div style={{width:'100%',backgroundColor:'#fff',height:'140px',paddingTop:'10px'}}>
                         <div id="user-photo" style={{margin:'0 auto',width:"100px",height:"100px"}} id="touxiang">
                             <img  src={this.state.imgUrl} alt='头像'  onClick={this.addImage}   id="avatar_img" style={{margin:'0 auto',width:"100px",height:"100px",marginTop:20,borderRadius:'100px'}}/>
@@ -72,7 +89,7 @@ export default class Count extends Component {
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学号</p>
-                            <input name='code' onChange={this.handleSchoolnum} onChange={this.handleCode} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='number' placeholder='请输入学号'/>
+                            <input name='code' onChange={this.handleCode} onChange={this.handleCode} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='number' placeholder='请输入学号'/>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>密码</p>
@@ -83,7 +100,7 @@ export default class Count extends Component {
                             <input type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
                         </div>
                         <div>
-                            <input type='submit' onClick={this.onSubmitex} value='保存' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'16%',backgroundColor:'#f7cb3c',borderRadius:'20px',marginLeft:'20%'}}/>
+                            <input type='submit' onClick={this.getData} value='保存' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'16%',backgroundColor:'#f7cb3c',borderRadius:'20px',marginLeft:'20%'}}/>
                        </div>
                     </div>
                     </form>

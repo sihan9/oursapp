@@ -3,6 +3,7 @@ const showdata = require('./showdata');
 const bodyParser = require('body-parser')
 const router = express.Router();
 const pool = require('./pg');
+const fs = require('fs');
 var formidable = require('formidable');
 router.get('/',(req,res)=>{
     let  sql = 'SELECT * FROM users';
@@ -46,7 +47,6 @@ router.post('/login',(req,res)=>{
             arr.push(data[i])
         }
         phone = arr[0];
-        console.log(phone)
         pool.query(selsql, (error,results,fields)=> {
         //error,results,fields:错误对象，json数组，数据信息数组
             isregister = false;
@@ -128,6 +128,12 @@ router.get('/register',(req,res)=>{
 //信息页面修改接口
 let updatesql = 'UPDATE users SET name=$1,sex=$2,school=$3,schoolnum=$4,password=$5,img=$6 WHERE phone=$7'
 router.post('/information',(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1');
+    res.header("Content-Type", "application/json;charset=utf-8");
+    console.log(phone)
     var form = new formidable.IncomingForm();   //创建上传表单
       form.encoding = 'utf-8';        //设置编辑
       form.uploadDir = './images';     //设置上传目录
@@ -139,7 +145,7 @@ router.post('/information',(req,res)=>{
         console.log(files);
         if (err) {
           res.locals.error = err;
-          res.render('index', { title: TITLE });
+        //   res.render('index', { title: TITLE });
           return;
         }
         var extName = 'png';  //后缀名
@@ -165,19 +171,15 @@ router.post('/information',(req,res)=>{
         }
         //显示地址；
         showUrl = files.pic.path;
-        // res.json({
-        //   "newPath":showUrl
-        // });
+        
         for(let i in fields){
             arr.push(fields[i]);
         }
-        // arr.splice(5,1);
         arr.push(files.pic.path);
         arr.push(phone);
         console.log(arr);
         pool.query(selsql, (error,results,fields)=> {
             isregister = false;
-            console.log(phone)
             if (error) console.log(error.message);
             for(let i=0;i<results.rows.length;i++){
                 if(results.rows[i].phone === phone){
@@ -186,20 +188,41 @@ router.post('/information',(req,res)=>{
                 }
             }
             if(isregister){
-                console.log("Modify successfully");
-                db =  {state: 200, message: '修改成功', content: isregister }; 
                 pool.query(updatesql,arr)
                 .catch(err=>{
                     console.error(err)
                 }); 
-                res.send(db);
-                console.log(res);
-            }else{
-                console.log("Modify failed");
-                db = { state: 200, message: '修改失败', content: isregister }; 
-                res.send(db);
-            };
+            }
         })
       });
 });
+router.get('/massage',(req,res)=>{
+    let sel = `SELECT * FROM users WHERE phone='${phone}'`;
+    showdata(res,sel);
+})
+router.get('/information',(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1');
+    res.header("Content-Type", "application/json;charset=utf-8");
+    console.log(req.url);
+    if(isregister){
+        console.log("Modify successfully");
+        db =  {state: 200, message: '修改成功', content: isregister }; 
+        res.send(db);
+    }else{
+        console.log("Modify failed");
+        db = { state: 200, message: '修改失败', content: isregister }; 
+        res.send(db);
+    };
+})
+router.get('/images', function (req, res) {
+    let sel = `SELECT img FROM users WHERE phone='${phone}'`;
+    pool.query(sel, (error,result,fields)=> {
+        var file = '/root/Database/Nodejs/api/';
+        res.sendFile(file  + result.rows[0].img);
+    })
+    
+})
 module.exports = router;

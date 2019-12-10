@@ -36,9 +36,10 @@ export default class Login extends Component {
             user:this.state.user,
             password:this.state.password
         }
-        fetch('http://101.37.172.74:3000/test/login',{
+        fetch('http://101.37.172.74:8080/user/login',{
             // post提交
             method:"POST",
+            
             body:JSON.stringify(post)//把提交的内容转字符串
         })
         .then(res =>res.json())
