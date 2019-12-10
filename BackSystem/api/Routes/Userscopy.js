@@ -3,6 +3,7 @@ const showdata = require('./showdata');
 const bodyParser = require('body-parser')
 const router = express.Router();
 const pool = require('./pg');
+var formidable = require('formidable');
 router.get('/',(req,res)=>{
     let  sql = 'SELECT * FROM users';
     showdata(res,sql);
@@ -45,6 +46,7 @@ router.post('/login',(req,res)=>{
             arr.push(data[i])
         }
         phone = arr[0];
+        console.log(phone)
         pool.query(selsql, (error,results,fields)=> {
         //error,results,fields:错误对象，json数组，数据信息数组
             isregister = false;
@@ -69,7 +71,7 @@ router.post('/login',(req,res)=>{
     });
 });
 router.get('/login',(req,res)=>{
-    db = { state: 200, message: '登录失败', content: phone }; 
+    db = { state: 200, message: '登录成功', content: phone }; 
     res.send(db);
 });
 //前端注册接口
@@ -124,33 +126,58 @@ router.get('/register',(req,res)=>{
     res.send(db);
 });
 //信息页面修改接口
-let updatesql = 'UPDATE users SET name=$1,sex=$2,school=$3,schoolnum=$4,password=$5 WHERE phone=$6'
+let updatesql = 'UPDATE users SET name=$1,sex=$2,school=$3,schoolnum=$4,password=$5,img=$6 WHERE phone=$7'
 router.post('/information',(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("X-Powered-By",' 3.2.1');
-    res.header("Content-Type", "application/json;charset=utf-8");
-    let data ='';
-    req.on('data',(chunk)=>{
-      data += chunk;
-    });
-    //头像、姓名、性别、学校、学号、密码、确认密码
-    req.on('end',()=>{
-        data = JSON.parse(data);
-        console.log(data)
-        var arr = [];
-        for(let i in data){
-            arr.push(data[i]);
+    var form = new formidable.IncomingForm();   //创建上传表单
+      form.encoding = 'utf-8';        //设置编辑
+      form.uploadDir = './images';     //设置上传目录
+      form.keepExtensions = true;     //保留后缀
+      form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
+      form.parse(req, function(err, fields, files) {
+        var arr =[];
+        console.log(fields);
+        console.log(files);
+        if (err) {
+          res.locals.error = err;
+          res.render('index', { title: TITLE });
+          return;
         }
-        console.log(arr);
-        arr.splice(0,1);
-        arr.splice(6,1);
+        var extName = 'png';  //后缀名
+        switch (files.pic.type) {
+          case 'image/pjpeg':
+            extName = 'jpg';
+            break;
+          case 'image/jpeg':
+            extName = 'jpg';
+            break;
+          case 'image/png':
+            extName = 'png';
+            break;
+          case 'image/x-png':
+            extName = 'png';
+            break;
+        }
+ 
+        if(extName.length == 0){
+          res.locals.error = '只支持png和jpg格式图片';
+          res.render('index', { title: TITLE });
+          return;
+        }
+        //显示地址；
+        showUrl = files.pic.path;
+        // res.json({
+        //   "newPath":showUrl
+        // });
+        for(let i in fields){
+            arr.push(fields[i]);
+        }
+        // arr.splice(5,1);
+        arr.push(files.pic.path);
         arr.push(phone);
         console.log(arr);
         pool.query(selsql, (error,results,fields)=> {
-        //error,results,fields:错误对象，json数组，数据信息数组
             isregister = false;
+            console.log(phone)
             if (error) console.log(error.message);
             for(let i=0;i<results.rows.length;i++){
                 if(results.rows[i].phone === phone){
@@ -166,12 +193,13 @@ router.post('/information',(req,res)=>{
                     console.error(err)
                 }); 
                 res.send(db);
+                console.log(res);
             }else{
                 console.log("Modify failed");
                 db = { state: 200, message: '修改失败', content: isregister }; 
                 res.send(db);
             };
-        });
-    });
+        })
+      });
 });
 module.exports = router;
