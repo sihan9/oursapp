@@ -5,20 +5,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="http://101.37.172.74:8080/user" method="POST">
-        id:<input type="text" name="id"/>
-        name:<input type="text" name="name"/>
-        img:'',
-        pwd:<input type="text" name="pwd"/>
-        sex:<input type="text" name="sex"/>
-        school:<input type="text" name="school"/>
-        phone:<input type="text" name="phone"/>
-        email:<input type="text" name="email"/>
-        <input type="text" name="phonenum"/>
-        <input type="submit" value="提交"/>
+    <!-- <form action="http://101.37.172.74:3000/test" method="POST" > -->
+    <form action="http://101.37.172.74:3000/test/uploader" method="POST" enctype="multipart/form-data">
+        <input type="file" name="pic" >
+        <input type="submit">
     </form>
 </body>
 <script>
-// fetch('localhost:8080/').then(res=>res.json()).then((data)=>{console.log(data)})
+    
 </script>
 </html>
