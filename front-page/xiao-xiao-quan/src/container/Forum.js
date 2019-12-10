@@ -1,8 +1,8 @@
 import React, {Component } from 'react'
 import ret from '../image/set/返回.png';
 import {Link} from 'react-router-dom';
-import "./css3-lava-lamp-menu/css/style.css";
-const requireContext = require.context('./css3-lava-lamp-menu/image', true, /^\.\/.*\.png$/)
+import "./css/style.css";
+const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 let a=true;
 export default class Forum extends Component{

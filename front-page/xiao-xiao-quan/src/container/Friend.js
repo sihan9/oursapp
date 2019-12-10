@@ -49,7 +49,6 @@ class Friend extends Component {
         for(var i = 0 ; i < this.data.length ; i++){
             if(this.data[i].title.indexOf(value)!=-1){
                 this.props.history.push('/friend/'+`${i}`);
-                console.log(this.props);
             }
         }
     }
@@ -61,6 +60,7 @@ class Friend extends Component {
                     style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
                     rightContent={[
                         <Popover mask
+                            key = "1"
                             overlayClassName="fortest"
                             overlayStyle={{ color: 'currentColor' }}
                             visible={this.state.visible}
@@ -99,8 +99,8 @@ class Friend extends Component {
                             <List className="my-list">
                                 {
                                     this.data.map((item,idx)=>(
-                                        <Link to={`/friend/${idx}`}>
-                                            <List.Item key={idx}>
+                                        <Link to={`/friend/${idx}`} key={idx}>
+                                            <List.Item>
                                                 <img src={item.img}/>
                                                 <span style={{paddingLeft:15}}>{item.title}</span>
                                             </List.Item>
