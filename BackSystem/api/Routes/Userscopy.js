@@ -188,28 +188,25 @@ router.post('/information',(req,res)=>{
                 }
             }
             if(isregister){
-                console.log("Modify successfully");
-                db =  {state: 200, message: '修改成功', content: isregister }; 
                 pool.query(updatesql,arr)
                 .catch(err=>{
                     console.error(err)
                 }); 
-                res.send(db);
-            }else{
-                console.log("Modify failed");
-                db = { state: 200, message: '修改失败', content: isregister }; 
-                res.send(db);
-            };
+            }
         })
       });
 });
+router.get('/massage',(req,res)=>{
+    let sel = `SELECT * FROM users WHERE phone='${phone}'`;
+    showdata(res,sel);
+})
 router.get('/information',(req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("X-Powered-By",' 3.2.1');
     res.header("Content-Type", "application/json;charset=utf-8");
-    // console.log(req.url);
+    console.log(req.url);
     if(isregister){
         console.log("Modify successfully");
         db =  {state: 200, message: '修改成功', content: isregister }; 
@@ -220,7 +217,6 @@ router.get('/information',(req,res)=>{
         res.send(db);
     };
 })
-//获取头像
 router.get('/images', function (req, res) {
     let sel = `SELECT img FROM users WHERE phone='${phone}'`;
     pool.query(sel, (error,result,fields)=> {

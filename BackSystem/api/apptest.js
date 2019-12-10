@@ -7,7 +7,7 @@ var Users = require('./Routes/Users');
 var Manager = require('./Routes/Manager');
 var Artical = require('./Routes/Artical');
 var Feedback = require('./Routes/Feedback');
-var Test = require('./Routes/Test');
+var Test = require('./Routes/Userscopy');
 // var Register = require('./Routes/Register');
 //const pool = require('./pg');
 /**

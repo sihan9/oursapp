@@ -38,6 +38,10 @@ export default class info extends Component {
         },       
 
 ]
+onClick=()=>{
+    console.log(window.location.href)
+    window.location.href='http://101.37.172.74:3005/'
+}
     render() {
         return (
             <div style={{width:"100%"}}>
@@ -58,7 +62,7 @@ export default class info extends Component {
                 <List className="my-list">
                     {
                     this.data.map((item,idx)=>(
-                        <Link to={`/info/${idx}`} key={idx}>
+                        <Link onClick={this.onClick} key={idx}>
                         <Item >
                             <img src={item.img} style={{float:"left",width:"14%",height:50}}/>
                             <div style={{float:"left",width:"80%",height:'50px',marginLeft:"10px"}}>

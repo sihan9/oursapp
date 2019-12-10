@@ -39,6 +39,7 @@ export default class Login extends Component {
         fetch('http://101.37.172.74:8080/user/login',{
             // post提交
             method:"POST",
+            
             body:JSON.stringify(post)//把提交的内容转字符串
         })
         .then(res =>res.json())
