@@ -8,24 +8,53 @@ const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 const myImg1= <img src={`${images[5]}`} className="am-icon am-icon-xs" alt="" />;
 class Friend extends Component {
+    constructor(){
+        super();
+        this.state={
+            data:[]
+        }
+    }
+    componentDidMount(){
+
+        fetch('http://101.37.172.74:8015/test/friend')
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res);
+        //    this.setState({data:res.content});
+        })
+        // console.log(this.state.data)
+    }
+    // componentDidUpdate(){
+    //     fetch('http://101.37.172.74:8015/test/friend')
+    //     .then(res =>res.json())
+    //     .then(res=>{
+    //         console.log(res);
+    //         this.setState({data:res.content});
+    //         console.log(this.state.data)
+    //     })
+    // }
     data=[
         {
-        img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
+        img:'http://img2.imgtn.bdimg.com/it/u=2247785495,154890183&fm=11&gp=0.jpg',
         title:'南栀',
+        school:'河北师范大学'
     
         },
         {
-            img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
+            img:'http://img0.imgtn.bdimg.com/it/u=4024120272,2855386786&fm=11&gp=0.jpg',
             title:'sunshine',
+            school:'河北师范大学'
         },
         {
-            img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
+            img:'http://img4.imgtn.bdimg.com/it/u=1964968116,1485562288&fm=26&gp=0.jpg',
             title:'遍地梧桐花',
+            school:'河北师范大学'
         
         },
         {
-            img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
+            img:'http://img4.imgtn.bdimg.com/it/u=346146653,1424425619&fm=11&gp=0.jpg',
             title:'长安',
+            school:'河北师范大学'
         },       
     
     ]
@@ -52,6 +81,10 @@ class Friend extends Component {
             }
         }
     }
+    onSelect=()=>{
+        console.log(this.props);
+        this.props.history.push('/addfriend');
+    }
     render() {
         return (
             <div>
@@ -65,8 +98,14 @@ class Friend extends Component {
                             overlayStyle={{ color: 'currentColor' }}
                             visible={this.state.visible}
                             overlay={[
-                                (<Item key="5" value="special" icon={myImg1} style={{ whiteSpace: 'nowrap' }}>添加朋友</Item>),
-                                (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">扫一扫</Item>),
+                                
+                                
+                             
+                                <Item key="5" value="special" icon={myImg1} onSelect={this.onSelect} style={{ whiteSpace: 'nowrap' }}>添加朋友</Item>
+                             
+                                ,
+                                
+                                <Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">扫一扫</Item>
                             ]}
                             align={{
                                 overflow: { adjustY: 0, adjustX: 0 },
@@ -93,24 +132,25 @@ class Friend extends Component {
                     placeholder="搜索"
                     onSubmit={this.Submit}
                 />
-                <div style={{ marginTop: 10, marginBottom: 10 }}>
-                    <Accordion defaultActiveKey="0" onChange={this.onChange}>
-                        <Accordion.Panel header="特别关心" style={{color:"#1296db"}}>
-                            <List className="my-list">
+                <div style={{ marginBottom: 10 }}>
+                   
+                            <List >
                                 {
                                     this.data.map((item,idx)=>(
                                         <Link to={`/friend/${idx}`} key={idx}>
-                                            <List.Item>
-                                                <img src={item.img}/>
-                                                <span style={{paddingLeft:15}}>{item.title}</span>
+                                            <List.Item style={{height:'60px'}}>
+                                                <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={item.img}/>
+                                                <div style={{float:'left',marginLeft:'14px'}}>
+                                                <p style={{margin:0,fontSize:'18px'}}>{item.title}</p>
+                                                <p style={{margin:0,fontSize:'12px',color:'#555',fontFamily:'cursive'}}>{item.school}</p>
+                                                </div>
                                             </List.Item>
                                         </Link>
 
                                     ))
                                 }
                             </List>
-                        </Accordion.Panel>
-                    </Accordion>
+                      
                 </div>
             </div>
         )

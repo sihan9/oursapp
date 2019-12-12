@@ -5,6 +5,7 @@ import "./css/style.css";
 const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 let a=true;
+let talk=false;
 export default class Forum extends Component{
     constructor(){
         super();
@@ -98,6 +99,17 @@ export default class Forum extends Component{
             })
         }
     }
+    showTalk=()=>{
+        var s=document.getElementById('ul');
+        if(!talk){
+            s.style.display='block';
+            talk=true;
+        }
+        else{
+            s.style.display='none';
+            talk=false;
+        }
+    }
    
     
     
@@ -131,8 +143,8 @@ export default class Forum extends Component{
                             <img onClick={(e)=>{this.changeImg(idx,e)}} style={{width:22,float:"left",marginLeft:'70%'}} src={item.unClick}/>
                            {/* 点赞 */}
                             <p style={{float:"left",marginTop:3,marginLeft:7}}>{item.zan}</p>
-                            <img onClick={()=>{}} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
-                            <ul style={{float:'left',width:"100%"}}>
+                            <img onClick={this.showTalk} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
+                            <ul id='ul' style={{float:'left',display:'none',width:"100%"}}>
                             {
                                 item.talk.map((con,i)=>(
                                     <li style={{listStyle:"none"}} key={i}>{con}</li>
@@ -140,7 +152,7 @@ export default class Forum extends Component{
                             }
                         </ul>
                         {/* 评论 */}
-                        <div style={{display:this.showInput,width:"100%",float:"left"}}>
+                        <div style={{width:"100%",float:"left"}}>
                                 <input onKeyDown={(e)=>this.addTalk(idx,e)} style={{backgroundColor:'#fff',width:"80%",height:30,borderStyle:'none'}} placeholder='说点什么吧'></input>
                                
                             </div>

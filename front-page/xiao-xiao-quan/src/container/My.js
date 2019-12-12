@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {NavBar,NoticeBar } from 'antd-mobile';
-import {Route,Link,Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import set from '../image/my/设置.png';
 import star from '../image/my/收藏.png';
