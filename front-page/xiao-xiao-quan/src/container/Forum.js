@@ -1,120 +1,61 @@
-import React, {Component } from 'react'
+import React, {useState,useEffect } from 'react'
 import ret from '../image/set/返回.png';
 import {Link} from 'react-router-dom';
 import "./css/style.css";
 const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
-let a=true;
-let talk=false;
-export default class Forum extends Component{
-    constructor(){
-        super();
-        this.state={
-            data:{
-                img:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=347508467,3785403878&fm=26&gp=0.jpg",
-                name:"Sunshine",
-                sign:'好好学习，天天向上',
-                school:'河北师范大学',
-                forum:[
-                    {
-                        time:'09月27日',
-                        unClick:images[3],
-                        title:'心情就像天气一样变化无穷！！！',
-                        img:images[0],
-                        zan:66,
-                        talk:[
-                            "zhangsan:下雨下雨",
-                            "lisi:xssfnef",
-                            "smv:ervfgnr"
-                        ]
-                    },
-                    {
-                        time:'09月27日',
-                        unClick:images[3],
-                        title:'心情就像天气一样变化无穷！！！',
-                        img:images[0],
-                        zan:66,
-                        talk:[
-                            
-                        ]
-                    },
-                    {
-                        time:'09月27日',
-                        unClick:images[3],
-                        title:'心情就像天气一样变化无穷！！！',
-                        img:images[0],
-                        zan:66,
-                        talk:[
-                            
-                        ]
-                    }
-        
-                ]
-            }
-        }
-    }
-  
-   
-   
-     deleteForum=(idx)=>{
-        var topic=this.state.data;
-        topic.forum.splice(idx,1);
-        this.setState({
-           data:topic
+var {chapterList} = require('./Data');
+export default function Forum (){
+    let [chapterList1,setchapterList1] = useState(chapterList);
+    let [img,setimg]=useState(chapterList[0].isgood?images[1]:images[3]);
+    let [data,setdata] = useState([]);
+    let [comment1,setcomment1] = useState(chapterList[0].good);
+    let [comment,setcomment] = useState(chapterList[0].comment);
+    let [showInput,setshowInput] = useState("none");
+    let [valueCon,setvalueCon]=useState(chapterList[0].talk);
+    useEffect(() => {
+        fetch('http://101.37.172.74:8080/user/massage',{
         })
-
-    }
-    changeImg=(idx,e)=>{
-        console.log(idx);
-        if(a){
-            let data=this.state.data;
-            data.forum[idx].unClick=images[1];
-            data.forum[idx].zan++;
-            a=false;
-            this.setState({
-                data:data
-            })
-        }
-        else{
-            let data=this.state.data;
-            data.forum[idx].unClick=images[3];
-            data.forum[idx].zan--;
-            a=true;
-            this.setState({
-                data:data
-            })
-        }
-        
-      
-
-    }
- 
-    addTalk=(idx,e)=>{
-        if(e.keyCode === 13){
-            let msg=this.state.data.name+':'+e.target.value;
-            e.target.value='';
-            this.state.data.forum[idx--].talk.push(msg);
-            this.setState({
-                data:this.state.data
-            })
-        }
-    }
-    showTalk=()=>{
-        var s=document.getElementById('ul');
-        if(!talk){
-            s.style.display='block';
-            talk=true;
-        }
-        else{
-            s.style.display='none';
-            talk=false;
-        }
-    }
+        .then(res =>res.json())
+        .then((res)=>{
+            setdata(res.content[0]);
+        })
+      },[]);
    
-    
-    
+   
+    let deleteForum=(idx)=>{
+        chapterList.splice(idx,1);
+        setchapterList1(chapterList);
+    }
+    let changeImg=(value)=>{
+        setcomment1(value.good);
+        if(chapterList[0].isgood==false){
+            setimg(images[1]);
+            setcomment1(comment1+1);
+            chapterList[0].good +=1;
+            chapterList[0].isgood = true;
+        }
+        else{
+            setimg(images[3]);
+            setcomment1(comment1-1);
+            chapterList[0].good-=1;
+            chapterList[0].isgood=false;
+        }
+     }
+ 
+    const handleClick=()=> {
+        setshowInput('block');
+    }
+    const handleInput=(e)=>{
+        if(e.keyCode === 13){
+            setvalueCon([...valueCon,e.target.value]);
+            setshowInput('none');
+            setcomment(comment+1);
+            chapterList[0].comment +=1;
+            chapterList[0].talk.push(e.target.value);
+        }
+    }
 
-   render(){ 
    
     return (
         <div style={{width:'100%'}}>
@@ -126,36 +67,37 @@ export default class Forum extends Component{
                   
                 </div>
                 {
-                this.state.data.forum.map((item,idx)=>(
+                (chapterList||[]).map((item,idx)=>(
                     <div key={idx} style={{height:'auto',width:'100%',marginTop:4}}>
                         <div className = "navbar">
-                        <img className='img' src = {this.state.data.img}/>
+                        <img className='img' src = {`http://101.37.172.74:8080/images/img?name=${data.img}`}/>
                         <div className='follow'>
-                            <p className='username'>{this.state.data.name}</p>
-                            <p style={{width:'40%', marginLeft:15,fontSize:12,float:'left',color:'#333',marginTop:'6px'}}>{this.state.data.forum[0].time}</p>
+                            <p className='username'>{data.name}</p>
+                            <p style={{width:'40%', marginLeft:15,fontSize:12,float:'left',color:'#333',marginTop:'6px'}}>{data.school}</p>
                             {/* 删除帖子 */}
-                            <img onClick={(idx)=>this.deleteForum(idx)} style={{width:'20px',height:'20px',float:'right',marginRight:'20px'}} src='https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3265765378,1116569126&fm=26&gp=0.jpg'/>
+                            <img onClick={()=>deleteForum(idx)} style={{width:'20px',height:'20px',float:'right',marginRight:'20px'}} src='https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3265765378,1116569126&fm=26&gp=0.jpg'/>
+                            {/* <img style={{width:'20px',height:'20px',float:'right',marginRight:'20px'}} src='https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3265765378,1116569126&fm=26&gp=0.jpg'/> */}
                         </div>
 
                          <p className="comment">{item.title}</p>
-                        <img className="commentImg" src={item.img}   />
+                        <img className="commentImg" src={item.commentImg}   />
                         <div style={{float:"left",width:"100%",paddingTop:10,paddingLeft:10}}>
-                            <img onClick={(e)=>{this.changeImg(idx,e)}} style={{width:22,float:"left",marginLeft:'70%'}} src={item.unClick}/>
+                            <img onClick={()=>{changeImg(item)}} style={{width:22,float:"left",marginLeft:'70%'}} src={img}/>
                            {/* 点赞 */}
-                            <p style={{float:"left",marginTop:3,marginLeft:7}}>{item.zan}</p>
-                            <img onClick={this.showTalk} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
-                            <ul id='ul' style={{float:'left',display:'none',width:"100%"}}>
-                            {
-                                item.talk.map((con,i)=>(
-                                    <li style={{listStyle:"none"}} key={i}>{con}</li>
-                                ))
-                            }
-                        </ul>
-                        {/* 评论 */}
-                        <div style={{width:"100%",float:"left"}}>
-                                <input onKeyDown={(e)=>this.addTalk(idx,e)} style={{backgroundColor:'#fff',width:"80%",height:30,borderStyle:'none'}} placeholder='说点什么吧'></input>
-                               
+                            <p style={{float:"left",marginTop:3,marginLeft:7}}>{comment1}</p>
+                            <img src={images[2]} onClick={handleClick} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
+                            <p style={{float:"left",marginTop:3,marginLeft:4}}>{comment}</p>
+                            <div style={{display:showInput,width:"100%",float:"left"}}>
+                                <input onKeyDown={(e)=>handleInput(e)} style={{backgroundColor:'#fff',width:"80%",height:30,borderStyle:'none'}} placeholder='说点什么吧'></input>
                             </div>
+                            <ul style={{float:'left',width:"100%"}}>
+                                {
+                                    (valueCon||[]).map((con,i)=>(
+                                        <li style={{listStyle:"none"}} key={i}>{item.name}：{con}</li>
+                                    ))
+                                }
+                            </ul>
+                        {/* 评论 */}
                         </div>
                     </div>
                 </div>
@@ -163,6 +105,5 @@ export default class Forum extends Component{
             }
         </div>
     )
-    }
     
 }

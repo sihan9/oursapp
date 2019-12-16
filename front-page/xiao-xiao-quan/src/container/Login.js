@@ -72,15 +72,15 @@ export default class Login extends Component {
                    
                     <div style={{margin:'0 auto',width:"100%",height:"200px",marginTop:'100px'}}>
                         <form onSubmit={this.onSubmit.bind(this)} style={{width:'80%',margin:'0 auto'}}>
-                            <div style={{backgroundColor:'#fff',width:'90%',height:'40px',margin:'0 auto',position:'relative',borderRadius:'10px'}}>
-                                {/* <img src={usr} style={{width:30,height:30,marginTop:'10px'}}/> */}
+                            <div style={{backgroundColor:'#fff',width:'90%',height:'40px',margin:'0 auto',position:'relative',borderRadius:'10px',opacity:'0.7'}}>
+                              
                                 <input style={{fontFamily:'cursive',borderStyle:'none',borderRadius:10,backgroundColor:'#fff',fontSize:'18px',height:'40px',width:'100%',color:'#585858',position:'absolute',top:0,textAlign:'center',boxShadow:' 0px 2px 3px'}} placeholder="手机号" name='usr' onChange={this.handleName}/>
                             </div>
-                            <div style={{backgroundColor:'#fff',width:'90%',height:'40px',margin:'0 auto',marginTop:'20px',position:'relative',borderRadius:'10px'}}>
-                                {/* <img src={pwd} style={{width:30,height:30,marginTop:'10px'}}/> */}
+                            <div style={{backgroundColor:'#fff',width:'90%',height:'40px',margin:'0 auto',marginTop:'20px',position:'relative',borderRadius:'10px',opacity:'0.7'}}>
+                               
                                 <input style={{fontFamily:'cursive',borderStyle:'none',borderRadius:10,backgroundColor:'#fff',height:'40px',fontSize:'18px',width:'100%',color:'#585858',position:'absolute',top:0,textAlign:'center',boxShadow:' 0px 2px 3px'}} type="password" placeholder="密码" name='password' onChange={this.handlePwd}/>
                             </div>
-                            <input type='submit'  style={{marginLeft:'36.5%',fontSize:'18px',borderRadius:3,width:'23%',height:'70px',marginTop:'20px',color:'#888',backgroundColor:'#fff',borderRadius:'70px',borderStyle:'none',boxShadow:' 0px 3px 3px'}} value='login'/>
+                            <input type='submit'  style={{opacity:'0.7',marginLeft:'36.5%',fontSize:'18px',borderRadius:3,width:'23%',height:'70px',marginTop:'20px',color:'#888',backgroundColor:'#fff',borderRadius:'70px',borderStyle:'none',boxShadow:' 0px 3px 3px'}} value='login'/>
                             
                         </form>
                     </div>

@@ -1,23 +1,21 @@
 import React, { Component } from 'react'
 import {NavBar,NoticeBar,Button} from 'antd-mobile';
 import ret from '../image/set/返回.png';
-import {Link} from 'react-router-dom';
-// import { Dimensions } from "react-native";
-// const deviceHeight = Dimensions.get('window').height; 
+
+import {Link,withRouter} from 'react-router-dom';
 let he=window.innerHeight;
+
 /**
  * 账号安全界面
  */
-export default class Count extends Component {
+ class Count extends Component {
     constructor(){
         super();
         this.state={
             data:{
                 imgUrl:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=347508467,3785403878&fm=26&gp=0.jpg',
-               
-
+            }
         }
-    }
     }
     componentDidMount(){
         fetch('http://101.37.172.74:8080/count')
@@ -118,7 +116,7 @@ export default class Count extends Component {
                         </div>
                         <div>
                             {/* <Link to='/my/set'> */}
-                            <input type='submit' value='保存' style={{color:'#fff',borderStyle:'none',fontSize:'18px',width:'50%',height:'50px',marginLeft:'25%',backgroundColor:'#26bdb0',borderRadius:'20px'}}/>
+                            <input type='submit' value='保存' style={{color:'#fff',borderStyle:'none',fontSize:'18px',width:'50%',height:'50px',marginLeft:'25%',backgroundColor:'#46a794',borderRadius:'20px'}}/>
                             {/* </Link> */}
                        </div>
                     </div>
@@ -128,3 +126,4 @@ export default class Count extends Component {
         )
     }
 }
+export default withRouter(Count);
