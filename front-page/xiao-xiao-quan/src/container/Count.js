@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import {NavBar,NoticeBar,Button} from 'antd-mobile';
 import ret from '../image/set/返回.png';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 
 
 /**
  * 账号安全界面
  */
-export default class Count extends Component {
+ class Count extends Component {
     constructor(){
         super();
         this.state={
-            imgUrl:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=347508467,3785403878&fm=26&gp=0.jpg'
+            imgUrl:'http://101.37.172.74:8080/user/images'
         }
     }
     addImage = () => {
@@ -30,23 +30,10 @@ export default class Count extends Component {
         param.append('file',file);
 
     }
-     getData=(e)=>{
-        e.preventDefault(); 
-        if(this.state.pwd!==this.state.rePwd)
-            console.log('密码输入不一致');
-        fetch('http://101.37.172.74:8080/user/information',{
-           
-        })
-            .then(res =>res.json())
-            .then(data =>{
-                console.log(data)
-                if(data.content){
-                    this.props.history.push('/my/set')
-                }
-            })
-        
+    
+    getData=()=>{
+        this.props.history.push('/home/my')
     }
-
     render() {
         return (
             <div style={{width:'100%',height:'100%'}}>
@@ -81,11 +68,11 @@ export default class Count extends Component {
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>性别</p>
-                            <input name='sex' onChange={this.handleSex} onChange={this.handleCode} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入性别'/>
+                            <input name='sex' onChange={this.handleSex} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入性别'/>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学校</p>
-                            <input name='school' onChange={this.handleSchool} onChange={this.handleCode} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入学校'/>
+                            <input name='school' onChange={this.handleSchool} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入学校'/>
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学号</p>
@@ -100,7 +87,7 @@ export default class Count extends Component {
                             <input type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
                         </div>
                         <div>
-                            <input type='submit' onClick={this.getData} value='保存' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'16%',backgroundColor:'#f7cb3c',borderRadius:'20px',marginLeft:'20%'}}/>
+                            <input type='submit' value='保存' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'16%',backgroundColor:'#f7cb3c',borderRadius:'20px',marginLeft:'20%'}}/>
                        </div>
                     </div>
                     </form>
@@ -109,3 +96,4 @@ export default class Count extends Component {
         )
     }
 }
+export default withRouter(Count);

@@ -1,35 +1,50 @@
 import React, { Component } from 'react'
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar, Icon,Button ,Toast } from 'antd-mobile';
 import { List, TextareaItem,ImagePicker   } from 'antd-mobile';
 import {Link,withRouter} from 'react-router-dom'
 var {chapterList} = require('./Data');
-const requireContext = require.context('../image/publish', true, /^\.\/.*\.png$/)
-const images = requireContext.keys().map(requireContext);
 const data = [];
 var allData = {};
 class Publish extends Component {
-    state = {
-        files: data,
-      }
+    constructor(){
+        super();
+        this.state={
+            files: data,
+            data1:[]
+        }
+    }
+    componentDidMount(){
+        fetch('http://101.37.172.74:8080/user/massage',{
+        })
+        .then(res =>res.json())
+        .then((res)=>{
+            this.setState({data1:res.content[0]});
+        })
+    }
     onChange = (files) => {
         allData.commentImg = files[0].url;
         this.setState({
           files,
         });
     }
-    onClick = ()=>{
+    successToast=()=> {
+        Toast.success('发布成功', 1);
+        var temp = {};
         var today = new Date();
-        var data = document.getElementById("textarea").value;
-        allData.name = "安好";
-        allData.school = "河北师范大学";
-        allData.title = data;
-        allData.publishTimer = (today.getMonth() + 1) + '/' + today.getDate();
-        allData.good = 0;
-        allData.comment = 0;
-        chapterList.unshift(allData);
-        alert('发布成功');
-        this.props.history.push('/home/community')
-    }
+        var data2 = document.getElementById("textarea").value;
+        temp.name = this.state.data1.name;
+        temp.school = this.state.data1.school;
+        temp.title = data2;
+        temp.publishTimer = (today.getMonth() + 1) + '/' + today.getDate();
+        temp.good = 0;
+        temp.comment = 0;
+        temp.commentImg = this.state.files[0].url;
+        chapterList.unshift(temp);
+        allData = temp;
+        setTimeout(() => {
+            this.props.history.push('/home/community')
+        }, 1000);
+      }
     render() {
         const { files } = this.state;
         return (
@@ -43,15 +58,15 @@ class Publish extends Component {
                     ]}
                     rightContent={[
                         <from action="#">
-                            <input type="submit" name="Submit"  style={{border:0,backgroundColor:"#fff",color:'#f7cb3c',position:"static "}} onClick={this.onClick} value="发布"/>
+                            <Button style={{border:0,backgroundColor:"#fff",color:'#f7cb3c',position:"static "}}  onClick={this.successToast}>发布</Button>
                         </from>
                     ]}
                     >发布
                 </NavBar>
                 <div>
-                    <img src={images[0]} style={{float:"left",width:45,height:45,borderRadius:45,marginLeft:"10%",marginTop:20}}/>
-                    <p style={{marginLeft:10,marginTop:23,float:'left',width:"70%"}}>河北师范大学</p>
-                    <p style={{marginLeft:10,float:"left",marginTop:5}}>安好</p>
+                    <img src={`http://101.37.172.74:8080/images/img?name=${this.state.data1.img}`} style={{float:"left",width:45,height:45,borderRadius:45,marginLeft:"10%",marginTop:20}}/>
+                <p style={{marginLeft:10,marginTop:23,float:'left',width:"70%"}}>{this.state.data1.school}</p>
+                <p style={{marginLeft:10,float:"left",marginTop:5}}>{this.state.data1.name}</p>
                 </div>
                 <List style={{float:"left",width:"100%"}} renderHeader={() => ''}>
                     <TextareaItem

@@ -53,7 +53,7 @@ export default class Set extends Component {
                     <Link key='login' to='/login'>
                         <Button type="submit" style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#f7cb3c',color:'#fff'}}>退出登录</Button>
                     </Link>
-                    <Button type="primary" style={{width:'80%',margin:'0 auto',backgroundColor:'#f7cb3c'}}>切换账户</Button>
+                    <Button type="primary" style={{width:'80%',border:0,margin:'0 auto',backgroundColor:'#f7cb3c'}}>切换账户</Button>
 
                 </div>
             </div>

@@ -1,36 +1,71 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { NavBar, Icon } from 'antd-mobile';
 import "./css/style.css"; 
-import {useHistory,withRouter} from 'react-router-dom'
+import {useHistory,withRouter,} from 'react-router-dom'
 const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 var {chapterList} = require('./Data');
+var followClick = false;
 function Community (){
     let history = useHistory();
-    var name = '安好'
-    let [img,setimg]=useState(images[3]);
+    let [img,setimg]=useState(chapterList[0].isgood?images[1]:images[3]);
     let [follow,setfollow] = useState('关注');
     let [back,setback]=useState('#f7cb3c');
     let [width,setwidth]=useState('40px');
-    let [comment,setcomment] = useState(66);
     let [showInput,setshowInput] = useState("none");     //输入框显示隐藏
-    let [valueCon,setvalueCon]=useState([]);
+    let [valueCon,setvalueCon]=useState(chapterList[0].talk);
+    let [comment1,setcomment1] = useState(chapterList[0].good);
+    let [comment,setcomment] = useState(chapterList[0].comment);
+    let [data,setdata] = useState([]);
+    useEffect(() => {
+        fetch('http://101.37.172.74:8080/user/massage',{
+        })
+        .then(res =>res.json())
+        .then((res)=>{
+            setdata(res.content[0]);
+        })
+      },[]);
     const Follow=()=>{
-        setfollow('已关注');
-        setback('#bfbfbf');
-        setwidth('60px');
+        if(followClick == false){
+            setfollow('已关注');
+            setback('#bfbfbf');
+            setwidth('60px');
+            followClick = true;
+        }
+        else{
+            setfollow('关注');
+            setback('#f7cb3c');
+            setwidth('40px');
+            followClick = false;
+        }
     }
-    const Comment=()=>{
-        setimg(images[1]);
-        setcomment(comment+1);
+    let Comment=(value)=>{
+        setcomment1(value.good);
+        if(chapterList[0].isgood==false){
+            setimg(images[1]);
+            setcomment1(comment1+1);
+            chapterList[0].good+=1;
+            chapterList[0].isgood = true;
+        }
+        else{
+            setimg(images[3]);
+            setcomment1(comment1-1);
+            chapterList[0].good-=1;
+            chapterList[0].isgood=false;
+        }
     }
     const handleClick=()=> {
-        setshowInput('block');
+        setTimeout(() => {
+            setshowInput('block');
+        }, 100);
     }
     const handleInput=(e)=>{
         if(e.keyCode === 13){
             setvalueCon([...valueCon,e.target.value]);
-            setshowInput('none')
+            setshowInput('none');
+            setcomment(comment+1);
+            chapterList[0].comment +=1;
+            chapterList[0].talk.push(e.target.value);
         }
     }
     const handle = ()=>{
@@ -57,33 +92,35 @@ function Community (){
                         </li>
                         <li><a href='#'>最新</a></li>
                         <li><a href='#'>最热</a></li>
-                        <li><a href='#'>关注</a></li>
+                        <li><a href='#'>好友</a></li>
                     </ul>
                 </div>
                 {
-                    chapterList.map((value,idx)=>(
+                    (chapterList||[]).map((value,idx)=>(
                         <div className = "navbar" key = {idx}>
-                            <img className='img' src = "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1574758744&di=eabb518b61f0414d63271a1f607e3a2d&src=http://wx1.sinaimg.cn/orj360/8018b0d1ly1g8kjftn048j20sg0qgn1q.jpg"/>
+                            <img className='img' onClick={()=>{history.push('/forum')}} src = {`http://101.37.172.74:8080/images/img?name=${data.img}`}/>
                             <div className='follow'>
-                            <p className='username'>{value.name}</p>
+                            <p className='username'>{data.name}</p>
                             <button onClick={Follow} style={{backgroundColor:`${back}`,width:`${width}`}} className='tabFllow'>{follow}</button>
                             </div>
-                            <p className="school">{value.school}</p>
+                            <p className="school">{data.school}</p>
                             <p className="comment">{value.title}</p>
                             <img className="commentImg" src={value.commentImg}   />
-                            <div style={{float:"left",width:"100%",paddingTop:10,paddingLeft:10}}>
+                            <div style={{float:"left",width:"100%",paddingTop:10,paddingLeft:10,paddingBottom:10}}>
                                 <p style={{float:"left",marginLeft:"50%",marginTop:2}}>{value.publishTimer}</p>
-                                <img onClick={Comment} style={{width:22,float:"left",marginLeft:15}} src={img}/>
-                                <p style={{float:"left",marginTop:3,marginLeft:7}}>{value.good}</p>
-                                    <img onClick={handleClick} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
-                                    <p style={{float:"left",marginTop:3,marginLeft:4}}>{value.comment}</p>
+                                <img onClick={()=>Comment(value)} style={{width:22,float:"left",marginLeft:15}} src={img}/>
+                                <p style={{float:"left",marginTop:3,marginLeft:7}}>{comment1}</p>
+                                <img onClick={handleClick} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
+                                <p style={{float:"left",marginTop:3,marginLeft:4}}>{comment}</p>
                                 <div style={{display:showInput,width:"100%",float:"left"}}>
-                                    <input onKeyDown={(e)=>handleInput(e)} style={{backgroundColor:'#fff',width:"80%",height:30}} placeholder='说点什么吧'></input>
+                                    <from autoComplete="off">
+                                        <input autoComplete="off" onKeyDown={(e)=>handleInput(e,value)} style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
+                                    </from>
                                 </div>
                                 <ul style={{float:'left',width:"100%"}}>
                                     {
-                                        valueCon.map((valueCon,i)=>(
-                                        <li style={{listStyle:"none"}} key={i}>{name}：{valueCon}</li>
+                                        (valueCon||[]).map((valueCon,i)=>(
+                                        <li style={{listStyle:"none"}} key={i}>{value.name}：{valueCon}</li>
                                         ))
                                     }
                                 </ul>
