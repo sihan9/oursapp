@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavBar} from 'antd-mobile';
+import {NavBar, Toast} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import ret from '../image/set/返回.png';
 import { Checkbox } from 'antd-mobile';
@@ -21,18 +21,18 @@ export default class Register extends Component {
                 })
             }
             else{
-                alert('输入手机不合法')
+                Toast.info('输入手机不合法')
             } 
         }
         else{
-            alert('手机号不能为空')
+            Toast.info('手机号不能为空');
         }
     
     }
     display=(e)=>{
        
         if(!e.target.value){
-           alert('密码不能为空')
+           Toast.info('密码不能为空')
         }
         
     
@@ -71,7 +71,7 @@ export default class Register extends Component {
                 this.props.history.push('/login')
             }
             else{
-                alert('该手机号已经被占用')
+                Toast.info('该手机号已经被占用',2000)
             }
         })
 
@@ -80,7 +80,7 @@ export default class Register extends Component {
     render() {
         return (
             <div style={{width:'100%',height:'100%'}}>
-                 <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity:1}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576058976013&di=f1d57b4a6dbc62daaf44c71f7cde2df6&imgtype=jpg&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D42b16be172899e51788e3a1c72a7d990%2Fa65049086e061d957d308f2472f40ad162d9ca0d.jpg'/>
+                 <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity:0.9}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576159524252&di=01570e2779ca6f8d6e6d5da2e29734a7&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201604%2F21%2F20160421152421_JN3Zu.jpeg'/>
                  <NavBar
                    style={{color:'#000',width:"100%",backgroundColor:'transparent'}} 
                   

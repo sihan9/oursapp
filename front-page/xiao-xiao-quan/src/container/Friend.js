@@ -1,59 +1,66 @@
 import React, { Component } from 'react'
 import {Link,withRouter } from 'react-router-dom'
-import { NavBar, Icon,Popover,  } from 'antd-mobile';
-import { SearchBar, List,Accordion  } from 'antd-mobile';
+import { NavBar, Icon,Popover } from 'antd-mobile';
+import { SearchBar, List } from 'antd-mobile';
 const requireContext = require.context('../image/friend', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 const myImg1= <img src={`${images[5]}`} className="am-icon am-icon-xs" alt="" />;
+let he=window.innerHeight;
 class Friend extends Component {
     constructor(){
         super();
         this.state={
-            data:[]
+            data:this.data
         }
     }
     componentDidMount(){
 
-        fetch('http://101.37.172.74:8015/test/friend')
+        fetch('http://101.37.172.74:8080/user/friend')
         .then((res)=>res.json())
         .then((res)=>{
-            console.log(res);
-        //    this.setState({data:res.content});
+            console.log(res.content);
+            this.setState({
+                data:res.content
+            })
+            console.log(this.state.data)
         })
-        // console.log(this.state.data)
+        
     }
     // componentDidUpdate(){
-    //     fetch('http://101.37.172.74:8015/test/friend')
+    //     let num=this.state.data.length;
+    //     fetch('http://101.37.172.74:8080/user/friend')
     //     .then(res =>res.json())
     //     .then(res=>{
     //         console.log(res);
-    //         this.setState({data:res.content});
-    //         console.log(this.state.data)
+    //         if(res.content!=num){
+    //             // this.setState({data:res.content});
+               
+    //         }
     //     })
     // }
     data=[
         {
         img:'http://img2.imgtn.bdimg.com/it/u=2247785495,154890183&fm=11&gp=0.jpg',
-        title:'南栀',
+        name:'南栀',
         school:'河北师范大学'
     
         },
         {
             img:'http://img0.imgtn.bdimg.com/it/u=4024120272,2855386786&fm=11&gp=0.jpg',
-            title:'sunshine',
+            name:'sunshine',
             school:'河北师范大学'
         },
         {
             img:'http://img4.imgtn.bdimg.com/it/u=1964968116,1485562288&fm=26&gp=0.jpg',
-            title:'遍地梧桐花',
+            name:'遍地梧桐花',
             school:'河北师范大学'
         
         },
         {
             img:'http://img4.imgtn.bdimg.com/it/u=346146653,1424425619&fm=11&gp=0.jpg',
-            title:'长安',
+            name:'长安',
             school:'河北师范大学'
         },       
     
@@ -86,11 +93,46 @@ class Friend extends Component {
         this.props.history.push('/addfriend');
     }
     render() {
+        let friendList;
+        
+        if(this.state.data.length!==0){
+        
+            friendList=(
+                <List >
+                {
+                   
+                    
+                    this.state.data.map((item,idx)=>(
+                        <Link to={`/friend/${idx}`} key={idx}>
+                            <List.Item style={{height:'60px'}}>
+                                <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={`http://101.37.172.74:8015/images/img?name=${item.img}`}/>
+                                <div style={{float:'left',marginLeft:'14px'}}>
+                                <p style={{margin:0,fontSize:'18px'}}>{item.name}</p>
+                                <p style={{margin:0,fontSize:'12px',color:'#555',fontFamily:'cursive'}}>{item.school}</p>
+                                </div>
+                            </List.Item>
+                        </Link>
+
+                    ))
+                    
+                }
+            </List>
+            )
+       
+        
+        }
+        else{
+            friendList=(
+                <div style={{height:he,backgroundColor:'#fff',paddingTop:'20%'}}>
+                    <p style={{width:'100%',height:'auto',color:'#ccc',textAlign:'center'}}>您还没有好友,点击+号添加好友吧</p>
+                </div>
+            );
+        }
         return (
             <div>
                 <NavBar
                     // mode="light"
-                    style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                    style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                     rightContent={[
                         <Popover mask
                             key = "1"
@@ -132,25 +174,29 @@ class Friend extends Component {
                     placeholder="搜索"
                     onSubmit={this.Submit}
                 />
-                <div style={{ marginBottom: 10 }}>
-                   
-                            <List >
+                <div style={{ marginBottom: 10 }}>   
+                           {friendList}
+                            {/* <List >
                                 {
-                                    this.data.map((item,idx)=>(
+                                   
+                                    
+                                    this.state.data.map((item,idx)=>(
                                         <Link to={`/friend/${idx}`} key={idx}>
                                             <List.Item style={{height:'60px'}}>
                                                 <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={item.img}/>
                                                 <div style={{float:'left',marginLeft:'14px'}}>
-                                                <p style={{margin:0,fontSize:'18px'}}>{item.title}</p>
+                                                <p style={{margin:0,fontSize:'18px'}}>{item.name}</p>
                                                 <p style={{margin:0,fontSize:'12px',color:'#555',fontFamily:'cursive'}}>{item.school}</p>
                                                 </div>
                                             </List.Item>
                                         </Link>
 
                                     ))
+                                    
                                 }
-                            </List>
-                      
+                            </List> */}
+                           
+                    
                 </div>
             </div>
         )

@@ -19,7 +19,7 @@ export default class My extends Component {
                 
                
                 <NavBar
-                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                   
                    rightContent={
                        [

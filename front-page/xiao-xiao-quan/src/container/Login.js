@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {NavBar,InputItem} from 'antd-mobile';
+import {NavBar,InputItem, Toast} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import weixin from '../image/set/微信.png';
 import  duanxin from '../image/set/短信.png';
@@ -33,11 +33,14 @@ export default class Login extends Component {
         // 阻止事件传递
        e.preventDefault();
         // 把表单用的最终数据从state中提取出来,传入请求
+        if(this.state.user==''||this.state.password==''){
+            Toast.info('手机号或密码为空')
+        }
         const post ={
             user:this.state.user,
             password:this.state.password
         }
-        fetch('http://101.37.172.74:8015/test/login',{
+        fetch('http://101.37.172.74:8080/user/login',{
             // post提交
             method:"POST",
             
@@ -49,6 +52,9 @@ export default class Login extends Component {
             if(data.content){
                 this.props.history.push('/home')
             }
+            else{
+                Toast.info('手机号或密码错误')
+            }
         })
 
     }
@@ -56,7 +62,7 @@ export default class Login extends Component {
     render() {
         return (
             <div style={{width:'100%',height:'100%'}}>
-                  <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity:1}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576058976013&di=f1d57b4a6dbc62daaf44c71f7cde2df6&imgtype=jpg&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D42b16be172899e51788e3a1c72a7d990%2Fa65049086e061d957d308f2472f40ad162d9ca0d.jpg'/>
+                  <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity:0.8}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576159524252&di=01570e2779ca6f8d6e6d5da2e29734a7&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201604%2F21%2F20160421152421_JN3Zu.jpeg'/>
                   <NavBar
                    style={{color:'#585858',width:"100%",backgroundColor:'transparent',fontSize:'30px'}} 
                   >

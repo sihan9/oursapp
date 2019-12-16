@@ -7,10 +7,23 @@ const Brief = Item.Brief;
 const requireContext = require.context('../image/Synopsis', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 export default class Synopsis extends Component {
-    state = {
-        visible: false,
-        selected: '',
-    };
+    constructor(){
+        super();
+        this.state = {
+            visible: false,
+            selected: '',
+            phone:''
+        };
+    }
+    componentDidMount(){
+        fetch('')
+        .then(res=>res.json)
+        .then(res=>{
+            this.setState({
+                
+            })
+        })
+    }
     onSelect = (opt) => {
         this.setState({
           visible: false,
@@ -19,9 +32,26 @@ export default class Synopsis extends Component {
     };
     handleVisibleChange = (visible) => {
         this.setState({
-          visible,
+          visible
         });
     };
+    deleteFriend=()=>{
+       
+        fetch('http://101.37.172.74:8080/user/login',{
+            // post提交
+            method:"POST",
+            
+            body:JSON.stringify(this.state.phone)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data)
+            if(data.content){
+
+                this.props.history.push('/my/friend')
+            }
+        })
+    }
     render() {
         return (
             <div>
@@ -40,7 +70,7 @@ export default class Synopsis extends Component {
                             visible={this.state.visible}
                             overlay={[
                             (<Item key="4" value="scan"  data-seed="logId">设置备注和标签</Item>),
-                            (<Item key="5" value="special" style={{ whiteSpace: 'nowrap' }}>删除</Item>),
+                            (<Item onClick={this.deleteFriend} key="5" value="special" style={{ whiteSpace: 'nowrap' }}>删除</Item>),
                             ]}
                             align={{
                             overflow: { adjustY: 0, adjustX: 0 },

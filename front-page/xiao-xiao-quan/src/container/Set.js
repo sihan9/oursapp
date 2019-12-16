@@ -7,7 +7,7 @@ export default class Set extends Component {
         return (
             <div>
                   <NavBar
-                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                   
                    leftContent={
                        <Link to='/home/my'>
@@ -51,9 +51,9 @@ export default class Set extends Component {
                </div>
                 <div style={{width:'100%'}}>
                     <Link key='login' to='/login'>
-                        <Button type="submit" style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#f7cb3c',color:'#fff'}}>退出登录</Button>
+                        <Button type="submit" style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#46a794',color:'#fff'}}>退出登录</Button>
                     </Link>
-                    <Button type="primary" style={{width:'80%',margin:'0 auto',backgroundColor:'#f7cb3c'}}>切换账户</Button>
+                    <Button type="primary" style={{width:'80%',margin:'0 auto',backgroundColor:'#46a794'}}>切换账户</Button>
 
                 </div>
             </div>
