@@ -9,7 +9,7 @@ var followClick = false;
 function Community (){
     let history = useHistory();
     let [img,setimg]=useState(chapterList[0].isgood?images[1]:images[3]);
-    let [follow,setfollow] = useState('关注');
+    let [follow,setfollow] = useState(chapterList[0].isfollow);
     let [back,setback]=useState('#f7cb3c');
     let [width,setwidth]=useState('40px');
     let [showInput,setshowInput] = useState("none");     //输入框显示隐藏
@@ -82,17 +82,17 @@ function Community (){
                 >广场</NavBar>
                 <div className='nav'>
                     <ul>
-                        <li><a href='#'>推荐</a>
+                        <li><a>推荐</a>
                             <ul>
-                                <li><a href='#'>美食</a></li>
-                                <li><a href='#'>旅游</a></li>
-                                <li><a href='#'>购物</a></li>
-                                <li><a href='#'>美妆</a></li>
+                                <li><a >美食</a></li>
+                                <li><a >旅游</a></li>
+                                <li><a >购物</a></li>
+                                <li><a >美妆</a></li>
                             </ul>
                         </li>
-                        <li><a href='#'>最新</a></li>
-                        <li><a href='#'>最热</a></li>
-                        <li><a href='#'>好友</a></li>
+                        <li><a>最新</a></li>
+                        <li><a>最热</a></li>
+                        <li><a>好友</a></li>
                     </ul>
                 </div>
                 {

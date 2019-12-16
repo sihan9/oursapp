@@ -8,7 +8,8 @@ var chapterList = [
         good : 66,
         comment : 0,
         talk:[],
-        isgood:false
+        isgood:false,
+        isfollow:'关注',
     }
 ]
 module.exports = {chapterList};

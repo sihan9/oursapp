@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import {NavBar,NoticeBar } from 'antd-mobile';
-import {Link,} from 'react-router-dom';
-
+import {Link,withRouter} from 'react-router-dom';
+import Collect from './Collect' 
 import set from '../image/my/设置.png';
 import star from '../image/my/收藏.png';
 import decorate from '../image/my/表情.png';
 import photo from '../image/my/相册.png';
 import info from '../image/my/公告.png';
-export default class My extends Component {
+class My extends Component {
     constructor(){
         super();
         this.state={
@@ -58,9 +58,9 @@ export default class My extends Component {
                         我的相册
                     </NoticeBar>
                    
-                    <NoticeBar icon={null} mode="link" style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
+                    <NoticeBar onClick={() => {this.props.history.push('/home/my/collect')}} icon={null} mode="link" style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
                     <img src={star} style={{marginTop:0,marginRight:10,height:20,width:20}}/>
-                        我的收藏
+                    收藏
                     </NoticeBar>
                   
                     <NoticeBar icon={null} mode="link" style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
@@ -79,3 +79,5 @@ export default class My extends Component {
         )
     }
 }
+
+export default withRouter(My);

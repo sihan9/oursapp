@@ -46,7 +46,8 @@ p{
   color:#222;
   line-height:50px !important;
   font:700 14px 'pt sans',sans-serif;
-  background:#eee;
+  background-color:rgba(247,203,60,0.6);
+  /* background:#f7cb3c; */
   border-bottom:1px solid #ddd;
   text-align:center;
   padding:0 5px;

@@ -68,7 +68,9 @@ import {Link,withRouter} from 'react-router-dom';
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>性别</p>
-                            <input name='sex' onChange={this.handleSex} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入性别'/>
+                            <input style={{marginLeft:'4%'}} type="radio" name="sex" value="男" checked />男
+                            <input style={{marginLeft:'4%'}} type="radio" name="sex" value="女" />女
+                            {/* <input name='sex' onChange={this.handleSex} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入性别'/> */}
                         </div>
                         <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学校</p>

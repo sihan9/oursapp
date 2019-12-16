@@ -39,6 +39,8 @@ class Publish extends Component {
         temp.good = 0;
         temp.comment = 0;
         temp.commentImg = this.state.files[0].url;
+        temp.isfollow = '关注';
+        temp.talk = [];
         chapterList.unshift(temp);
         allData = temp;
         setTimeout(() => {
