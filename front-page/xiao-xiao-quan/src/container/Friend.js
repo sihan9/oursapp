@@ -20,11 +20,11 @@ class Friend extends Component {
         fetch('http://101.37.172.74:8015/test/friend')
         .then((res)=>res.json())
         .then((res)=>{
-            console.log(res.content);
+            // console.log(res.content);
             this.setState({
                 data:res.content
             })
-            console.log(this.state.data)
+            // console.log(this.state.data)
         })
         
     }

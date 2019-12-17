@@ -8,7 +8,9 @@ export default class AddFriend extends Component {
     constructor(){
         super();
         this.state={
-            phone:''
+            phone:'',
+            img:'',
+            name:''
         }
     }
      
@@ -38,8 +40,8 @@ export default class AddFriend extends Component {
             if(res.content!==''){
                 friend=(
                     <List.Item style={{height:'60px'}}>
-                        <img style={{width:'40px',height:'40px',float:'left',marginTop:'10px'}} src='https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3256100974,305075936&fm=26&gp=0.jpg'/>
-                        <p style={{margin:0,fontSize:'18px',float:'left',marginLeft:'14px',lineHeight:'60px'}}>除以</p>
+                        <img style={{width:'40px',height:'40px',float:'left',marginTop:'10px'}} src={this.state.img}/>
+                <p style={{margin:0,fontSize:'18px',float:'left',marginLeft:'14px',lineHeight:'60px'}}>{this.state.name}</p>
                         <input type='button' onClick={this.addFriend} style={{float:'right',width:'20%',height:'40px',marginTop:'10px',backgroundColor:'#26bdb0',color:'#fff',borderStyle:'none'}} value='添加'/>
                     </List.Item>
                 )

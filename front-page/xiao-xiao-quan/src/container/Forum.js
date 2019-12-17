@@ -8,18 +8,38 @@ var {chapterList} = require('./Data');
 export default function Forum (){
     let [chapterList1,setchapterList1] = useState(chapterList);
     let [img,setimg]=useState(chapterList[0].isgood?images[1]:images[3]);
-    let [data,setdata] = useState([]);
+    let [data,setdata] = useState({});
     let [comment1,setcomment1] = useState(chapterList[0].good);
     let [comment,setcomment] = useState(chapterList[0].comment);
     let [showInput,setshowInput] = useState("none");
     let [valueCon,setvalueCon]=useState(chapterList[0].talk);
+    var touxiang='';
     useEffect(() => {
-        fetch('http://101.37.172.74:8080/user/massage',{
-        })
-        .then(res =>res.json())
-        .then((res)=>{
-            setdata(res.content[0]);
-        })
+        // fetch('http://101.37.172.74:8080/user/massage',{
+        // })
+        // .then(res =>res.json())
+        // .then((res)=>{
+        //     setdata(res.content[0]);
+
+        // })
+      
+        let data=localStorage.getItem('data');
+        let da=JSON.parse(data)[0];
+        setdata(da);
+        let str=da.img;
+      
+        let a=str.indexOf('http');
+        console.log(a);
+        if(a!=-1){
+            touxiang=(
+                <img className='img' src={da.img}/>
+            )
+        }
+        else{
+            touxiang=(
+                <img src={`http://101.37.172.74:8015/images/img?name=${data.img}`} style={{width:"22%",height:'100%',float:'left',borderRadius:"50px"}}/>
+            )
+        }
       },[]);
    
    
@@ -56,8 +76,9 @@ export default function Forum (){
         }
     }
 
-   
+    
     return (
+
         <div style={{width:'100%'}}>
                 <div style={{position:'relative'}}>
                     <img style={{width:'100%',height:'160px'}} src='https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3593643456,2253978744&fm=26&gp=0.jpg'/>
@@ -70,7 +91,8 @@ export default function Forum (){
                 (chapterList||[]).map((item,idx)=>(
                     <div key={idx} style={{height:'auto',width:'100%',marginTop:4}}>
                         <div className = "navbar">
-                        <img className='img' src = {`http://101.37.172.74:8080/images/img?name=${data.img}`}/>
+                        {/* <img className='img' src = {`http://101.37.172.74:8080/images/img?name=${data.img}`}/> */}
+                        {touxiang}
                         <div className='follow'>
                             <p className='username'>{data.name}</p>
                             <p style={{width:'40%', marginLeft:15,fontSize:12,float:'left',color:'#333',marginTop:'6px'}}>{data.school}</p>
