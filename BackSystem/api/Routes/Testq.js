@@ -126,78 +126,6 @@ router.get('/register',(req,res)=>{
     res.send(db);
 });
 //信息页面修改接口
-// let updatesql = 'UPDATE users SET name=$1,sex=$2,school=$3,schoolnum=$4,password=$5,img=$6 WHERE phone=$7'
-// router.post('/information',(req,res)=>{
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-//     res.header("X-Powered-By",' 3.2.1');
-//     res.header("Content-Type", "application/json;charset=utf-8");
-//     var form = new formidable.IncomingForm();   //创建上传表单
-//       form.encoding = 'utf-8';        //设置编辑
-//       form.uploadDir = './images';     //设置上传目录
-//       form.keepExtensions = true;     //保留后缀
-//       form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
-//       form.parse(req, function(err, fields, files) {
-//         var arr =[];
-//         console.log(fields);
-//         console.log(files);
-//         if (err) {
-//           res.locals.error = err;
-//         //   res.render('index', { title: TITLE });
-//           return;
-//         }
-//         var extName = 'png';  //后缀名
-//         switch (files.pic.type) {
-//           case 'image/pjpeg':
-//             extName = 'jpg';
-//             break;
-//           case 'image/jpeg':
-//             extName = 'jpg';
-//             break;
-//           case 'image/png':
-//             extName = 'png';
-//             break;
-//           case 'image/x-png':
-//             extName = 'png';
-//             break;
-//         }
- 
-//         if(extName.length == 0){
-//           res.locals.error = '只支持png和jpg格式图片';
-//           res.render('index', { title: TITLE });
-//           return;
-//         }
-//         //显示地址；
-//         showUrl = files.pic.path;
-        
-//         for(let i in fields){
-//             arr.push(fields[i]);
-//         }
-//         arr.push(files.pic.path);
-//         arr.push(phone);
-//         console.log(arr);
-//         pool.query(selsql, (error,results,fields)=> {
-//             isregister = false;
-//             if (error) console.log(error.message);
-//             for(let i=0;i<results.rows.length;i++){
-//                 if(results.rows[i].phone === phone){
-//                     isregister = true;
-//                     break;
-//                 }
-//             }
-//             if(isregister){
-//                 pool.query(updatesql,arr)
-//                 .catch(err=>{
-//                     console.error(err)
-//                 }); 
-//                 let sel = `SELECT * FROM users WHERE phone='${phone}'`;
-//                 console.log(sel);
-//                 showdata(res,sel);
-//             }
-//         })
-//       });
-// });
 let updatesql = 'UPDATE users SET name=$1,sex=$2,school=$3,schoolnum=$4,password=$5,img=$6 WHERE phone=$7'
 router.post('/information',(req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
@@ -242,11 +170,11 @@ router.post('/information',(req,res)=>{
         }
         //显示地址；
         showUrl = files.pic.path;
-        console.log(showUrl);
+        
         for(let i in fields){
             arr.push(fields[i]);
         }
-        arr.push(files.pic.path+'.'+extName);
+        arr.push(files.pic.path);
         arr.push(phone);
         console.log(arr);
         pool.query(selsql, (error,results,fields)=> {
@@ -346,22 +274,16 @@ router.post('/search',(req,res)=>{
 })
 
 router.get('/images', function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("X-Powered-By",' 3.2.1');
-    res.header("Content-Type", "application/json;charset=utf-8");
-    let sel = `SELECT img FROM users WHERE phone='${phone}'`;
-    // showdata(req,sel);
+    let sel = `SELECT * FROM users WHERE phone='${phone}'`;
+    showdata(req,sel);
     pool.query(sel, (error,result,fields)=> {
-        // console.log(result);
-        // console.log(result.rows[0])
-        // db =  {state: 200, message: '修改成功', content: result.rows[0] }; 
-        // res.send(db);
+        console.log(result);
+        console.log(result.rows[0])
+        db =  {state: 200, message: '修改成功', content: result.rows[0] }; 
+        res.send(db);
         var file = '/root/Database/Nodejs/api/';
         res.sendFile(file  + result.rows[0].img);
     })
-
 })
 
 module.exports = router;
