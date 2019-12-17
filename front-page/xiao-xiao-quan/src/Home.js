@@ -12,7 +12,7 @@ import Synopsis from './container/Synopsis';
 import Forum from './container/Forum';
 import Collect from './container/Collect';
 import MyChat1 from './container/MyChat1';
-
+import AddFriend from './container/AddFriend';
 export default class Home extends Component {
     render() {
         return (
@@ -20,7 +20,7 @@ export default class Home extends Component {
                <div >
                    
                     <Switch>   
-                        <Route exact path='/mychat' component={MyChat1}></Route>
+                        <Route exact path='/home/mychat/:idx' component={MyChat1}></Route>
                         <Route exact path='/home/my/collect' component={Collect}></Route>
                         <Route exact path='/home/my/collect' component={Collect}></Route>
                         <Route exact path='/community/publish' component={Publish} />
@@ -31,6 +31,7 @@ export default class Home extends Component {
                         <Route path='/login' component={Login}/>
                         <Route path='/forum' component={Forum}/>
                         <Route path='/register' component={Register}/>
+                        <Route path='/addfriend' component={AddFriend}/>
                         <Route path='/person' component={Person}/>
                         <Route path='/home' component={App}/>
                         <Route path='/' component={Login}/>

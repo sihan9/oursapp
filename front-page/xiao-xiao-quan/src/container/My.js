@@ -28,7 +28,7 @@ class My extends Component {
                 
                
                 <NavBar
-                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                   
                    rightContent={
                        [
@@ -46,7 +46,7 @@ class My extends Component {
                         <img src={`http://101.37.172.74:8080/images/img?name=${this.state.data.img}`} style={{width:"22%",height:'100%',float:'left',borderRadius:"50px"}}/>
                         <div style={{float:"left",width:"70%",marginLeft:"20px",height:'100%'}}>   
                             <p style={{height:'60%',fontSize:"18px",fontWeight:"bold",margin:0,width:'100%'}}>{this.state.data.name}</p>
-                            <p style={{width:"100%",margin:0,height:'40%'}}>好好学习，天天向上</p>   
+                <p style={{width:"100%",margin:0,height:'40%'}}>{this.state.data.school}</p>   
                         </div>
                     </div>
                     </Link>

@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import {NavBar } from 'antd-mobile';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import ret from '../image/set/返回.png';
 import Chat  from 'chat-react';
-export default class MyChat extends Component {
+let params;
+ class MyChat extends Component {
   constructor(){
     super();
     this.state={
         data:[],
+        data1:[],
         inputValue: '',
         messages: [],
         timestamp: new Date().getTime()
@@ -15,28 +17,30 @@ export default class MyChat extends Component {
     }
 }
 componentDidMount(){
-  fetch('http://101.37.172.74:8080/user/massage',{
+  params=this.props.match.params.idx;
+  fetch('http://101.37.172.74:8080/user/massage')
+        .then((res)=>res.json())
+        .then((res)=>{
+            this.setState({
+                data1:res.content
+            })
+            console.log(res.content)
+        })
+  fetch('http://101.37.172.74:8080/user/friend',{
   })
   .then(res =>res.json())
   .then((res)=>{
-      this.setState({data:res.content[0]});
+      this.setState({data:res.content[params]});
       this.setState({messages:[{
               timestamp: 1545925494422,
               userInfo: {
-                  avatar: `http://101.37.172.74:8080/images/img?name=${this.state.data.img}`,
-                  name: "游客1544365758856",
-                  userId: `${this.state.data.phone}`
+                  avatar: `http://101.37.172.74:8080/images/img?name=${res.content[params].img}`,
+                  userId: `${res.content[params].phone}`
               },
               value: "hello~"
           }]})
   })
 }
-    userInfo = {
-        avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=347508467,3785403878&fm=26&gp=0.jpg', //user avatar,  required parameters
-        userId: '13607047258', //user id,  required parameters
-        name: 'rigcky',
-        other: 'otherInfo'
-       }
  
     
     
@@ -47,7 +51,6 @@ componentDidMount(){
         this.chat.refs.message.setScrollTop(1200);  //色t scrollTop position
       }
       sendMessage = (v) => {
-      console.log(this.state.messages)
         const {value} = v;
         if (!value) return;
         const {messages = []} = this.state;
@@ -57,6 +60,11 @@ componentDidMount(){
     }
      
     render() {
+      const userInfo = {
+        avatar:  `http://101.37.172.74:8015/images/img?name=${this.state.data.img}`,
+        userId: `${this.state.data}`, //user id,  required parameters
+        name: `${this.state.data.name}`
+       }
         const {inputValue, messages, timestamp} = this.state;
        
 
@@ -72,7 +80,7 @@ componentDidMount(){
                    <img src={ret} style={{width:"24%",height:"60%"}}/>
                  </Link>}
                   >
-                  {this.userInfo.name}
+                  {userInfo.name}
                    
                </NavBar>
                 
@@ -80,7 +88,7 @@ componentDidMount(){
                     ref={el => this.chat = el}
                     className="my-chat-box"
                     dataSource={messages}
-                    userInfo={this.userInfo}
+                    userInfo={userInfo}
                     value={inputValue}
                     sendMessage={this.sendMessage}
                     timestamp={timestamp}
@@ -94,3 +102,5 @@ componentDidMount(){
         )
     }
 }
+export default withRouter(MyChat);
+

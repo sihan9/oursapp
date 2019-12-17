@@ -5,7 +5,7 @@ import Info from './container/Info';
 import Friend from './container/Friend';
 import My from './container/My';
 import Community from './container/Community';
-const requireContext = require.context('./image/tab', true, /^\.\/.*\.png$/)
+const requireContext = require.context('./image/tab1', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext)
 class App extends React.Component {
   
@@ -22,7 +22,7 @@ class App extends React.Component {
            
             <TabBar
             unselectedTintColor="#000"
-            tintColor="#f7cb3c"
+            tintColor="#46a794"
             barTintColor="#fff"
            
             >

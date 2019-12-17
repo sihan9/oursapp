@@ -1,16 +1,35 @@
 import React, { Component } from 'react'
 import { NavBar, Icon,Popover } from 'antd-mobile';
-import { Link } from 'react-router-dom';
+import { Link,withRouter} from 'react-router-dom';
 import { List } from 'antd-mobile';
 const Item = List.Item;
 const Brief = Item.Brief;
 const requireContext = require.context('../image/Synopsis', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
-export default class Synopsis extends Component {
-    state = {
-        visible: false,
-        selected: '',
-    };
+let params;
+class Synopsis extends Component {
+    constructor(){
+        super();
+        this.state = {
+            visible: false,
+            selected: '',
+            phone:'',
+            data:[],
+            params:''
+        };
+    }
+    componentDidMount(){
+        params=this.props.match.params.idx;
+        fetch('http://101.37.172.74:8080/user/friend')
+        .then((res)=>res.json())
+        .then((res)=>{
+            this.setState({
+                data:res.content[params],
+            })
+            console.log(res.content[params])
+        })
+
+    }
     onSelect = (opt) => {
         this.setState({
           visible: false,
@@ -19,9 +38,24 @@ export default class Synopsis extends Component {
     };
     handleVisibleChange = (visible) => {
         this.setState({
-          visible,
+          visible
         });
     };
+    deleteFriend=()=>{
+       
+        fetch('http://101.37.172.74:8080/user/login',{
+            // post提交
+            method:"POST",
+            
+            body:JSON.stringify(this.state.phone)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            if(data.content){
+                this.props.history.push('/my/friend')
+            }
+        })
+    }
     render() {
         return (
             <div>
@@ -40,7 +74,7 @@ export default class Synopsis extends Component {
                             visible={this.state.visible}
                             overlay={[
                             (<Item key="4" value="scan"  data-seed="logId">设置备注和标签</Item>),
-                            (<Item key="5" value="special" style={{ whiteSpace: 'nowrap' }}>删除</Item>),
+                            (<Item onClick={this.deleteFriend} key="5" value="special" style={{ whiteSpace: 'nowrap' }}>删除</Item>),
                             ]}
                             align={{
                             overflow: { adjustY: 0, adjustX: 0 },
@@ -69,7 +103,7 @@ export default class Synopsis extends Component {
                     thumb="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg"
                     
                     >
-                    聂丹 <Brief>昵称：博君一肖</Brief>
+                    {this.state.data.name} <Brief>昵称：博君一肖</Brief>
                 </Item>
                 <div style={{backgroundColor:"#fff",borderTop:"0.5px solid #cdcdcd"}}>
                     <div style={{borderBottom:"0.5px solid #cdcdcd",height:30,marginLeft:10,marginTop:13}}>
@@ -99,3 +133,4 @@ export default class Synopsis extends Component {
         )
     }
 }
+export default withRouter(Synopsis)

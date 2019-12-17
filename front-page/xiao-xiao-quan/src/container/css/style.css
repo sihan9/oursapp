@@ -46,8 +46,8 @@ p{
   color:#222;
   line-height:50px !important;
   font:700 14px 'pt sans',sans-serif;
-  background-color:rgba(247,203,60,0.6);
-  /* background:#f7cb3c; */
+  /* background-color:rgba(247,203,60,0.6); */
+  background:#26bdb0;
   border-bottom:1px solid #ddd;
   text-align:center;
   padding:0 5px;
@@ -67,7 +67,7 @@ p{
 
 }
 .nav>ul>li>a{
-  color:#f7cb3c;
+  color:#26bdb0;
   display:block;
   line-height:70px !important;
   font:400 15px 'PT Sans', sans-serif;

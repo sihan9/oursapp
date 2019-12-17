@@ -8,9 +8,9 @@ var {chapterList} = require('./Data');
 var followClick = false;
 function Community (){
     let history = useHistory();
-    let [img,setimg]=useState(chapterList[0].isgood?images[1]:images[3]);
-    let [follow,setfollow] = useState(chapterList[0].isfollow);
-    let [back,setback]=useState('#f7cb3c');
+    let [img,setimg]=useState('');
+    let [follow,setfollow] = useState('关注');
+    let [back,setback]=useState('#26bdb0');
     let [width,setwidth]=useState('40px');
     let [showInput,setshowInput] = useState("none");     //输入框显示隐藏
     let [valueCon,setvalueCon]=useState(chapterList[0].talk);
@@ -24,6 +24,10 @@ function Community (){
         .then((res)=>{
             setdata(res.content[0]);
         })
+        for(var i = 0;i<chapterList.length;i++){
+            setimg(chapterList[0].isgood?images[1]:images[3]);
+    
+        }
       },[]);
     const Follow=()=>{
         if(followClick == false){
@@ -34,7 +38,7 @@ function Community (){
         }
         else{
             setfollow('关注');
-            setback('#f7cb3c');
+            setback('#26bdb0');
             setwidth('40px');
             followClick = false;
         }
@@ -74,7 +78,7 @@ function Community (){
         return (
             <div>
                 <NavBar
-                 style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                 style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                 rightContent={[
                     <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
                     <Icon key="1" type="plus" onClick={handle}/>,
@@ -100,18 +104,18 @@ function Community (){
                         <div className = "navbar" key = {idx}>
                             <img className='img' onClick={()=>{history.push('/forum')}} src = {`http://101.37.172.74:8080/images/img?name=${data.img}`}/>
                             <div className='follow'>
-                            <p className='username'>{data.name}</p>
-                            <button onClick={Follow} style={{backgroundColor:`${back}`,width:`${width}`}} className='tabFllow'>{follow}</button>
+                                <p className='username'>{chapterList[idx].name}</p>
+                                <button onClick={Follow} style={{backgroundColor:`${back}`,width:`${width}`}} className='tabFllow'>{follow}</button>
                             </div>
-                            <p className="school">{data.school}</p>
-                            <p className="comment">{value.title}</p>
-                            <img className="commentImg" src={value.commentImg}   />
+                            <p className="school">{chapterList[idx].school}</p>
+                            <p className="comment">{chapterList[idx].title}</p>
+                            <img className="commentImg" src={chapterList[idx].commentImg}   />
                             <div style={{float:"left",width:"100%",paddingTop:10,paddingLeft:10,paddingBottom:10}}>
                                 <p style={{float:"left",marginLeft:"50%",marginTop:2}}>{value.publishTimer}</p>
                                 <img onClick={()=>Comment(value)} style={{width:22,float:"left",marginLeft:15}} src={img}/>
-                                <p style={{float:"left",marginTop:3,marginLeft:7}}>{comment1}</p>
+                                <p style={{float:"left",marginTop:3,marginLeft:7}}>{chapterList[idx].good}</p>
                                 <img onClick={handleClick} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
-                                <p style={{float:"left",marginTop:3,marginLeft:4}}>{comment}</p>
+                                <p style={{float:"left",marginTop:3,marginLeft:4}}>{chapterList[idx].comment}</p>
                                 <div style={{display:showInput,width:"100%",float:"left"}}>
                                     <from autoComplete="off">
                                         <input autoComplete="off" onKeyDown={(e)=>handleInput(e,value)} style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>

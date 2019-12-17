@@ -1,34 +1,31 @@
 import React, { Component } from 'react'
 import {Link,withRouter } from 'react-router-dom'
-import { NavBar, Icon,Popover,  } from 'antd-mobile';
-import { SearchBar, List,Accordion  } from 'antd-mobile';
+import { NavBar, Icon,Popover } from 'antd-mobile';
+import { SearchBar, List } from 'antd-mobile';
 const requireContext = require.context('../image/friend', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 const myImg1= <img src={`${images[5]}`} className="am-icon am-icon-xs" alt="" />;
+let he=window.innerHeight;
 class Friend extends Component {
-    data=[
-        {
-        img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
-        title:'南栀',
-    
-        },
-        {
-            img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
-            title:'sunshine',
-        },
-        {
-            img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
-            title:'遍地梧桐花',
+    constructor(){
+        super();
+        this.state={
+            data:[]
+        }
+    }
+    componentDidMount(){
+        fetch('http://101.37.172.74:8080/user/friend')
+        .then((res)=>res.json())
+        .then((res)=>{
+            this.setState({
+                data:res.content
+            })
+        })
+
         
-        },
-        {
-            img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg',
-            title:'长安',
-        },       
-    
-    ]
+    }
     state = {
         visible: false,
         selected: '',
@@ -52,12 +49,47 @@ class Friend extends Component {
             }
         }
     }
+    onSelect=()=>{
+        console.log(this.props);
+        this.props.history.push('/addfriend');
+    }
     render() {
+        let friendList;
+        
+        if(this.state.data.length!==0){
+        
+            friendList=(
+                <List >
+                { 
+                    this.state.data.map((item,idx)=>(
+                        <Link to={`/friend/${idx}`} key={idx}>
+                            <List.Item style={{height:'60px'}}>
+                                <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={`http://101.37.172.74:8015/images/img?name=${item.img}`}/>
+                                <div style={{float:'left',marginLeft:'14px'}}>
+                                <p style={{margin:0,fontSize:'18px'}}>{item.name}</p>
+                                <p style={{margin:0,fontSize:'12px',color:'#555',fontFamily:'cursive'}}>{item.school}</p>
+                                </div>
+                            </List.Item>
+                        </Link>
+
+                    ))
+                    
+                }
+            </List>
+            )
+        }
+        else{
+            friendList=(
+                <div style={{height:he,backgroundColor:'#fff',paddingTop:'20%'}}>
+                    <p style={{width:'100%',height:'auto',color:'#ccc',textAlign:'center'}}>您还没有好友,点击+号添加好友吧</p>
+                </div>
+            );
+        }
         return (
             <div>
                 <NavBar
                     // mode="light"
-                    style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                    style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                     rightContent={[
                         <Popover mask
                             key = "1"
@@ -65,8 +97,9 @@ class Friend extends Component {
                             overlayStyle={{ color: 'currentColor' }}
                             visible={this.state.visible}
                             overlay={[
-                                (<Item key="5" value="special" icon={myImg1} style={{ whiteSpace: 'nowrap' }}>添加朋友</Item>),
-                                (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">扫一扫</Item>),
+                                <Item key="5" value="special" icon={myImg1} onSelect={this.onSelect} style={{ whiteSpace: 'nowrap' }}>添加朋友</Item>
+                                ,
+                                <Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">扫一扫</Item>
                             ]}
                             align={{
                                 overflow: { adjustY: 0, adjustX: 0 },
@@ -93,24 +126,8 @@ class Friend extends Component {
                     placeholder="搜索"
                     onSubmit={this.Submit}
                 />
-                <div style={{ marginTop: 10, marginBottom: 10 }}>
-                    <Accordion defaultActiveKey="0" onChange={this.onChange}>
-                        <Accordion.Panel header="特别关心" style={{color:"#1296db"}}>
-                            <List className="my-list">
-                                {
-                                    this.data.map((item,idx)=>(
-                                        <Link to={`/friend/${idx}`} key={idx}>
-                                            <List.Item>
-                                                <img src={item.img}/>
-                                                <span style={{paddingLeft:15}}>{item.title}</span>
-                                            </List.Item>
-                                        </Link>
-
-                                    ))
-                                }
-                            </List>
-                        </Accordion.Panel>
-                    </Accordion>
+                <div style={{ marginBottom: 10 }}>   
+                    {friendList}
                 </div>
             </div>
         )

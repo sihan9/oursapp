@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import {NavBar,NoticeBar,Button} from 'antd-mobile';
 import ret from '../image/set/返回.png';
-import {Link,withRouter} from 'react-router-dom';
 
+import {Link,withRouter} from 'react-router-dom';
+let he=window.innerHeight;
 
 /**
  * 账号安全界面
@@ -11,12 +12,25 @@ import {Link,withRouter} from 'react-router-dom';
     constructor(){
         super();
         this.state={
-            imgUrl:'http://101.37.172.74:8080/user/images'
+            data:{
+                imgUrl:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=347508467,3785403878&fm=26&gp=0.jpg',
+            }
         }
+    }
+    componentDidMount(){
+        fetch('http://101.37.172.74:8080/count')
+        .then((res)=>res.json())
+        .then((res)=>{
+              
+           this.setState({
+               data:res.content
+            });
+        })
+      
     }
     addImage = () => {
         this.input.click();//触发input：file的click事件，
-      };
+      }
      
       handleImageChange = (e) => {//处理图片
         const saveUrl = this.props.saveUrl;
@@ -30,16 +44,30 @@ import {Link,withRouter} from 'react-router-dom';
         param.append('file',file);
 
     }
-    
-    getData=()=>{
-        this.props.history.push('/home/my')
-    }
+    //  getData=(e)=>{
+    //     e.preventDefault(); 
+    //     if(this.state.pwd!==this.state.rePwd)
+    //         console.log('密码输入不一致');
+    //     fetch('http://101.37.172.74:8080/user/information',{
+           
+    //     })
+    //         .then(res =>res.json())
+    //         .then(data =>{
+    //             console.log(data)
+    //             if(data.content){
+    //                 this.props.history.push('/my/set')
+    //             }
+    //         })
+        
+    // }
+
     render() {
+        console.log("height:"+he);
         return (
-            <div style={{width:'100%',height:'100%'}}>
+            <div style={{width:'100%',height:he,backgroundColor:'#fff'}}>
                 {/* <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity: 0.6}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575556526370&di=e564f89b7a1c3d1d1627cad9c00b8356&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2F200903%2F22%2F186651_12377164013a5x.jpg'/> */}
                  <NavBar
-                   style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                   
                    leftContent={
                        <Link to='/my/set'>
@@ -55,41 +83,41 @@ import {Link,withRouter} from 'react-router-dom';
                     </NavBar>
                     {/* <form onSubmit={this.onSubmit}> */}
                     <form action="http://101.37.172.74:8080/user/information" method='post' enctype="multipart/form-data">
-                    <div style={{width:'100%',backgroundColor:'#fff',height:'140px',paddingTop:'10px'}}>
+                    <div style={{width:'100%',height:'140px',paddingTop:'10px'}}>
                         <div id="user-photo" style={{margin:'0 auto',width:"100px",height:"100px"}} id="touxiang">
-                            <img  src={this.state.imgUrl} alt='头像'  onClick={this.addImage}   id="avatar_img" style={{margin:'0 auto',width:"100px",height:"100px",marginTop:20,borderRadius:'100px'}}/>
+                            <img  src={this.state.data.imgUrl} alt='头像'  onClick={this.addImage}   id="avatar_img" style={{margin:'0 auto',width:"100px",height:"100px",marginTop:20,borderRadius:'100px'}}/>
                             <input type="file" id="file" accept="image/*" name='pic' onChange={this.handleImageChange} capture='camera' ref={(el) => { this.input = el }} style={{display:'none'}}></input>
                         </div>
                     </div>
-                    <div style={{width:'100%',height:'400px',backgroundColor:'#fff'}}>
-                        <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>昵称</p>
-                            <input name='name' onChange={this.handleName} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入昵称'/>
+                    <div style={{width:'100%'}}>
+                        <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
+                            <p style={{width:'18%',margin:0,dispaly:'inline',float:'left'}}>昵称:</p>
+                            <input name='name' onChange={this.handleName} style={{marginLeft:'4%',width:'70%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',borderStyle:'none'}} type='text' placeholder=''/>
                         </div>
-                        <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>性别</p>
-                            <input style={{marginLeft:'4%'}} type="radio" name="sex" value="男" checked />男
-                            <input style={{marginLeft:'4%'}} type="radio" name="sex" value="女" />女
-                            {/* <input name='sex' onChange={this.handleSex} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入性别'/> */}
+                        <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
+                            <p style={{width:'18%',margin:0,dispaly:'inline',float:'left'}}>性别:</p>
+                            <input name='sex' onChange={this.handleSex} style={{marginLeft:'4%',width:'70%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',borderStyle:'none'}} type='text' placeholder=''/>
                         </div>
-                        <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学校</p>
-                            <input name='school' onChange={this.handleSchool} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='text' placeholder='请输入学校'/>
+                        <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学校:</p>
+                            <input name='school' onChange={this.handleSchool}  style={{marginLeft:'4%',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='text' placeholder=''/>
                         </div>
-                        <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学号</p>
-                            <input name='code' onChange={this.handleCode} onChange={this.handleCode} style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #ccc',borderRadius:'4px'}} type='number' placeholder='请输入学号'/>
+                        <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学号:</p>
+                            <input name='code' onChange={this.handleCode}  style={{marginLeft:'4%',width:'70%',height:'30px',borderStyle:'none',borderRadius:'4px'}} type='number' placeholder=''/>
                         </div>
-                        <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>密码</p>
-                            <input type='password' onChange={this.handlePassword} name='pwd' style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
+                        <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
+                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>密码:</p>
+                            <input type='password' onChange={this.handlePassword} name='pwd' style={{marginLeft:'',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' placeholder=''/>
                         </div>
-                        <div style={{fontSize:'18px',marginBottom:'30px',marginLeft:'10%'}}>
-                            <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>确认密码</p>
-                            <input type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'50%',height:'30px',border:'1px solid #aaaaaa',borderRadius:'4px'}} type='password' placeholder='请输入密码'/>
+                        <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
+                            <p style={{width:'26%',margin:0,dispaly:'inline',float:'left'}}>确认密码:</p>
+                            <input type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' placeholder=''/>
                         </div>
                         <div>
-                            <input type='submit' value='保存' style={{color:'#fff',fontSize:'18px',width:'50%',height:'50px',marginLeft:'16%',backgroundColor:'#f7cb3c',borderRadius:'20px',marginLeft:'20%'}}/>
+                            {/* <Link to='/my/set'> */}
+                            <input type='submit' value='保存' style={{color:'#fff',borderStyle:'none',fontSize:'18px',width:'50%',height:'50px',marginLeft:'25%',backgroundColor:'#46a794',borderRadius:'20px'}}/>
+                            {/* </Link> */}
                        </div>
                     </div>
                     </form>
