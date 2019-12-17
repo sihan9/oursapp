@@ -1,49 +1,75 @@
 import React, { Component } from 'react'
-import {NavBar } from 'antd-mobile';
-import {Link,withRouter} from 'react-router-dom';
+import {NavBar,SearchBar,List } from 'antd-mobile';
+import {Link} from 'react-router-dom';
 import ret from '../image/set/返回.png';
 import Chat  from 'chat-react';
 let params;
- class MyChat extends Component {
+export default class MyChat extends Component {
   constructor(){
     super();
     this.state={
-        data:[],
-        data1:[],
-        inputValue: '',
-        messages: [],
-        timestamp: new Date().getTime()
-
+        data:[]
     }
 }
-componentDidMount(){
-  params=this.props.match.params.idx;
-  fetch('http://101.37.172.74:8080/user/massage')
-        .then((res)=>res.json())
-        .then((res)=>{
-            this.setState({
-                data1:res.content
-            })
-            console.log(res.content)
-        })
-  fetch('http://101.37.172.74:8080/user/friend',{
-  })
-  .then(res =>res.json())
-  .then((res)=>{
-      this.setState({data:res.content[params]});
-      this.setState({messages:[{
-              timestamp: 1545925494422,
-              userInfo: {
-                  avatar: `http://101.37.172.74:8080/images/img?name=${res.content[params].img}`,
-                  userId: `${res.content[params].phone}`
-              },
-              value: "hello~"
-          }]})
-  })
-}
+  componentDidMount(){
+    params=this.props.match.params.idx;
+    var str = JSON.parse(localStorage.getItem('data'))[0].friend;
+    if(str != null){
+        let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
+        if(arr.length !== 0){
+                let friends = [];
+            for(var i=0;i<arr.length;i++){
+                friends.push(arr[i]);
+            }
+            for(var i=0; i<friends.length; i++){
+                for(var j=i+1; j<friends.length; j++){
+                    if(friends[i]==friends[j]){
+                        friends.splice(j,1);
+                        j--;
+                    }
+                }
+            }
+              fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[params]}`)
+              .then((res)=>res.json())
+              .then((res)=>{
+                  var data=this.state.data    
+                  if(res.content[0]!=undefined){
+                      data.push(res.content[0])
+                      this.setState({
+                          data:data
+                  })
+                }
+                console.log(this.state.data[0])
+              })
+        }
+        
+        }
+    
+      }
  
     
-    
+    state = {
+        inputValue: '',
+        messages: [{
+          timestamp: 1545925494422,
+          userInfo: {
+              avatar: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg",
+              name: "游客1544365758856",
+              userId: "1544365758856"
+          },
+          value: "hello~"
+      },  {
+          timestamp: 1545925534218,
+          userInfo: {
+              avatar: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg",
+              name: "游客1544365758856",
+              userId: "1544365758856"
+          },
+          value: "啊啊啊啊啊啊奥所所撒奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥",
+           error: true //设置消息状态为失败，显示错误状态图标
+      }],
+        timestamp: new Date().getTime()
+      }
       setInputfoucs = () => {
         this.chat.refs.input.inputFocus();  //色t input foucus
       }
@@ -51,6 +77,7 @@ componentDidMount(){
         this.chat.refs.message.setScrollTop(1200);  //色t scrollTop position
       }
       sendMessage = (v) => {
+      
         const {value} = v;
         if (!value) return;
         const {messages = []} = this.state;
@@ -60,21 +87,20 @@ componentDidMount(){
     }
      
     render() {
-      const userInfo = {
-        avatar:  `http://101.37.172.74:8015/images/img?name=${this.state.data.img}`,
-        userId: `${this.state.data}`, //user id,  required parameters
-        name: `${this.state.data.name}`
-       }
         const {inputValue, messages, timestamp} = this.state;
-       
+        console.log(this.state.data)
+        const userInfo = {
+          avatar:'',
+            // avatar: `http://101.37.172.74:8015/images/img?name=${this.state.data[0].img}`,
+            userId: '5bf7cf25a069a537ffe7c324', //user id,  required parameters
+            name: 'rigcky',
+            other: 'otherInfo'
+           }
 
         return (
             <div style={{width:'100%',height:'100%'}}>
                  <NavBar
                    style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
-                   /**
-                    * 点击返回消息列表
-                    */
                    leftContent={
                     <Link to='/home'>
                    <img src={ret} style={{width:"24%",height:"60%"}}/>
@@ -102,5 +128,3 @@ componentDidMount(){
         )
     }
 }
-export default withRouter(MyChat);
-

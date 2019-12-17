@@ -37,6 +37,7 @@ class Publish extends Component {
         temp.title = data2;
         temp.publishTimer = (today.getMonth() + 1) + '/' + today.getDate();
         temp.good = 0;
+        temp.talk=[];
         temp.comment = 0;
         temp.commentImg = this.state.files[0].url;
         temp.isfollow = '关注';

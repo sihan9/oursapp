@@ -16,14 +16,39 @@ class Friend extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/user/friend')
-        .then((res)=>res.json())
-        .then((res)=>{
-            this.setState({
-                data:res.content
-            })
-        })
-
+        var str = JSON.parse(localStorage.getItem('data'))[0].friend;
+        if(str != null){
+            let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
+            if(arr.length !== 0){
+                    let friends = [];
+                for(var i=0;i<arr.length;i++){
+                    friends.push(arr[i]);
+                }
+                for(var i=0; i<friends.length; i++){
+                    for(var j=i+1; j<friends.length; j++){
+                        if(friends[i]==friends[j]){
+                            friends.splice(j,1);
+                            j--;
+                        }
+                    }
+        }
+                for(var i=0;i<friends.length-1;i++){
+                    fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[i]}`)
+                    .then((res)=>res.json())
+                    .then((res)=>{
+                        var data=this.state.data    
+                        if(res.content[0]!=undefined){
+                            data.push(res.content[0])
+                            this.setState({
+                                data:data
+                        })
+                    }
+                    })
+                    
+                }
+            
+            }
+        }
         
     }
     state = {
@@ -31,7 +56,6 @@ class Friend extends Component {
         selected: '',
     };
     onSelect = (opt) => {
-        // console.log(opt.props.value);
         this.setState({
           visible: false,
           selected: opt.props.value,
@@ -43,24 +67,21 @@ class Friend extends Component {
         });
     };
     Submit=(value)=>{
-        for(var i = 0 ; i < this.data.length ; i++){
-            if(this.data[i].title.indexOf(value)!=-1){
-                this.props.history.push('/friend/'+`${i}`);
+        for(var i = 0 ; i < this.state.data.length ; i++){
+            if(this.state.data[i].title.indexOf(value)!=-1){
+                this.state.props.history.push('/friend/'+`${i}`);
             }
         }
     }
     onSelect=()=>{
-        console.log(this.props);
         this.props.history.push('/addfriend');
     }
     render() {
         let friendList;
-        
-        if(this.state.data.length!==0){
-        
+        if(this.state.data.length!=0){
             friendList=(
                 <List >
-                { 
+                {
                     this.state.data.map((item,idx)=>(
                         <Link to={`/friend/${idx}`} key={idx}>
                             <List.Item style={{height:'60px'}}>
@@ -77,6 +98,8 @@ class Friend extends Component {
                 }
             </List>
             )
+       
+        
         }
         else{
             friendList=(
@@ -97,8 +120,13 @@ class Friend extends Component {
                             overlayStyle={{ color: 'currentColor' }}
                             visible={this.state.visible}
                             overlay={[
+                                
+                                
+                             
                                 <Item key="5" value="special" icon={myImg1} onSelect={this.onSelect} style={{ whiteSpace: 'nowrap' }}>添加朋友</Item>
+                             
                                 ,
+                                
                                 <Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">扫一扫</Item>
                             ]}
                             align={{
@@ -127,7 +155,28 @@ class Friend extends Component {
                     onSubmit={this.Submit}
                 />
                 <div style={{ marginBottom: 10 }}>   
-                    {friendList}
+                           {friendList}
+                            {/* <List >
+                                {
+                                   
+                                    
+                                    this.state.data.map((item,idx)=>(
+                                        <Link to={`/friend/${idx}`} key={idx}>
+                                            <List.Item style={{height:'60px'}}>
+                                                <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={item.img}/>
+                                                <div style={{float:'left',marginLeft:'14px'}}>
+                                                <p style={{margin:0,fontSize:'18px'}}>{item.name}</p>
+                                                <p style={{margin:0,fontSize:'12px',color:'#555',fontFamily:'cursive'}}>{item.school}</p>
+                                                </div>
+                                            </List.Item>
+                                        </Link>
+
+                                    ))
+                                    
+                                }
+                            </List> */}
+                           
+                    
                 </div>
             </div>
         )

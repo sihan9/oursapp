@@ -4,7 +4,8 @@ import ret from '../image/set/返回.png';
 
 import {Link,withRouter} from 'react-router-dom';
 let he=window.innerHeight;
-
+let a;
+let localStorageData;
 /**
  * 账号安全界面
  */
@@ -12,20 +13,38 @@ let he=window.innerHeight;
     constructor(){
         super();
         this.state={
-            data:{
-                imgUrl:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=347508467,3785403878&fm=26&gp=0.jpg',
-            }
+            img:'',
+            name:'',
+            school:'',
+            schoolnum:'',
+            sex:'',
+            password:''
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/count')
+        localStorageData=JSON.parse(localStorage.getItem('data'))[0]
+        this.setState({
+            img:localStorageData.img,
+            name:localStorageData.name,
+            school:localStorageData.school,
+            schoolnum:localStorageData.schoolnum,
+            sex:localStorageData.sex,
+            password:localStorageData.password
+        })
+        fetch('http://101.37.172.74:8015/test/massage')
         .then((res)=>res.json())
         .then((res)=>{
-              
+            console.log(res.content[0])
            this.setState({
-               data:res.content
+               img:res.content[0].img,
+               name:res.content[0].name,
+               school:res.content[0].school,
+               schoolnum:res.content[0].schoolnum,
+               sex:res.content[0].sex,
+               password:res.content[0].password
             });
-        })
+
+        }) 
       
     }
     addImage = () => {
@@ -37,32 +56,103 @@ let he=window.innerHeight;
         const file = e.target.files[0];
         const windowURL = window.URL || window.webkitURL;//实现预览
         const dataURl = windowURL.createObjectURL(file);//硬盘或sd卡指向文件路径
+      
         this.setState({
-          imgUrl:dataURl
+          img:dataURl
         });
         let param = new FormData(); //创建form对象
         param.append('file',file);
+      
 
     }
-    //  getData=(e)=>{
-    //     e.preventDefault(); 
-    //     if(this.state.pwd!==this.state.rePwd)
-    //         console.log('密码输入不一致');
-    //     fetch('http://101.37.172.74:8080/user/information',{
-           
-    //     })
-    //         .then(res =>res.json())
-    //         .then(data =>{
-    //             console.log(data)
-    //             if(data.content){
-    //                 this.props.history.push('/my/set')
-    //             }
-    //         })
-        
-    // }
-
+    handleName = (e)=>{
+        this.setState({
+            name:e.target.value
+        })
+    }
+    handleSex = (e)=>{
+        this.setState({
+            sex:e.target.value
+        })
+    }
+    handleSchool = (e)=>{
+        this.setState({
+            school:e.target.value
+        })
+    }
+    handleCode = (e)=>{
+        this.setState({
+            schoolnum:e.target.value
+        })
+    }
+    handlePassword = (e)=>{
+        this.setState({
+            password:e.target.value
+        })
+    }
+    handleRepassword = (e)=>{
+        this.setState({
+            repwd:e.target.value
+        })
+    }
+    
+    postForm = (e)=>{
+        e.preventDefault()
+        // let data =new FormData();
+        // data.append('img',this.state.img);
+        // data.append('name',this.state.name);
+        // data.append('school',this.state.school);
+        // data.append('schoolnum',this.state.schoolnum);
+        // data.append('sex',this.state.sex);
+        // data.append('password',this.state.password);
+        // console.log(data.get("name"));
+        // fetch('http://101.37.172.74:8015/test/information',{
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data'
+        //     },
+            
+        //     body:JSON.stringify(data)
+        // })
+        // .then(res=>res.json())
+        // .then(res=>{
+        //     // console.log(res);
+        // })
+        let data={
+            emile:localStorageData.emile,
+            friend:localStorageData.friend,
+            img:this.state.img,
+            name:this.state.name,
+            nickname:localStorageData.nickname,
+            password:this.state.password,
+            phone:localStorageData.phone,
+            school:this.state.school,
+            schoolnum:this.state.schoolnum,
+            sex:this.state.sex   
+        }
+        localStorage.setItem('data',JSON.stringify([data]))
+        this.props.history.push('/home/my')
+    }
     render() {
-        console.log("height:"+he);
+        let img
+        let str=this.state.img;
+        a=str.indexOf('http')
+        if(a!=-1){
+            img=(
+                <div id="user-photo" style={{margin:'0 auto',width:"100px",height:"100px"}} id="touxiang">
+                    <img  src={this.state.img} alt='头像'  onClick={this.addImage}   id="avatar_img" style={{margin:'0 auto',width:"100px",height:"100px",marginTop:20,borderRadius:'100px'}}/>
+                    <input type="file" id="file" accept="image/*" name='pic' onChange={this.handleImageChange} capture='camera' ref={(el) => { this.input = el }} style={{display:'none'}}></input>
+                </div>
+            )
+        }
+        else{
+            img=(
+                <div id="user-photo" style={{margin:'0 auto',width:"100px",height:"100px"}} id="touxiang">
+                    <img  src={`http://101.37.172.74:8015/images/img?name=${this.state.img}`} alt='头像'  onClick={this.addImage}   id="avatar_img" style={{margin:'0 auto',width:"100px",height:"100px",marginTop:20,borderRadius:'100px'}}/>
+                    <input type="file" id="file" accept="image/*" name='pic' onChange={this.handleImageChange} capture='camera' ref={(el) => { this.input = el }} style={{display:'none'}}></input>
+                </div>
+            )
+        }
         return (
             <div style={{width:'100%',height:he,backgroundColor:'#fff'}}>
                 {/* <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity: 0.6}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575556526370&di=e564f89b7a1c3d1d1627cad9c00b8356&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2F200903%2F22%2F186651_12377164013a5x.jpg'/> */}
@@ -81,43 +171,40 @@ let he=window.innerHeight;
                    修改个人资料
                    
                     </NavBar>
-                    {/* <form onSubmit={this.onSubmit}> */}
-                    <form action="http://101.37.172.74:8080/user/information" method='post' enctype="multipart/form-data">
+                    <form onSubmit={this.postForm}>
+                    {/* <form action="http://101.37.172.74:8080/user/information" method='post' enctype="multipart/form-data"> */}
                     <div style={{width:'100%',height:'140px',paddingTop:'10px'}}>
-                        <div id="user-photo" style={{margin:'0 auto',width:"100px",height:"100px"}} id="touxiang">
-                            <img  src={this.state.data.imgUrl} alt='头像'  onClick={this.addImage}   id="avatar_img" style={{margin:'0 auto',width:"100px",height:"100px",marginTop:20,borderRadius:'100px'}}/>
-                            <input type="file" id="file" accept="image/*" name='pic' onChange={this.handleImageChange} capture='camera' ref={(el) => { this.input = el }} style={{display:'none'}}></input>
-                        </div>
+                        {img}
                     </div>
                     <div style={{width:'100%'}}>
                         <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
                             <p style={{width:'18%',margin:0,dispaly:'inline',float:'left'}}>昵称:</p>
-                            <input name='name' onChange={this.handleName} style={{marginLeft:'4%',width:'70%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',borderStyle:'none'}} type='text' placeholder=''/>
+                            <input name='name' onChange={this.handleName} style={{marginLeft:'4%',width:'70%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',borderStyle:'none'}} type='text' placeholder={this.state.name} />
                         </div>
                         <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
                             <p style={{width:'18%',margin:0,dispaly:'inline',float:'left'}}>性别:</p>
-                            <input name='sex' onChange={this.handleSex} style={{marginLeft:'4%',width:'70%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',borderStyle:'none'}} type='text' placeholder=''/>
+                            <input name='sex' placeholder={this.state.sex} onChange={this.handleSex} style={{marginLeft:'4%',width:'70%',height:'30px',border:'1px solid #ccc',borderRadius:'4px',borderStyle:'none'}} type='text' />
                         </div>
                         <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学校:</p>
-                            <input name='school' onChange={this.handleSchool}  style={{marginLeft:'4%',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='text' placeholder=''/>
+                            <input name='school' placeholder={this.state.school} onChange={this.handleSchool}  style={{marginLeft:'4%',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='text'/>
                         </div>
                         <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>学号:</p>
-                            <input name='code' onChange={this.handleCode}  style={{marginLeft:'4%',width:'70%',height:'30px',borderStyle:'none',borderRadius:'4px'}} type='number' placeholder=''/>
+                            <input name='code' placeholder={this.state.schoolnum} onChange={this.handleCode}  style={{marginLeft:'4%',width:'70%',height:'30px',borderStyle:'none',borderRadius:'4px'}} type='number' />
                         </div>
                         <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
                             <p style={{width:'24%',margin:0,dispaly:'inline',float:'left'}}>密码:</p>
-                            <input type='password' onChange={this.handlePassword} name='pwd' style={{marginLeft:'',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' placeholder=''/>
+                            <input type='password' placeholder={this.state.password} onChange={this.handlePassword} name='pwd' style={{marginLeft:'',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' />
                         </div>
                         <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
                             <p style={{width:'26%',margin:0,dispaly:'inline',float:'left'}}>确认密码:</p>
-                            <input type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' placeholder=''/>
+                            <input type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' />
                         </div>
                         <div>
-                            {/* <Link to='/my/set'> */}
+                           
                             <input type='submit' value='保存' style={{color:'#fff',borderStyle:'none',fontSize:'18px',width:'50%',height:'50px',marginLeft:'25%',backgroundColor:'#46a794',borderRadius:'20px'}}/>
-                            {/* </Link> */}
+                           
                        </div>
                     </div>
                     </form>

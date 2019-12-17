@@ -24,9 +24,10 @@ export default class AddFriend extends Component {
     onSubmit=(e)=>{
         e.preventDefault();
         // 把表单用的最终数据从state中提取出来,传入请求
+        // console.log(JSON.parse(localStorage.getItem('data'))[0].phone)
        var phone=this.state.phone
-       console.log(phone);
-        fetch('http://101.37.172.74:8080/user/search',{
+    //    console.log(phone);
+        fetch(`http://101.37.172.74:8015/test/search?phone=${JSON.parse(localStorage.getItem('data'))[0].phone}`,{
             // post提交
             method:"POST",
             
@@ -34,7 +35,8 @@ export default class AddFriend extends Component {
         })
         .then(res =>res.json())
         .then(res=>{
-            console.log(res)
+            console.log(res.content)
+            localStorage.setItem('data',res.content)
             if(res.content!==''){
                 // let friend=(
                 //     <List.Item style={{height:'60px'}}>

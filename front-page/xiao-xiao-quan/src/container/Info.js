@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import {NavBar,SearchBar,List } from 'antd-mobile';
-import {withRouter,Link} from 'react-router-dom';
-import Friend from './Friend'
+import {Link,withRouter } from 'react-router-dom'
+import { NavBar, Icon,Popover } from 'antd-mobile';
+import { SearchBar, List } from 'antd-mobile';
+let he=window.innerHeight;
 const Item = List.Item;
 const Brief = Item.Brief;
 class Info extends Component {
@@ -12,68 +13,96 @@ class Info extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/user/friend')
-        .then((res)=>res.json())
-        .then((res)=>{
-            this.setState({
-                data:res.content
-            })
-        })
+        var str = JSON.parse(localStorage.getItem('data'))[0].friend;
+        if(str != null){
+            let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
+            if(arr.length !== 0){
+                    let friends = [];
+                for(var i=0;i<arr.length;i++){
+                    friends.push(arr[i]);
+                }
+                for(var i=0; i<friends.length; i++){
+                    for(var j=i+1; j<friends.length; j++){
+                        if(friends[i]==friends[j]){
+                            friends.splice(j,1);
+                            j--;
+                        }
+                    }
+        }
+                for(var i=0;i<friends.length-1;i++){
+                    fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[i]}`)
+                    .then((res)=>res.json())
+                    .then((res)=>{
+                        var data=this.state.data    
+                        if(res.content[0]!=undefined){
+                            data.push(res.content[0])
+                            this.setState({
+                                data:data
+                        })
+                    }
+                    })
+                    
+                }
+            
+            }
+        }
+        
     }
-onClick=()=>{
-    this.props.history.push('/mychat')
-}
+    Submit=(value)=>{
+        for(var i = 0 ; i < this.state.data.length ; i++){
+            if(this.state.data[i].title.indexOf(value)!=-1){
+                this.state.props.history.push('/friend/'+`${i}`);
+            }
+        }
+    }
+    onSelect=()=>{
+        this.props.history.push('/addfriend');
+    }
     render() {
-        let chatList;
-        
-        if(this.state.data.length!==0){
-        
-            chatList=(
-                <List className="my-list">
-                
-                </List>
-            )
-        }
-        else{
-            chatList=(
-                <div style={{textAlign:'center',height:100,backgroundColor:'#fff'}}>
-                    <img style={{height:'100px',width:'100px',marginTop:'40%'}} src='https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1552531235,256739759&fm=26&gp=0.jpg'/>
-                    <p style={{textAlign:'center',color:'#ccc',marginTop:'10px'}}>暂时没有新消息</p>
-                </div>
-            )
-        }
-        return (
-            <div style={{width:"100%"}}>
-                <NavBar
-                   style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
-                  >
-                   消息 
-                   
-               </NavBar>
-               <div style={{width:"100%", margin:'0 auto',marginBottom:'6px'}}>
-                    <SearchBar
-                        placeholder="搜索"
-                        style={{margin:"0 auto",backgroundColor:"#fff",width:"90%",borderRadius:80,height:'30px',marginTop:6}}
+        let friendList;
+        if(this.state.data.length!=0){
+            friendList=(
+                <List >
+                {
+                    this.state.data.map((item,idx)=>(
                         
-                    />
-                </div>
-                <div style={{width:"100%"}}>
-                    {
-                        this.state.data.map((item,idx)=>(
-                            <List className="my-list">
-                                <Item
-                                key={idx}
+                            <List.Item
                                 arrow="horizontal"
                                 thumb={`http://101.37.172.74:8015/images/img?name=${item.img}`}
                                 multipleLine
                                 onClick={() => {this.props.history.push(`/home/mychat/${idx}`)}}
                                 >
                                 {item.name} <Brief>hello</Brief>
-                                </Item>
-                            </List> 
-    
-                        ))
-                    }
+                            </List.Item>
+
+                    ))
+                    
+                }
+            </List>
+            )
+       
+        
+        }
+        else{
+            friendList=(
+                <div style={{height:he,backgroundColor:'#fff',paddingTop:'20%'}}>
+                    <p style={{width:'100%',height:'auto',color:'#ccc',textAlign:'center'}}>您还没有好友,点击+号添加好友吧</p>
+                </div>
+            );
+        }
+        return (
+            <div>
+                <NavBar
+                    // mode="light"
+                    style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
+                    >消息
+                </NavBar>
+                <SearchBar
+                    placeholder="搜索"
+                    onSubmit={this.Submit}
+                />
+                <div style={{ marginBottom: 10 }}>   
+                           {friendList}
                 </div>
             </div>
         )
