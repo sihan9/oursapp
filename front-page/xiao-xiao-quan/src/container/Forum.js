@@ -15,31 +15,11 @@ export default function Forum (){
     let [valueCon,setvalueCon]=useState(chapterList[0].talk);
     var touxiang='';
     useEffect(() => {
-        // fetch('http://101.37.172.74:8080/user/massage',{
-        // })
-        // .then(res =>res.json())
-        // .then((res)=>{
-        //     setdata(res.content[0]);
-
-        // })
       
         let data=localStorage.getItem('data');
         let da=JSON.parse(data)[0];
         setdata(da);
-        let str=da.img;
-      
-        let a=str.indexOf('http');
-        console.log(a);
-        if(a!=-1){
-            touxiang=(
-                <img className='img' src={da.img}/>
-            )
-        }
-        else{
-            touxiang=(
-                <img src={`http://101.37.172.74:8015/images/img?name=${data.img}`} style={{width:"22%",height:'100%',float:'left',borderRadius:"50px"}}/>
-            )
-        }
+     
       },[]);
    
    
@@ -91,8 +71,8 @@ export default function Forum (){
                 (chapterList||[]).map((item,idx)=>(
                     <div key={idx} style={{height:'auto',width:'100%',marginTop:4}}>
                         <div className = "navbar">
-                        {/* <img className='img' src = {`http://101.37.172.74:8080/images/img?name=${data.img}`}/> */}
-                        {touxiang}
+                        <img className='img' src = {`http://101.37.172.74:8015/images/img?name=${data.img}`}/>
+                       
                         <div className='follow'>
                             <p className='username'>{data.name}</p>
                             <p style={{width:'40%', marginLeft:15,fontSize:12,float:'left',color:'#333',marginTop:'6px'}}>{data.school}</p>

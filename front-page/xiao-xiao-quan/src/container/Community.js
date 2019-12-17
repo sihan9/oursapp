@@ -18,12 +18,15 @@ function Community (){
     let [comment,setcomment] = useState(chapterList[0].comment);
     let [data,setdata] = useState([]);
     useEffect(() => {
-        fetch('http://101.37.172.74:8080/user/massage',{
-        })
-        .then(res =>res.json())
-        .then((res)=>{
-            setdata(res.content[0]);
-        })
+        // fetch('http://101.37.172.74:8080/user/massage',{
+        // })
+        // .then(res =>res.json())
+        // .then((res)=>{
+        //     setdata(res.content[0]);
+        // })
+        let data=localStorage.getItem('data');
+        let da=JSON.parse(data)[0];
+        setdata(da);
       },[]);
     const Follow=()=>{
         if(followClick == false){
@@ -98,7 +101,7 @@ function Community (){
                 {
                     (chapterList||[]).map((value,idx)=>(
                         <div className = "navbar" key = {idx}>
-                            <img className='img' onClick={()=>{history.push('/forum')}} src = {`http://101.37.172.74:8080/images/img?name=${data.img}`}/>
+                            <img className='img' onClick={()=>{history.push('/forum')}} src = {`http://101.37.172.74:8015/images/img?name=${data.img}`}/>
                             <div className='follow'>
                             <p className='username'>{data.name}</p>
                             <button onClick={Follow} style={{backgroundColor:`${back}`,width:`${width}`}} className='tabFllow'>{follow}</button>

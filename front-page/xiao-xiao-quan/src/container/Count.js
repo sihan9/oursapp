@@ -140,6 +140,7 @@ let localStorageData;
         .then(res=>{
             console.log(res)
             if(res.message){
+                console.log(res.content);
                 localStorage.setItem('data',res.content)
             this.props.history.push('/home/my')
             }
