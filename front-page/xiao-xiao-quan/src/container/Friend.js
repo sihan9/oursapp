@@ -12,12 +12,12 @@ class Friend extends Component {
     constructor(){
         super();
         this.state={
-            data:this.data
+            data:[]
         }
     }
     componentDidMount(){
 
-        fetch('http://101.37.172.74:8080/user/friend')
+        fetch('http://101.37.172.74:8015/test/friend')
         .then((res)=>res.json())
         .then((res)=>{
             console.log(res.content);
@@ -40,31 +40,31 @@ class Friend extends Component {
     //         }
     //     })
     // }
-    data=[
-        {
-        img:'http://img2.imgtn.bdimg.com/it/u=2247785495,154890183&fm=11&gp=0.jpg',
-        name:'南栀',
-        school:'河北师范大学'
+    // data=[
+    //     {
+    //     img:'http://img2.imgtn.bdimg.com/it/u=2247785495,154890183&fm=11&gp=0.jpg',
+    //     name:'南栀',
+    //     school:'河北师范大学'
     
-        },
-        {
-            img:'http://img0.imgtn.bdimg.com/it/u=4024120272,2855386786&fm=11&gp=0.jpg',
-            name:'sunshine',
-            school:'河北师范大学'
-        },
-        {
-            img:'http://img4.imgtn.bdimg.com/it/u=1964968116,1485562288&fm=26&gp=0.jpg',
-            name:'遍地梧桐花',
-            school:'河北师范大学'
+    //     },
+    //     {
+    //         img:'http://img0.imgtn.bdimg.com/it/u=4024120272,2855386786&fm=11&gp=0.jpg',
+    //         name:'sunshine',
+    //         school:'河北师范大学'
+    //     },
+    //     {
+    //         img:'http://img4.imgtn.bdimg.com/it/u=1964968116,1485562288&fm=26&gp=0.jpg',
+    //         name:'遍地梧桐花',
+    //         school:'河北师范大学'
         
-        },
-        {
-            img:'http://img4.imgtn.bdimg.com/it/u=346146653,1424425619&fm=11&gp=0.jpg',
-            name:'长安',
-            school:'河北师范大学'
-        },       
+    //     },
+    //     {
+    //         img:'http://img4.imgtn.bdimg.com/it/u=346146653,1424425619&fm=11&gp=0.jpg',
+    //         name:'长安',
+    //         school:'河北师范大学'
+    //     },       
     
-    ]
+    // ]
     state = {
         visible: false,
         selected: '',

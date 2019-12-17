@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import {NavBar,InputItem, Toast} from 'antd-mobile';
 import {Link} from 'react-router-dom';
-import weixin from '../image/set/微信.png';
-import  duanxin from '../image/set/短信.png';
-import weibo from '../image/set/微博.png';
-import qq from '../image/set/qq.png';
-import usr from '../image/set/用户名.png';
-import pwd from '../image/set/密码.png';
+
 
 export default class Login extends Component {
     constructor(props){
@@ -14,7 +9,9 @@ export default class Login extends Component {
         this.state={
             user:'',
             password:'',
+
         }
+        
     }
    
     handleName=(e)=>{
@@ -40,7 +37,7 @@ export default class Login extends Component {
             user:this.state.user,
             password:this.state.password
         }
-        fetch('http://101.37.172.74:8080/user/login',{
+        fetch('http://101.37.172.74:8015/test/login',{
             // post提交
             method:"POST",
             
@@ -49,7 +46,9 @@ export default class Login extends Component {
         .then(res =>res.json())
         .then(data =>{
             console.log(data)
-            if(data.content){
+           
+            if(data.message){
+                localStorage.setItem('data',data.content)
                 this.props.history.push('/home')
             }
             else{
@@ -60,6 +59,7 @@ export default class Login extends Component {
     }
     
     render() {
+       
         return (
             <div style={{width:'100%',height:'100%'}}>
                   <img style={{width:'100%',height:'100%',position:'absolute', zIndex: -1,opacity:0.8}} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576159524252&di=01570e2779ca6f8d6e6d5da2e29734a7&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201604%2F21%2F20160421152421_JN3Zu.jpeg'/>

@@ -3,7 +3,7 @@ import {NavBar,List,Popover} from 'antd-mobile';
 import ret from '../image/set/返回.png';
 import {Link} from 'react-router-dom';
 import sousuo from '../image/friend/搜索.png'
-
+let friend
 export default class AddFriend extends Component {
     constructor(){
         super();
@@ -36,15 +36,16 @@ export default class AddFriend extends Component {
         .then(res=>{
             console.log(res)
             if(res.content!==''){
-                // let friend=(
-                //     <List.Item style={{height:'60px'}}>
-                //         <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={`http://101.37.172.74:8015/images/img?name=${item.img}`}/>
-                //         <p style={{margin:0,fontSize:'18px',float:'left',marginLeft:'14px'}}>{item.name}</p>
-                //     </List.Item>
-                // )
+                friend=(
+                    <List.Item style={{height:'60px'}}>
+                        <img style={{width:'40px',height:'40px',float:'left',marginTop:'10px'}} src='https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3256100974,305075936&fm=26&gp=0.jpg'/>
+                        <p style={{margin:0,fontSize:'18px',float:'left',marginLeft:'14px',lineHeight:'60px'}}>除以</p>
+                        <input type='button' onClick={this.addFriend} style={{float:'right',width:'20%',height:'40px',marginTop:'10px',backgroundColor:'#26bdb0',color:'#fff',borderStyle:'none'}} value='添加'/>
+                    </List.Item>
+                )
             }
             else{
-                let friend=(
+                friend=(
                     <div></div>
                 )
             }
@@ -55,6 +56,7 @@ export default class AddFriend extends Component {
         })
     }
     render() {
+        
         return (
             <div style={{width:'100%'}}>
                   <NavBar
@@ -81,11 +83,7 @@ export default class AddFriend extends Component {
                    </form>
                </div>
                <div style={{position:'absolute',top:'28%',height:'auto',width:'100%',margin:'0 auto',marginTop:'30px'}}>
-                    <List.Item style={{height:'60px'}}>
-                        <img style={{width:'40px',height:'40px',float:'left',marginTop:'10px'}} src='https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3256100974,305075936&fm=26&gp=0.jpg'/>
-                        <p style={{margin:0,fontSize:'18px',float:'left',marginLeft:'14px',lineHeight:'60px'}}>除以</p>
-                        <input type='button' onClick={this.addFriend} style={{float:'right',width:'20%',height:'40px',marginTop:'10px',backgroundColor:'#26bdb0',color:'#fff',borderStyle:'none'}} value='添加'/>
-                    </List.Item>
+                   {friend}
                 </div>
             </div>
         )
