@@ -8,7 +8,9 @@ export default class AddFriend extends Component {
     constructor(){
         super();
         this.state={
-            phone:''
+            phone:'',
+            img:'',
+            name:''
         }
     }
      

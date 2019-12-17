@@ -11,7 +11,9 @@ class My extends Component {
     constructor(){
         super();
         this.state={
-            data:[]
+            img:'',
+            school:'',
+            name:''
         }
     }
     componentDidMount(){
@@ -21,16 +23,28 @@ class My extends Component {
         // .then((res)=>{
         //     this.setState({data:res.content[0]});
         // })
-        let data={
-            img:localStorage.getItem('img'),
-            school:localStorage.getItem('school'),
-            name:localStorage.getItem('userName')
-        }
+        let localStorageData=JSON.parse(localStorage.getItem('data'))[0];
+
         this.setState({
-           data:data
+           img:localStorageData.img,
+           name:localStorageData.name,
+           school:localStorageData.school
         })
     }
     render() {
+        let img
+        let str=this.state.img;
+        let a=str.indexOf('http')
+        if(a!=-1){
+            img=(
+                <img src={this.state.img} style={{width:"22%",height:'100%',float:'left',borderRadius:"50px"}}/> 
+            )
+        }
+        else{
+            img=(
+                <img src={`http://101.37.172.74:8015/images/img?name=${this.state.img}`} style={{width:"22%",height:'100%',float:'left',borderRadius:"50px"}}/>
+            )
+        }
         return (
             <div>
                 
@@ -51,10 +65,10 @@ class My extends Component {
                 <div style={{width:'100%',height:"120px",backgroundColor:'#fff',marginTop:10,padding:"10px 20px 10px 20px"}}>
                     <Link to='/forum' style={{color:'#000'}}>
                     <div style={{margin:'0 auto',height:'76%',width:'100%',marginTop:10}}>
-                        <img src={`http://101.37.172.74:8015/images/img?name=${this.state.data.img}`} style={{width:"22%",height:'100%',float:'left',borderRadius:"50px"}}/>
+                        {img}
                         <div style={{float:"left",width:"70%",marginLeft:"20px",height:'100%'}}>   
-                            <p style={{height:'60%',fontSize:"18px",fontWeight:"bold",margin:0,width:'100%'}}>{this.state.data.name}</p>
-                <p style={{width:"100%",margin:0,height:'40%'}}>{this.state.data.school}</p>   
+                            <p style={{height:'60%',fontSize:"18px",fontWeight:"bold",margin:0,width:'100%'}}>{this.state.name}</p>
+                <p style={{width:"100%",margin:0,height:'40%'}}>{this.state.school}</p>   
                         </div>
                     </div>
                     </Link>
