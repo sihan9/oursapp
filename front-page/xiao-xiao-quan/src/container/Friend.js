@@ -18,12 +18,8 @@ class Friend extends Component {
     componentDidMount(){
         var str = JSON.parse(localStorage.getItem('data'))[0].friend;
         if(str != null){
-            let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
-            if(arr.length !== 0){
-                    let friends = [];
-                for(var i=0;i<arr.length;i++){
-                    friends.push(arr[i]);
-                }
+            let friends = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
+            if(friends.length !== 0){
                 for(var i=0; i<friends.length; i++){
                     for(var j=i+1; j<friends.length; j++){
                         if(friends[i]==friends[j]){
@@ -31,14 +27,14 @@ class Friend extends Component {
                             j--;
                         }
                     }
-        }
+                }
                 for(var i=0;i<friends.length-1;i++){
                     fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[i]}`)
                     .then((res)=>res.json())
                     .then((res)=>{
                         var data=this.state.data    
                         if(res.content[0]!=undefined){
-                            data.unshift(res.content[0])
+                            data.push(res.content[0])
                             this.setState({
                                 data:data
                         })
@@ -83,7 +79,7 @@ class Friend extends Component {
                 <List >
                 {
                     this.state.data.map((item,idx)=>(
-                        <Link to={`/friend/${idx}`} key={idx}>
+                        <Link to={`/friend/${item.phone}`} key={idx}>
                             <List.Item style={{height:'60px'}}>
                                 <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={`http://101.37.172.74:8015/images/img?name=${item.img}`}/>
                                 <div style={{float:'left',marginLeft:'14px'}}>

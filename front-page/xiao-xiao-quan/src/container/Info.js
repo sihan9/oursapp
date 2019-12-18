@@ -15,12 +15,8 @@ class Info extends Component {
     componentDidMount(){
         var str = JSON.parse(localStorage.getItem('data'))[0].friend;
         if(str != null){
-            let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
-            if(arr.length !== 0){
-                    let friends = [];
-                for(var i=0;i<arr.length;i++){
-                    friends.push(arr[i]);
-                }
+            let friends = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
+            if(friends.length !== 0){
                 for(var i=0; i<friends.length; i++){
                     for(var j=i+1; j<friends.length; j++){
                         if(friends[i]==friends[j]){
@@ -28,7 +24,7 @@ class Info extends Component {
                             j--;
                         }
                     }
-        }
+                }
                 for(var i=0;i<friends.length-1;i++){
                     fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[i]}`)
                     .then((res)=>res.json())
@@ -40,13 +36,10 @@ class Info extends Component {
                                 data:data
                         })
                     }
-                    })
-                    
+                    })   
                 }
-            
             }
         }
-        
     }
     Submit=(value)=>{
         for(var i = 0 ; i < this.state.data.length ; i++){
@@ -67,10 +60,11 @@ class Info extends Component {
                     this.state.data.map((item,idx)=>(
                         
                             <List.Item
+                                key={idx}
                                 arrow="horizontal"
                                 thumb={`http://101.37.172.74:8015/images/img?name=${item.img}`}
                                 multipleLine
-                                onClick={() => {this.props.history.push(`/home/mychat/${idx}`)}}
+                                onClick={() => {this.props.history.push(`/home/mychat/${item.phone}`)}}
                                 >
                                 {item.name} <Brief>hello</Brief>
                             </List.Item>

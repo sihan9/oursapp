@@ -6,7 +6,7 @@ const Item = List.Item;
 const Brief = Item.Brief;
 const requireContext = require.context('../image/Synopsis', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
-
+let params
 class Synopsis extends Component {
     constructor(){
         super();
@@ -19,40 +19,19 @@ class Synopsis extends Component {
         };
     }
     componentDidMount(){
-        var str = JSON.parse(localStorage.getItem('data'))[0].friend;
-        if(str != null){
-            let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
-            if(arr.length !== 0){
-                    let friends = [];
-                for(var i=0;i<arr.length;i++){
-                    friends.push(arr[i]);
-                }
-                for(var i=0; i<friends.length; i++){
-                    for(var j=i+1; j<friends.length; j++){
-                        if(friends[i]==friends[j]){
-                            friends.splice(j,1);
-                            j--;
-                        }
-                    }
-        }
-                for(var i=0;i<friends.length-1;i++){
-                    fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[i]}`)
-                    .then((res)=>res.json())
-                    .then((res)=>{
-                        var data=this.state.data    
-                        if(res.content[0]!=undefined){
-                            data.push(res.content[0])
-                            this.setState({
-                                data:data
-                        })
-                    }
-                    })
-                    
-                }
-            
+        params = this.props.match.params.idx
+            fetch(`http://101.37.172.74:8015/test/friend?phone=${params}`)
+            .then((res)=>res.json())
+            .then((res)=>{
+                var data=this.state.data    
+                if(res.content[0]!=undefined){
+                    data.push(res.content[0])
+                    this.setState({
+                    data:data
+                })
             }
-        }
-        
+        })
+                    
     }
     onSelect = (opt) => {
         this.setState({
@@ -148,7 +127,7 @@ class Synopsis extends Component {
                 <div style={{backgroundColor:"#fff",float:"left",width:"100%",height:40,borderBottom:"0.5px solid #cdcdcd",marginTop:10}}>
                     
                     <img style={{width:30,height:30,float:"left",marginTop:5,marginLeft:"30%"}} src={images[0]}></img>
-                    <p style={{float:"left",marginTop:10,marginLeft:10}}>发消息</p>
+                    <p onClick={()=>{this.props.history.push(`/home/mychat/${data.phone}`)}} style={{float:"left",marginTop:10,marginLeft:10}}>发消息</p>
                 </div>
                 <div style={{backgroundColor:"#fff",float:"left",width:"100%",height:40}}>
                     

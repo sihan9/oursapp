@@ -36,21 +36,22 @@ export default class AddFriend extends Component {
     }
     onSubmit=(e)=>{
       
-        e.preventDefault();
-
-        if(this.state.phone!=''){
+    e.preventDefault();
+    let isFriend=false;
+    if(this.state.phone!=''){
        var phone=this.state.phone;
-       let isFriend=false;
        let friend=JSON.parse(localStorage.getItem('data'))[0].friend;
-       friend=friend.substring(0,friend.length-1);
-       friend=friend.split(',');
-       for(let i=0;i<friend.length;i++){
-           if(friend[i]==phone){
-               isFriend=true;
-           }
-
-
-       }
+       if(friend!==null){
+            friend=friend.substring(0,friend.length-1);
+            friend=friend.split(',');
+            for(let i=0;i<friend.length;i++){
+                if(friend[i]==phone){
+                    isFriend=true;
+                }
+            }
+            
+        }
+    
     //    console.log(phone);
         fetch('http://101.37.172.74:8015/test/search',{
             // post提交
@@ -99,10 +100,12 @@ export default class AddFriend extends Component {
            
         })
     }
+   
     else{
         Toast.offline('手机号为空', 1);
     }
-    }
+}
+    
     render() {
         
         return (
