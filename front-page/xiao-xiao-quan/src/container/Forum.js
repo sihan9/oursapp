@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import "./css/style.css";
 const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
-var {chapterList} = require('./Data');
+var chapterList = require('./Data');
 export default function Forum (){
-    let [chapterList1,setchapterList1] = useState(chapterList);
+    let [chapterList1,setchapterList1] = useState(chapterList.default);
     let [img,setimg]=useState(chapterList[0].isgood?images[1]:images[3]);
     let [data,setdata] = useState({});
     let [comment1,setcomment1] = useState(chapterList[0].good);

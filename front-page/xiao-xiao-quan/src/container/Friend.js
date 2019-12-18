@@ -38,7 +38,7 @@ class Friend extends Component {
                     .then((res)=>{
                         var data=this.state.data    
                         if(res.content[0]!=undefined){
-                            data.push(res.content[0])
+                            data.unshift(res.content[0])
                             this.setState({
                                 data:data
                         })

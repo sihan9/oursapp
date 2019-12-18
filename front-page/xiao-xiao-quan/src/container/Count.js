@@ -35,20 +35,7 @@ let localStorageData;
             password:localStorageData.password,
             repwd:localStorage.password
         })
-        // fetch('http://101.37.172.74:8015/test/massage')
-        // .then((res)=>res.json())
-        // .then((res)=>{
-        //     console.log(res.content[0])
-        //    this.setState({
-        //        img:res.content[0].img,
-        //        name:res.content[0].name,
-        //        school:res.content[0].school,
-        //        schoolnum:res.content[0].schoolnum,
-        //        sex:res.content[0].sex,
-        //        password:res.content[0].password
-        //     });
-
-        // }) 
+      
       
     }
     addImage = () => {
@@ -213,8 +200,8 @@ let localStorageData;
                             <input type='password' placeholder={this.state.password} onChange={this.handlePassword} name='pwd' style={{marginLeft:'',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' />
                         </div>
                         <div style={{fontSize:'18px',width:'80%',margin:'0 auto',marginBottom:'30px',borderBottom:'1px solid #ccc'}}>
-                            <p style={{width:'26%',margin:0,dispaly:'inline',float:'left'}}>确认密码:</p>
-                            <input placeholder={this.state.repwd} type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'70%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' />
+                            <p style={{width:'28%',margin:0,dispaly:'inline',float:'left'}}>确认密码:</p>
+                            <input placeholder={this.state.repwd} type='password' onChange={this.handleRepassword} name='pwd' style={{marginLeft:'4%',width:'60%',height:'30px',borderRadius:'4px',borderStyle:'none'}} type='password' />
                         </div>
                         <div>
                            
