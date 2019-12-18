@@ -31,5 +31,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "amazeui": "^2.7.2",
+    "amazeui-react": "^1.2.3",
+    "prop-types": "^15.7.2"
   }
 }

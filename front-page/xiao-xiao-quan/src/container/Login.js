@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import {NavBar,InputItem, Toast} from 'antd-mobile';
+import {NavBar, Toast} from 'antd-mobile';
 import {Link} from 'react-router-dom';
-
 
 export default class Login extends Component {
     constructor(props){
@@ -90,7 +89,6 @@ export default class Login extends Component {
                             <div style={{float:'right',marginRight:'20%',marginTop:'5%',color:'#fff',fontFamily:'cursive'}}>立即注册</div>
                         </Link>
                     </div>
-   
             </div>
         )
     }

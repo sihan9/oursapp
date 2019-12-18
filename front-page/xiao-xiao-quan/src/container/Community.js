@@ -6,7 +6,6 @@ const requireContext = require.context('../image/Community', true, /^\.\/.*\.png
 const images = requireContext.keys().map(requireContext);
 var {chapterList} = require('./Data');
 var followClick = false;
-console.log(chapterList[0])
 function Community (){
     let history = useHistory();
     let [img,setimg]=useState(images[3]);
