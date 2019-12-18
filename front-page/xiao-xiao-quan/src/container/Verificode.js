@@ -5,6 +5,7 @@ export default class VCode extends Component {
     this.state = {
       ...this.initState()
     }
+    console.log(this.state.data)
   }
 
   initState(){
@@ -31,6 +32,7 @@ export default class VCode extends Component {
     this.props.parent.getData(this,this.state.data)
   }
   canvas=(data)=>{
+    console.log(data)
     this.props.parent.getData(this,data)
   }
   render() {

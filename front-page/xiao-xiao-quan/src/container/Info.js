@@ -60,6 +60,7 @@ class Info extends Component {
                     this.state.data.map((item,idx)=>(
                         
                             <List.Item
+                                style={{height:60}}
                                 key={idx}
                                 arrow="horizontal"
                                 thumb={`http://101.37.172.74:8015/images/img?name=${item.img}`}

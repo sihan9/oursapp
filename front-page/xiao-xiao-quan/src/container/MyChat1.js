@@ -63,7 +63,7 @@ componentWillMount(){
         return (
             <div style={{width:'100%',height:'100%'}}>
                  <NavBar
-                   style={{backgroundColor:'#1296db',color:'#fff',width:"100%"}} 
+                   style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                    leftContent={
                     <Link to='/home'>
                    <img src={ret} style={{width:"24%",height:"60%"}}/>
