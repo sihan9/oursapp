@@ -3,6 +3,9 @@ import {NavBar,NoticeBar,Button,Toast} from 'antd-mobile';
 import ret from '../image/set/返回.png';
 import {Link} from 'react-router-dom';
 export default class Set extends Component {
+    clear(){
+        localStorage.clear();
+    }
     render() {
         function failToast() {
             Toast.fail('敬请期待 !!!', 1);
@@ -50,10 +53,10 @@ export default class Set extends Component {
                </div>
                 <div style={{width:'100%'}}>
                     <Link key='login' to='/login'>
-                        <Button type="submit" style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#46a794',color:'#fff'}}>退出登录</Button>
+                        <Button type="submit" onClick={this.clear} style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#46a794',color:'#fff'}}>退出登录</Button>
                     </Link>
                     <Link key='login' to='/login'>
-                        <Button type="primary" style={{width:'80%',margin:'0 auto',backgroundColor:'#46a794'}}>切换账户</Button>
+                        <Button type="primary"  onClick={this.clear} style={{width:'80%',margin:'0 auto',backgroundColor:'#46a794'}}>切换账户</Button>
                     </Link>
                 </div>
             </div>

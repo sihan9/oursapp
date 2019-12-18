@@ -5,7 +5,6 @@ import {withRouter,} from 'react-router-dom'
 import zaned from '../image/Community/2.png';
 import unzan from '../image/Community/4.png';
 var chapterList =require('./Data');
-
 const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 let a=true;
