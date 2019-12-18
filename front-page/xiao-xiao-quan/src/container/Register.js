@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {NavBar, Toast} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import ret from '../image/set/返回.png';
-import { Checkbox } from 'antd-mobile';
+import VCode from './Verificode'
 export default class Register extends Component {
     constructor(){
         super();
@@ -71,12 +71,14 @@ export default class Register extends Component {
                 this.props.history.push('/login')
             }
             else{
-                Toast.info('该手机号已经被占用',2000)
+                Toast.info('该手机号已经被占用')
             }
         })
 
     }
-
+    getData=(result, msg)=>{
+        // console.log( msg)
+    }
     render() {
         return (
             <div style={{width:'100%',height:'100%'}}>
@@ -86,8 +88,6 @@ export default class Register extends Component {
                   
                    leftContent={
                        <Link to='/login'>
-                      
-                 
                       <img src={ret} style={{width:"24%",height:"60%"}}/>
                    
                     
@@ -100,6 +100,8 @@ export default class Register extends Component {
                     <form onSubmit={this.onSubmit}>
                         <input type='number' placeholder='请输入手机号' id="phone" maxLength="11" onChange={this.handleChangePhone} onBlur={this.displayResult} style={{marginLeft:'15%',fontFamily:'cursive',boxShadow:' 0px 2px 2px',opacity:'0.7',width:'70%',height:'40px',marginTop:'30%',borderStyle:'none',marginBottom:'10%',borderRadius:'10px',fontSize:'18px'}}/>
                         <input type='password' placeholder='请输入密码' id="pwd"  onChange={this.handleChangePwd} onBlur={this.display} style={{marginLeft:'15%',width:'70%',height:'40px',fontFamily:'cursive',boxShadow:' 0px 2px 2px',opacity:'0.7',marginBottom:'10%',borderRadius:'10px',borderStyle:'none',fontSize:'18px'}}/>
+                        <input  placeholder='请输入验证码' style={{float:"left",marginLeft:'15%',width:'40%',height:'40px',fontFamily:'cursive',boxShadow:' 0px 2px 2px',opacity:'0.7',marginBottom:'10%',borderRadius:'10px',borderStyle:'none',fontSize:'18px'}}/>
+                        <VCode parent={ this }/>
                         <input type='submit' value='注册' style={{width:'50%',fontFamily:'cursive',height:'40px',color:'#000',marginLeft:'25%',borderRadius:'5px',backgroundColor:'#fff',marginTop:'20px',boxShadow:' 0px 2px 3px',opacity:'0.7',borderStyle:'none'}}/>
                      
                     </form>

@@ -8,7 +8,7 @@ export default function PhotoAlbum() {
         return (
             <div>
                 <NavBar
-                    style={{backgroundColor:'#f7cb3c',color:'#fff',width:"100%"}} 
+                    style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                     icon={<Icon type="left" />}
                     onLeftClick={() => history.push('/home/my')}
                     rightContent={
