@@ -6,7 +6,8 @@
 </head>
 <body>
     <!-- <form action="http://101.37.172.74:3000/test" method="POST" > -->
-    <form action="http://101.37.172.74:3000/test/information" method="POST" enctype="multipart/form-data">
+    <!-- <form action="http://101.37.172.74:8010/form" method="POST" enctype="multipart/form-data"> -->
+    <form>
         <input type="file" name="pic" >
         姓名<input type="text" name="name" >
         性别<input type="text" name="sex" >
@@ -18,6 +19,9 @@
     </form>
 </body>
 <script>
-    
+    fetch('http://101.37.172.74:8010/form',{
+        method:"POST",
+        enctype:"multipart/form-data"
+    })
 </script>
 </html>

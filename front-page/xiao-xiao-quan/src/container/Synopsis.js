@@ -19,15 +19,6 @@ class Synopsis extends Component {
         };
     }
     componentDidMount(){
-        // params=this.props.match.params.idx;
-        // fetch('http://101.37.172.74:8080/user/friend')
-        // .then((res)=>res.json())
-        // .then((res)=>{
-        //     this.setState({
-        //         data:res.content[params],
-        //     })
-        //     console.log(res.content[params])
-        // })
         var str = JSON.parse(localStorage.getItem('data'))[0].friend;
         if(str != null){
             let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
@@ -62,7 +53,6 @@ class Synopsis extends Component {
             }
         }
         
-
     }
     onSelect = (opt) => {
         this.setState({
@@ -75,22 +65,26 @@ class Synopsis extends Component {
           visible
         });
     };
-    deleteFriend=()=>{
+    // deleteFriend=()=>{
        
-        fetch('http://101.37.172.74:8080/user/login',{
-            // post提交
-            method:"POST",
+    //     fetch('http://101.37.172.74:8080/user/login',{
+    //         // post提交
+    //         method:"POST",
             
-            body:JSON.stringify(this.state.phone)//把提交的内容转字符串
-        })
-        .then(res =>res.json())
-        .then(data =>{
-            if(data.content){
-                this.props.history.push('/my/friend')
-            }
-        })
-    }
+    //         body:JSON.stringify(this.state.phone)//把提交的内容转字符串
+    //     })
+    //     .then(res =>res.json())
+    //     .then(data =>{
+    //         if(data.content){
+    //             this.props.history.push('/my/friend')
+    //         }
+    //     })
+    // }
     render() {
+        let data = '';
+        if(typeof this.state.data[0] === 'undefined');else{
+            data=this.state.data[0];
+        }
         return (
             <div>
             <div style={{width:'100%',backgroundColor:"#fff",paddingTop:10}}>
@@ -134,10 +128,10 @@ class Synopsis extends Component {
             </div>
                 <Item style={{paddingBottom:20}}
                     arrow="horizontal"
-                    thumb="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1571749637,3191380272&fm=111&gp=0.jpg"
+                    thumb={`http://101.37.172.74:8015/images/img?name=${data.img}`}
                     
                     >
-                    {this.state.data.name} <Brief>昵称：博君一肖</Brief>
+                    {data.name} <Brief>{data.school}</Brief>
                 </Item>
                 <div style={{backgroundColor:"#fff",borderTop:"0.5px solid #cdcdcd"}}>
                     <div style={{borderBottom:"0.5px solid #cdcdcd",height:30,marginLeft:10,marginTop:13}}>
