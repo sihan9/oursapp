@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {NavBar } from 'antd-mobile';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import ret from '../image/set/返回.png';
 import Chat  from 'chat-react';
 let params;
-export default class MyChat extends Component {
+class MyChat extends Component {
   constructor(){
     super();
     this.state={
@@ -22,39 +22,19 @@ export default class MyChat extends Component {
     }
 }
 componentWillMount(){
-  params=this.props.match.params.idx;
-  var str = JSON.parse(localStorage.getItem('data'))[0].friend;
-  if(str != null){
-    let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
-        if(arr.length !== 0){
-          let friends = [];
-            for(var i=0;i<arr.length;i++){
-              friends.push(arr[i]);
-            }
-            for(var i=0; i<friends.length; i++){
-              for(var j=i+1; j<friends.length; j++){
-                if(friends[i]==friends[j]){
-                  friends.splice(j,1);
-                        j--;
-                      }
-                    }
-                  }
-                  fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[params]}`)
-                  .then((res)=>res.json())
-                  .then((res)=>{
-                    var data=this.state.data    
-                    if(res.content[0]!=undefined){
-                      data.push(res.content[0])
-                      this.setState({
-                        data:data
-                      })
-                    }
-                  })
-        }
-        
-        }
-    
-      }
+  params = this.props.match.params.idx;
+  fetch(`http://101.37.172.74:8015/test/friend?phone=${params}`)
+  .then((res)=>res.json())
+  .then((res)=>{
+    var data=this.state.data    
+    if(res.content[0]!=undefined){
+      data.push(res.content[0])
+      this.setState({
+        data:data
+      })
+    }
+  })        
+}
       
     
       setInputfoucs = () => {
@@ -75,7 +55,7 @@ componentWillMount(){
         const {inputValue, messages, timestamp} = this.state;
         const userInfo = {
             avatar: `http://101.37.172.74:8015/images/img?name=${this.state.data[0]&&this.state.data[0].img}`,
-            userId: '5bf7cf25a069a537ffe7c324', //user id,  required parameters
+            userId: '5bf7cf25a069a537ffe7c324',
             name: `${this.state.data[0]&&this.state.data[0].name}`,
             other: 'otherInfo'
            }
@@ -101,7 +81,7 @@ componentWillMount(){
                     value={inputValue}
                     sendMessage={this.sendMessage}
                     timestamp={timestamp}
-                    avatarClick={(value)=>{}}
+                    avatarClick={()=>{this.props.history.push(`/friend/${params}`)}}
                     placeholder="请输入"
                     messageListStyle={{width: '100%', height: window.outerHeight}}
                 />
@@ -111,3 +91,4 @@ componentWillMount(){
         )
     }
 }
+export default withRouter(MyChat)

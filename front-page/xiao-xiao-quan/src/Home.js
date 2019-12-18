@@ -13,6 +13,7 @@ import Forum from './container/Forum';
 import Collect from './container/Collect';
 import MyChat1 from './container/MyChat1';
 import AddFriend from './container/AddFriend';
+import PhotoAlbum from './container/PhotoAlbum';
 export default class Home extends Component {
     render() {
         return (
@@ -22,7 +23,7 @@ export default class Home extends Component {
                     <Switch>   
                         <Route exact path='/home/mychat/:idx' component={MyChat1}></Route>
                         <Route exact path='/home/my/collect' component={Collect}></Route>
-                        <Route exact path='/home/my/collect' component={Collect}></Route>
+                        <Route exact path='/home/my/photoalbum' component={PhotoAlbum}></Route>
                         <Route exact path='/community/publish' component={Publish} />
                         <Route exact path='/friend/:idx' component={Synopsis} />
                         <Route exact path='/my/set' component={Set}/>

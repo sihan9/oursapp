@@ -1,7 +1,6 @@
 import React, { Component} from 'react'
-import {NavBar,NoticeBar } from 'antd-mobile';
+import {NavBar,NoticeBar,Toast } from 'antd-mobile';
 import {Link,withRouter} from 'react-router-dom';
-import Collect from './Collect' 
 import set from '../image/my/设置.png';
 import star from '../image/my/收藏.png';
 import decorate from '../image/my/表情.png';
@@ -32,6 +31,9 @@ class My extends Component {
         })
     }
     render() {
+        function failToast() {
+            Toast.fail('敬请期待 !!!', 1);
+        }
         let img
         let str=this.state.img;
         let a=str.indexOf('http')
@@ -47,11 +49,8 @@ class My extends Component {
         }
         return (
             <div>
-                
-               
                 <NavBar
                    style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
-                  
                    rightContent={
                        [
                     <Link key='1' to='/my/set'> 
@@ -75,7 +74,7 @@ class My extends Component {
                 </div>
                 <div style={{width:'100%',marginTop:10}}>
                    
-                    <NoticeBar icon={null} mode="link" style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
+                    <NoticeBar onClick={() => {this.props.history.push('/home/my/photoalbum')}} icon={null} mode="link" style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
                         <img src={photo} style={{marginTop:0,marginRight:10,height:20,width:20}}/>
                         我的相册
                     </NoticeBar>
@@ -85,11 +84,11 @@ class My extends Component {
                     收藏
                     </NoticeBar>
                   
-                    <NoticeBar icon={null} mode="link" style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
+                    <NoticeBar onClick={failToast} icon={null} mode="link" style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
                     <img src={decorate} style={{marginTop:0,marginRight:10,height:20}}/>
                         表情
                     </NoticeBar>
-                    <NoticeBar  mode="link" icon={null} style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
+                    <NoticeBar onClick={failToast} mode="link" icon={null} style={{height:70,color:'#000',fontSize:'18px',backgroundColor:'#fff',borderBottom:'3px solid #f5f5f9'}}>
                         <img src={info} style={{marginTop:0,marginRight:10,height:20}}/>
                         公告
                     </NoticeBar>

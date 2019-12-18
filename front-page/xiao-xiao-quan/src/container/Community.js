@@ -6,9 +6,10 @@ const requireContext = require.context('../image/Community', true, /^\.\/.*\.png
 const images = requireContext.keys().map(requireContext);
 var {chapterList} = require('./Data');
 var followClick = false;
+console.log(chapterList[0])
 function Community (){
     let history = useHistory();
-    let [img,setimg]=useState('');
+    let [img,setimg]=useState(images[3]);
     let [follow,setfollow] = useState('关注');
     let [back,setback]=useState('#26bdb0');
     let [width,setwidth]=useState('40px');
@@ -18,12 +19,6 @@ function Community (){
     let [comment,setcomment] = useState(chapterList[0].comment);
     let [data,setdata] = useState([]);
     useEffect(() => {
-        // fetch('http://101.37.172.74:8080/user/massage',{
-        // })
-        // .then(res =>res.json())
-        // .then((res)=>{
-        //     setdata(res.content[0]);
-        // })
         let data=localStorage.getItem('data');
         let da=JSON.parse(data)[0];
         setdata(da);
