@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import Info from './container/Info';
 import Friend from './container/Friend';
 import My from './container/My';
-import Community from './container/Community';
+import Community from './container/Community1';
 const requireContext = require.context('./image/tab1', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext)
 class App extends React.Component {

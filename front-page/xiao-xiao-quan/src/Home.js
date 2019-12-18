@@ -9,7 +9,7 @@ import Register from './container/Register';
 import Person from './container/Person';
 import Publish from './container/Publish';
 import Synopsis from './container/Synopsis';
-import Forum from './container/Forum';
+import Forum from './container/Forum1';
 import Collect from './container/Collect';
 import MyChat1 from './container/MyChat1';
 import AddFriend from './container/AddFriend';

@@ -6,7 +6,7 @@ const Item = List.Item;
 const Brief = Item.Brief;
 const requireContext = require.context('../image/Synopsis', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
-let params;
+let params
 class Synopsis extends Component {
     constructor(){
         super();
