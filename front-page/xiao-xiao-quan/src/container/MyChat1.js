@@ -72,15 +72,11 @@ componentWillMount(){
       
     }
     render() {
-      let data = '';
-      if(typeof this.state.data[0] === 'undefined');else{
-        data=this.state.data[0];
-      }
         const {inputValue, messages, timestamp} = this.state;
         const userInfo = {
-            avatar: `http://101.37.172.74:8015/images/img?name=${data.img}`,
+            avatar: `http://101.37.172.74:8015/images/img?name=${this.state.data[0]&&this.state.data[0].img}`,
             userId: '5bf7cf25a069a537ffe7c324', //user id,  required parameters
-            name: `${data.name}`,
+            name: `${this.state.data[0]&&this.state.data[0].name}`,
             other: 'otherInfo'
            }
 
