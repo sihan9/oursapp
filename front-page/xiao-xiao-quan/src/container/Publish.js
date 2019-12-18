@@ -14,11 +14,11 @@ class Publish extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/user/massage',{
-        })
-        .then(res =>res.json())
-        .then((res)=>{
-            this.setState({data1:res.content[0]});
+       
+        let data=localStorage.getItem('data');
+        let da=JSON.parse(data)[0];
+        this.setState({
+            data1:da
         })
     }
     onChange = (files) => {
@@ -68,8 +68,8 @@ class Publish extends Component {
                 </NavBar>
                 <div>
                     <img src={`http://101.37.172.74:8080/images/img?name=${this.state.data1.img}`} style={{float:"left",width:45,height:45,borderRadius:45,marginLeft:"10%",marginTop:20}}/>
-                <p style={{marginLeft:10,marginTop:23,float:'left',width:"70%"}}>{this.state.data1.school}</p>
-                <p style={{marginLeft:10,float:"left",marginTop:5}}>{this.state.data1.name}</p>
+                <p style={{marginLeft:10,marginTop:23,float:'left',width:"70%"}}>{this.state.data1.name}</p>
+                <p style={{marginLeft:10,float:"left",marginTop:5}}>{this.state.data1.school}</p>
                 </div>
                 <List style={{float:"left",width:"100%"}} renderHeader={() => ''}>
                     <TextareaItem

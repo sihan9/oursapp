@@ -19,15 +19,49 @@ class Synopsis extends Component {
         };
     }
     componentDidMount(){
-        params=this.props.match.params.idx;
-        fetch('http://101.37.172.74:8080/user/friend')
-        .then((res)=>res.json())
-        .then((res)=>{
-            this.setState({
-                data:res.content[params],
-            })
-            console.log(res.content[params])
-        })
+        // params=this.props.match.params.idx;
+        // fetch('http://101.37.172.74:8080/user/friend')
+        // .then((res)=>res.json())
+        // .then((res)=>{
+        //     this.setState({
+        //         data:res.content[params],
+        //     })
+        //     console.log(res.content[params])
+        // })
+        var str = JSON.parse(localStorage.getItem('data'))[0].friend;
+        if(str != null){
+            let arr = JSON.parse(localStorage.getItem('data'))[0].friend.split(',');
+            if(arr.length !== 0){
+                    let friends = [];
+                for(var i=0;i<arr.length;i++){
+                    friends.push(arr[i]);
+                }
+                for(var i=0; i<friends.length; i++){
+                    for(var j=i+1; j<friends.length; j++){
+                        if(friends[i]==friends[j]){
+                            friends.splice(j,1);
+                            j--;
+                        }
+                    }
+        }
+                for(var i=0;i<friends.length-1;i++){
+                    fetch(`http://101.37.172.74:8015/test/friend?phone=${friends[i]}`)
+                    .then((res)=>res.json())
+                    .then((res)=>{
+                        var data=this.state.data    
+                        if(res.content[0]!=undefined){
+                            data.push(res.content[0])
+                            this.setState({
+                                data:data
+                        })
+                    }
+                    })
+                    
+                }
+            
+            }
+        }
+        
 
     }
     onSelect = (opt) => {
