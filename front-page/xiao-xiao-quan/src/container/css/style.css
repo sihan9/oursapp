@@ -2,6 +2,12 @@
 .nav a{
   text-decoration:none;
 }
+body{
+  height:auto;
+}
+html {
+  height:auto;
+}
 *{
   margin: 0;
   padding: 0;
@@ -124,4 +130,9 @@ p{
   float: left;
   margin-left: 10px;
   margin-top: 10px;
+}
+.fixed{
+  position: fixed;
+  top: 0;
+  width: 100%;
 }

@@ -4,6 +4,7 @@ import "./css/style.css";
 import {withRouter,} from 'react-router-dom'
 import zaned from '../image/Community/2.png';
 import unzan from '../image/Community/4.png';
+import {EventEmitter} from 'events';
 var chapterList =require('./Data');
 
 const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
@@ -15,6 +16,7 @@ class Community1 extends Component{
     constructor(){
         super();
         this.state={
+            needFixed: false,
             data:chapterList.default
         }
         
@@ -79,11 +81,30 @@ class Community1 extends Component{
 
     this.props.history.push('/community/publish')
 }
+// componentWillUnmount() {
+//     EventEmitter.removeAllListeners();
+//   }
+componentDidMount(){
+    const fixedTop = document.getElementById('A_ID').offsetTop;
+    document.body.addEventListener('scroll', ()=>{
+        console.log(1)
+        let scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop)
+        //控制元素块A随鼠标滚动固定在顶部
+        // if (scrollTop >= fixedTop) {
+        //     console.log(scrollTop)
+        //     this.setState({ needFixed: true })
+        // } else if (scrollTop < fixedTop) {
+        //     this.setState({ needFixed: false })
+        // }
+    },this)
+}
     render(){
         return (
             <div>
                 <NavBar
-                 style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
+                id='A_ID'
+                className={`${this.state.needFixed ? 'fixed' : ''}`}
+                style={{backgroundColor:'#26bdb0',color:'#fff',width:"100%"}} 
                 rightContent={[
                     <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
                     <Icon key="1" type="plus" onClick={this.handle}/>,
@@ -128,9 +149,9 @@ class Community1 extends Component{
                                 <img onClick={(e)=>this.showTalk(idx,e)} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
                                 <p style={{float:"left",marginTop:3,marginLeft:4}}>{value.comment}</p>
                                 <div id={idx} style={{display:'none',width:"100%",float:"left"}}>
-                                    <from autoComplete="off">
+                                    <form autoComplete="off">
                                         <input autoComplete="off" onKeyDown={(e)=>this.handleInput(value,e)}  style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
-                                    </from>
+                                    </form>
                                 </div>
                                 <ul style={{float:'left',width:"100%"}}>
                                     {

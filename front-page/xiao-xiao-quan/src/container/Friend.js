@@ -116,13 +116,8 @@ class Friend extends Component {
                             overlayStyle={{ color: 'currentColor' }}
                             visible={this.state.visible}
                             overlay={[
-                                
-                                
-                             
                                 <Item key="5" value="special" icon={myImg1} onSelect={this.onSelect} style={{ whiteSpace: 'nowrap' }}>添加朋友</Item>
-                             
                                 ,
-                                
                                 <Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">扫一扫</Item>
                             ]}
                             align={{
@@ -151,28 +146,7 @@ class Friend extends Component {
                     onSubmit={this.Submit}
                 />
                 <div style={{ marginBottom: 10 }}>   
-                           {friendList}
-                            {/* <List >
-                                {
-                                   
-                                    
-                                    this.state.data.map((item,idx)=>(
-                                        <Link to={`/friend/${idx}`} key={idx}>
-                                            <List.Item style={{height:'60px'}}>
-                                                <img style={{width:'40px',height:'40px',float:'left',marginTop:'4px'}} src={item.img}/>
-                                                <div style={{float:'left',marginLeft:'14px'}}>
-                                                <p style={{margin:0,fontSize:'18px'}}>{item.name}</p>
-                                                <p style={{margin:0,fontSize:'12px',color:'#555',fontFamily:'cursive'}}>{item.school}</p>
-                                                </div>
-                                            </List.Item>
-                                        </Link>
-
-                                    ))
-                                    
-                                }
-                            </List> */}
-                           
-                    
+                    {friendList}
                 </div>
             </div>
         )

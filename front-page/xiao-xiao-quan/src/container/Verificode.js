@@ -5,7 +5,6 @@ export default class VCode extends Component {
     this.state = {
       ...this.initState()
     }
-    console.log(this.state.data)
   }
 
   initState(){
@@ -28,15 +27,14 @@ export default class VCode extends Component {
     }
     return arr
   }
-  componentWillMount(){
+  componentDidMount(){
     this.props.parent.getData(this,this.state.data)
   }
-  canvas=(data)=>{
-    console.log(data)
-    this.props.parent.getData(this,data)
+  canvas=(a)=>{
+    this.props.parent.getData(this,a)
   }
   render() {
-    let data = this.state.data;
+    let a = this.state.data;
     return (
          <div style={{position: "relative",overflow: "hidden",float:"left",paddingLeft:20,paddingTop:5}} >
         <canvas id="bgi" style={{position: "absolute",top: 0,width: "100%",height: "100%",marginLeft:30}} width="200" height="200"></canvas>
@@ -72,7 +70,7 @@ export default class VCode extends Component {
             }}
             onClick={() => {
               this.setState(()=>({...this.initState(),refresh: false}))
-              this.canvas(data)
+              this.canvas(a)
             }
           }
             onMouseLeave={() => {this.setState({refresh: false})}}
