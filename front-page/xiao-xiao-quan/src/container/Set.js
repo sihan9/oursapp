@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import {NavBar,NoticeBar,Button,Toast} from 'antd-mobile';
+import {withRouter,} from 'react-router-dom'
 import ret from '../image/set/返回.png';
 import {Link} from 'react-router-dom';
-export default class Set extends Component {
-    clear(){
+class Set extends Component {
+
+    clear=(e)=>{
+        this.props.history.push('/login');
         localStorage.clear();
     }
     render() {
@@ -52,14 +55,15 @@ export default class Set extends Component {
                   
                </div>
                 <div style={{width:'100%'}}>
-                    <Link key='logout' to='/login'>
+                 
                         <Button type="submit" onClick={this.clear} style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#46a794',color:'#fff'}}>退出登录</Button>
-                    </Link>
-                    <Link key='l' to='/login'>
+                 
+                  
                         <Button type="primary"  onClick={this.clear} style={{width:'80%',margin:'0 auto',backgroundColor:'#46a794'}}>切换账户</Button>
-                    </Link>
+                   
                 </div>
             </div>
         )
     }
 }
+export default  withRouter(Set);
