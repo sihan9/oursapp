@@ -4,56 +4,63 @@ import "./css/style.css";
 import {withRouter,} from 'react-router-dom'
 import zaned from '../image/Community/2.png';
 import unzan from '../image/Community/4.png';
-import {EventEmitter} from 'events';
-var chapterList =require('./Data');
-
+// var chapterList =require('./Data');
 const requireContext = require.context('../image/Community', true, /^\.\/.*\.png$/)
 const images = requireContext.keys().map(requireContext);
 let a=true;
 var followClick = false;
-
+// localStorage.setItem('forum',JSON.stringify(chapterList.default));
 class Community1 extends Component{
     constructor(){
         super();
         this.state={
-            needFixed: false,
-            data:chapterList.default
+            data:JSON.parse(localStorage.getItem('forum'))
         }
-        
+       
     }
-   follow=(value,e)=>{
+   follow=(idx,value,e)=>{
+    let a=JSON.parse(localStorage.getItem('forum'));
        if(followClick==false){
-        // e.target.value='已关注';
         value.isfollow='已关注'
         followClick=true;
-        e.target.style.backgroundColor='#ddd'
+        e.target.style.backgroundColor='#ddd';
+        a[idx]=value;
+        console.log(a);
+        localStorage.setItem('forum',JSON.stringify(a));
        }
        else{
         value.isfollow='关注';
         followClick=false;
-        e.target.style.backgroundColor='#26bdb0'
+        e.target.style.backgroundColor='#26bdb0';
+        a[idx]=value;
+        localStorage.setItem('forum',JSON.stringify(a));
        }
        this.setState({
-           data:chapterList.default
+           data:JSON.parse(localStorage.getItem('forum'))
        })
    }
-   Comment=(value,e)=>{
+   Comment=(idx,value,e)=>{
+    let a=JSON.parse(localStorage.getItem('forum')); 
         if(value.isgood==false){
            value.unzan=zaned;
-            value.good=value.good+1;
-            value.isgood=true;
-       
+           value.good=value.good+1;
+           value.isgood=true;
+           a[idx]=value;
+           localStorage.setItem('forum',JSON.stringify(a));
     }
     else{
        value.unzan=unzan;
         value.good=value.good-1;
-        value.isgood=false
+        value.isgood=false;
+        a[idx]=value;
+        localStorage.setItem('forum',JSON.stringify(a));
     }
     this.setState({
-        data:chapterList.default
+        data:JSON.parse(localStorage.getItem('forum'))
     })
 }
    showTalk=(idx,e)=>{
+       
        if(a){
         document.getElementById(idx).style.display='block';
         a=false;
@@ -64,15 +71,17 @@ class Community1 extends Component{
        }
 
    }
-   handleInput=(value,e)=>{
+   handleInput=(idx,value,e)=>{
+    let a=JSON.parse(localStorage.getItem('forum')); 
     if(e.keyCode === 13){
         if(e.target.value!==''){
             value.comment=value.comment+1;
-
             value.talk.push(JSON.parse(localStorage.getItem('data'))[0].name +":"+e.target.value);
+            a[idx]=value;
+            localStorage.setItem('forum',JSON.stringify(a));
         }
         this.setState({
-            data:chapterList.default
+            data:JSON.parse(localStorage.getItem('forum'))
         })
         e.target.value='';
     }
@@ -135,7 +144,7 @@ componentDidMount(){
                             {/* 关注 */}
                             <div className='follow'>
                                 <p className='username'>{value.name}</p>
-                    <button onClick={(e)=>this.follow(value,e)} style={{backgroundColor:'#26bdb0',width:60}} className='tabFllow'>{value.isfollow}</button>
+                            <button onClick={(e)=>this.follow(idx,value,e)} style={{backgroundColor:'#26bdb0',width:60}} className='tabFllow'>{value.isfollow}</button>
                             </div>
                             <p className="school">{value.school}</p>
                             <p className="comment">{value.title}</p>
@@ -143,14 +152,14 @@ componentDidMount(){
                             <div style={{float:"left",width:"100%",paddingTop:10,paddingLeft:10,paddingBottom:10}}>
                                 <p style={{float:"left",marginLeft:"50%",marginTop:2}}>{value.publishTimer}</p>
                                 {/* 点赞 */}
-                                <img onClick={(e)=>this.Comment(value,e)} style={{width:22,float:"left",marginLeft:15}} src={value.unzan}/>
+                                <img onClick={(e)=>this.Comment(idx,value,e)} style={{width:22,float:"left",marginLeft:15}} src={value.unzan}/>
                                 <p style={{float:"left",marginTop:3,marginLeft:7}}>{value.good}</p>
                                 {/* 评论 */}
                                 <img onClick={(e)=>this.showTalk(idx,e)} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
                                 <p style={{float:"left",marginTop:3,marginLeft:4}}>{value.comment}</p>
                                 <div id={idx} style={{display:'none',width:"100%",float:"left"}}>
                                     <form autoComplete="off">
-                                        <input autoComplete="off" onKeyDown={(e)=>this.handleInput(value,e)}  style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
+                                        <input autoComplete="off" onKeyDown={(e)=>this.handleInput(idx,value,e)}  style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
                                     </form>
                                 </div>
                                 <ul style={{float:'left',width:"100%"}}>

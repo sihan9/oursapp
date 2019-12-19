@@ -19,37 +19,41 @@ class Forum1 extends Component{
        
         super();
         this.state={
-            data:chapterList.default,
+            data:JSON.parse(localStorage.getItem('forum')),
             forum:[]
         }
        
         allForum=[];
-        for(let i=0;i<chapterList.default.length;i++){
+        for(let i=0;i<this.state.data.length;i++){
            
-            if(chapterList.default[i].phone==JSON.parse(localStorage.getItem('data'))[0].phone){
-                allForum.push(chapterList.default[i]);
+            if(this.state.data[i].phone==JSON.parse(localStorage.getItem('data'))[0].phone){
+                allForum.push(this.state.data[i]);
                 idForum.push(i);
             }
         }
       
     }
 
-    Comment=(value,e)=>{
-        if(value.isgood==false){
-           value.unzan=zaned;
-            value.good=value.good+1;
-            value.isgood=true;
-       
+    Comment=(idx,value,e)=>{
+        let a=JSON.parse(localStorage.getItem('forum')); 
+            if(value.isgood==false){
+               value.unzan=zaned;
+               value.good=value.good+1;
+               value.isgood=true;
+               a[idx]=value;
+               localStorage.setItem('forum',JSON.stringify(a));
+        }
+        else{
+           value.unzan=unzan;
+            value.good=value.good-1;
+            value.isgood=false;
+            a[idx]=value;
+            localStorage.setItem('forum',JSON.stringify(a));
+        }
+        this.setState({
+            data:JSON.parse(localStorage.getItem('forum'))
+        })
     }
-    else{
-       value.unzan=unzan;
-        value.good=value.good-1;
-        value.isgood=false
-    }
-    this.setState({
-        data:chapterList.default
-    })
-}
    showTalk=(idx,e)=>{
        if(a){
         document.getElementById(idx).style.display='block';
@@ -61,15 +65,17 @@ class Forum1 extends Component{
        }
 
    }
-   handleInput=(value,e)=>{
+   handleInput=(idx,value,e)=>{
+    let a=JSON.parse(localStorage.getItem('forum')); 
     if(e.keyCode === 13){
         if(e.target.value!==''){
             value.comment=value.comment+1;
-
             value.talk.push(JSON.parse(localStorage.getItem('data'))[0].name +":"+e.target.value);
+            a[idx]=value;
+            localStorage.setItem('forum',JSON.stringify(a));
         }
         this.setState({
-            data:chapterList.default
+            data:JSON.parse(localStorage.getItem('forum'))
         })
         e.target.value='';
     }
@@ -79,10 +85,12 @@ class Forum1 extends Component{
 
   }
   deleteForum=(idx)=>{
-    chapterList.default.splice(idForum[idx],1);
+    let newForum=JSON.parse(localStorage.getItem('forum'));
+   newForum.splice(idForum[idx],1);
+    localStorage.setItem('forum',JSON.stringify(newForum));
     allForum.splice(idx,1);
     this.setState({
-        data:chapterList.default
+        data:JSON.parse(localStorage.getItem('forum'))
     })
   }
 
@@ -114,15 +122,15 @@ class Forum1 extends Component{
                             <div style={{float:"left",width:"100%",paddingTop:10,paddingLeft:10,paddingBottom:10}}>
                                 <p style={{float:"left",marginLeft:"50%",marginTop:2}}>{value.publishTimer}</p>
                                 {/* 点赞 */}
-                                <img onClick={(e)=>this.Comment(value,e)} style={{width:22,float:"left",marginLeft:15}} src={value.unzan}/>
+                                <img onClick={(e)=>this.Comment(idx,value,e)} style={{width:22,float:"left",marginLeft:15}} src={value.unzan}/>
                                 <p style={{float:"left",marginTop:3,marginLeft:7}}>{value.good}</p>
                                 {/* 评论 */}
                                 <img onClick={(e)=>this.showTalk(idx,e)} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
                                 <p style={{float:"left",marginTop:3,marginLeft:4}}>{value.comment}</p>
                                 <div id={idx} style={{display:'none',width:"100%",float:"left"}}>
-                                    <from autoComplete="off">
-                                        <input autoComplete="off" onKeyDown={(e)=>this.handleInput(value,e)}  style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
-                                    </from>
+                                    <form autoComplete="off">
+                                        <input autoComplete="off" onKeyDown={(e)=>this.handleInput(idx,value,e)}  style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
+                                    </form>
                                 </div>
                                 <ul style={{float:'left',width:"100%"}}>
                                     {
