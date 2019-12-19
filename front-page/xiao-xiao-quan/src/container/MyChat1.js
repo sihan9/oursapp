@@ -54,7 +54,7 @@ componentWillMount(){
     render() {
         const {inputValue, messages, timestamp} = this.state;
         const userInfo = {
-            avatar: `http://101.37.172.74:8015/images/img?name=${this.state.data[0]&&this.state.data[0].img}`,
+            avatar: `http://101.37.172.74:8015/images/img?name=${JSON.parse(localStorage.getItem('data'))[0].img}`,
             userId: '5bf7cf25a069a537ffe7c324',
             name: `${this.state.data[0]&&this.state.data[0].name}`,
             other: 'otherInfo'

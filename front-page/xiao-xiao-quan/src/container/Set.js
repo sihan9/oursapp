@@ -7,7 +7,7 @@ class Set extends Component {
 
     clear=(e)=>{
         this.props.history.push('/login');
-        localStorage.clear();
+        // localStorage.clear();
     }
     render() {
         function failToast() {

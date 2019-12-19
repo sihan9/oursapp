@@ -48,7 +48,12 @@ export default class Login extends Component {
            
             if(data.message){
                 localStorage.setItem('data',data.content);
-                localStorage.setItem('forum',JSON.stringify(chapterList.default));
+                if(!localStorage.getItem('forum')){
+                    localStorage.setItem('forum',JSON.stringify(chapterList.default));
+                }else{
+                    let a = localStorage.getItem('forum');
+                    localStorage.setItem('forum',a);
+                }
                 this.props.history.push('/home')
             }
             else{
