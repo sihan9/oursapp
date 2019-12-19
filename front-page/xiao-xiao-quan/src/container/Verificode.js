@@ -11,7 +11,7 @@ export default class VCode extends Component {
     return {
       data: this.getRandom(109,48,4),
       rotate: this.getRandom(75,-75,4),
-      fz: this.getRandom(8,20,4),
+      fz: this.getRandom(15,25,4),
       color: [this.getRandom(100,255,3),this.getRandom(100,255,4),this.getRandom(100,255,3),this.getRandom(100,255,3)]
     }
   }

@@ -66,13 +66,15 @@ class Forum1 extends Component{
 
    }
    handleInput=(idx,value,e)=>{
-    let a=JSON.parse(localStorage.getItem('forum')); 
+    let b=JSON.parse(localStorage.getItem('forum')); 
     if(e.keyCode === 13){
         if(e.target.value!==''){
             value.comment=value.comment+1;
             value.talk.push(JSON.parse(localStorage.getItem('data'))[0].name +":"+e.target.value);
-            a[idx]=value;
-            localStorage.setItem('forum',JSON.stringify(a));
+            b[idx]=value;
+            localStorage.setItem('forum',JSON.stringify(b));
+            document.getElementById(idx).style.display='none';
+            a=true;
         }
         this.setState({
             data:JSON.parse(localStorage.getItem('forum'))
@@ -127,11 +129,6 @@ class Forum1 extends Component{
                                 {/* 评论 */}
                                 <img onClick={(e)=>this.showTalk(idx,e)} src={images[2]} style={{float:"left",width:22,marginTop:3,marginLeft:5}}/>
                                 <p style={{float:"left",marginTop:3,marginLeft:4}}>{value.comment}</p>
-                                <div id={idx} style={{display:'none',width:"100%",float:"left"}}>
-                                    <form autoComplete="off">
-                                        <input autoComplete="off" onKeyDown={(e)=>this.handleInput(idx,value,e)}  style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
-                                    </form>
-                                </div>
                                 <ul style={{float:'left',width:"100%"}}>
                                     {
                                         (value.talk||[]).map((value,i)=>(
@@ -139,6 +136,11 @@ class Forum1 extends Component{
                                         ))
                                     }
                                 </ul>
+                                <div id={idx} style={{display:'none',width:"100%",float:"left"}}>
+                                    <form autoComplete="off">
+                                        <input autoComplete="off" onKeyDown={(e)=>this.handleInput(idx,value,e)}  style={{backgroundColor:'#fff',width:"90%",height:30,backgroundColor:"#eee",border:0}} placeholder='说点什么吧'></input>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     ))

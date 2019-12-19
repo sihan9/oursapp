@@ -75,7 +75,7 @@ class Publish extends Component {
                         </Link>
                     ]}
                     rightContent={[
-                        <form action="#">
+                        <form key='2' action="#">
                             <Button style={{borderStyle:'none',height:'40px',backgroundColor:"#26bdb0",color:'#fff',position:"static"}}  onClick={this.successToast}>发布</Button>
                         </form>
                     ]}
