@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {NavBar, Toast} from 'antd-mobile';
 import {Link} from 'react-router-dom';
-
+var chapterList =require('./Data');
 export default class Login extends Component {
     constructor(props){
         super(props);
@@ -47,7 +47,8 @@ export default class Login extends Component {
             // console.log(data)
            
             if(data.message){
-                localStorage.setItem('data',data.content)
+                localStorage.setItem('data',data.content);
+                localStorage.setItem('forum',JSON.stringify(chapterList.default));
                 this.props.history.push('/home')
             }
             else{

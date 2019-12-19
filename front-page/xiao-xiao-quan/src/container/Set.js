@@ -52,10 +52,10 @@ export default class Set extends Component {
                   
                </div>
                 <div style={{width:'100%'}}>
-                    <Link key='login' to='/login'>
+                    <Link key='logout' to='/login'>
                         <Button type="submit" onClick={this.clear} style={{width:'80%',margin:'0 auto',marginBottom:14,marginTop:10,backgroundColor:'#46a794',color:'#fff'}}>退出登录</Button>
                     </Link>
-                    <Link key='login' to='/login'>
+                    <Link key='l' to='/login'>
                         <Button type="primary"  onClick={this.clear} style={{width:'80%',margin:'0 auto',backgroundColor:'#46a794'}}>切换账户</Button>
                     </Link>
                 </div>

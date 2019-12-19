@@ -52,9 +52,13 @@ class Publish extends Component {
         temp.talk = [];
         temp.phone=JSON.parse(localStorage.getItem('data'))[0].phone
         temp.isgood=false;
-        chapterList.default.unshift(temp);
+
+        // let newForum=JSON.parse(localStorage.getItem('forum')).unshift(temp);
+        let newForum=JSON.parse(localStorage.getItem('forum'));
+        newForum.unshift(temp);
+        localStorage.setItem('forum',JSON.stringify(newForum));
         allData = temp;
-        console.log(temp);
+        // console.log(temp);
         setTimeout(() => {
             this.props.history.push('/home/community')
         }, 1000);
@@ -71,9 +75,9 @@ class Publish extends Component {
                         </Link>
                     ]}
                     rightContent={[
-                        <from action="#">
+                        <form action="#">
                             <Button style={{borderStyle:'none',height:'40px',backgroundColor:"#26bdb0",color:'#fff',position:"static"}}  onClick={this.successToast}>发布</Button>
-                        </from>
+                        </form>
                     ]}
                     >发布
                 </NavBar>
