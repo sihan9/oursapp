@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, TouchableOpacity, AsyncStorage, NetInfo } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, AsyncStorage, NetInfo ,Image} from 'react-native';
 import { Header } from 'react-native-elements';
 import Toast from 'react-native-easy-toast';
 import { inject, observer } from 'mobx-react/native';
@@ -11,7 +11,7 @@ import util from '../util';
 import MD5 from '../util/md5';
 import { globalStyle, headerStyle } from '../themes';
 import constObj from '../store/constant';
-
+import {RVH} from '../common';
 @inject('linkAction', 'nimStore', 'userInfo', 'sessionAction')
 @observer
 export default class Page extends Component {
@@ -20,6 +20,7 @@ export default class Page extends Component {
     this.sessionItems = {};
   }
   componentWillMount() {
+    
     NetInfo.isConnected.fetch().then((isConnected) => {
       if (isConnected) {
         this.initLogin();
@@ -132,7 +133,7 @@ export default class Page extends Component {
       <View style={globalStyle.container}>
         <Header
           outerContainerStyles={headerStyle.wrapper}
-          centerComponent={{ text: '云信demo', style: headerStyle.center }}
+          centerComponent={{ text: '消息', style: headerStyle.center }}
         />
         <TouchableOpacity
           style={globalStyle.container}
@@ -142,7 +143,9 @@ export default class Page extends Component {
           <ScrollView style={{ backgroundColor: '#f0f0f0' }}>
             {
               sessionlist.length === 0 ?
-                <Text style={{ padding: 20, textAlign: 'center' }}>当前没有会话！！！！</Text>
+              <View>
+                <Text style={{ marginTop: RVH*30, textAlign: 'center' }}>当前还没有会话！！！！</Text>
+              </View>
                 : sessionlist.map(item =>
                 (<SessionItem
                   key={item.id}

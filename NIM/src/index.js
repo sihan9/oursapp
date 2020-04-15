@@ -26,6 +26,9 @@ const App = createStackNavigator(
     chat: {
       screen: Pages.chat,
     },
+    schoolInfo:{
+      screen:Pages.schoolInfo,
+    },
     reNick:{
       screen: Pages.reNick,
     },

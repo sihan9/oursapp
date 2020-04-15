@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, ActionSheetIOS } from 'react-native';
+import { ScrollView, View, ActionSheetIOS,TouchableOpacity,AsyncStorage} from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 // import { View } from 'react-navigation';
 import { ListItem, Button, Header } from 'react-native-elements';
@@ -8,7 +8,17 @@ import GoBack from '../components/goback';
 import LeftAvatar from '../components/leftAvatar';
 import { globalStyle, headerStyle, baseRedColor } from '../themes';
 import { RVW } from '../common';
-
+import ImagePicker from 'react-native-image-picker';
+const options = {
+  title: '照相',
+  cancelButtonTitle:'取消',
+  takePhotoButtonTitle:'拍照',
+  chooseFromLibraryButtonTitle:'选择相册',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
 @inject('nimStore', 'linkAction')
 @observer
 
@@ -27,7 +37,29 @@ export default class Page extends Component {
 }
   logout = () => {
     this.props.linkAction.logout();
+
   }
+ 
+  takephoto=()=>{
+    ImagePicker.showImagePicker(options, (response) => {
+        if (response.didCancel) {
+          return;
+        } else if (response.error) {
+          console.log('Error:', response.error);
+        } else if (response.customButton) {
+          console.log('custom:', response.customButton);
+        } else {
+            
+          const source = { uri: response.uri };
+          AsyncStorage.setItem('avator',JSON.stringify(source)).then((res)=>{
+            console.log('存储成功');
+        })
+        this.props.nimStore.myInfo.avatar = response.uri;
+        this.props.navigation.navigate('session')
+        }
+      });
+}
+
   componentDidMount=()=>{
     let gender = '未知';
     if (this.state.myInfo.gender === 'female') {
@@ -53,32 +85,20 @@ export default class Page extends Component {
           leftComponent={<GoBack navigation={navigation} />}
           centerComponent={{ text: '个人信息', style: headerStyle.center }}
         />
-        <ListItem
-          key={0}
-          leftAvatar={<LeftAvatar uri={this.state.myInfo.avatar} />}
-          title={this.state.myInfo.nick}
-          subtitle={`账号：${this.state.myInfo.account}`}
-          containerStyle={{ marginVertical: 20 }}
-        />
-        <ScrollView>
-          {/* {
-          information.map((item,key)=>(
-            
-              <ListItem
-              onPress={()=>
-              
-                this.props.navigation.navigate('reNick')
-
-              }
-                key={key}
-                title={item.title}
-                rightTitle={item.name}
-                rightTitleStyle={globalStyle.listItemRight}
-                containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
+        <TouchableOpacity
+          onPress={() => {
+          this.takephoto();
+        }}>
+          <ListItem
+            key={0}
+            leftAvatar={<LeftAvatar uri={this.state.myInfo.avatar} />}
+            title={this.state.myInfo.nick}
+            subtitle={`账号：${this.state.myInfo.account}`}
+            containerStyle={{ marginVertical: 20 }}
           />
-          
-          ))
-          } */}
+        </TouchableOpacity>
+        <ScrollView>
+         
           <ListItem
             onPress={()=>{}}
             key={1}

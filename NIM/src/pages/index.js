@@ -18,6 +18,7 @@ import rePhone from './rePhone';
 import reSign from './reSign';
 import reBirth from './reBirth';
 import reGender from './reGender';
+import schoolInfo from './schoolInfo'
 
 export default {
   login,
@@ -39,6 +40,7 @@ export default {
   reGender,
   rePhone,
   reSign,
-  reBirth
+  reBirth,
+  schoolInfo
   
 };

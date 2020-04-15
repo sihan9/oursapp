@@ -235,7 +235,7 @@ class Actions {
   onupdatemyinfo(info) {
     
     set(nimStore, 'myInfo', Object.assign(nimStore.myInfo, info));
-    alert(globalStatus);
+   
     // nimStore.myInfo = Object.assign(nimStore.myInfo, info);
   }
   @action
