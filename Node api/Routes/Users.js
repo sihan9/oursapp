@@ -421,36 +421,38 @@ router.post('/register',(req,res)=>{
     });
     req.on('end',()=>{
         data = JSON.parse(data);
+        console.log(data);
         var arr = [];
         for(let i in data){
             arr.push(data[i])
         }
         arr.splice(2,1);
-        registerphone = arr[0];
-        pool.query(selsql, (error,results,fields)=> {
-        //error,results,fields:错误对象，json数组，数据信息数组
-            isregister = true;
-            if (error) console.log(error.message);
-            for(let i=0;i<results.rows.length;i++){
-                if(results.rows[i].phone === registerphone){
-                    isregister = false;
-                    break;
-                }
-            }
-            if(isregister){
-                console.log("Register successfully");
-                db =  {state: 200, message: '注册成功', content: isregister }; 
-                pool.query('insert into users(phone,password) values($1,$2)',arr)
-                .catch(err=>{
-                    console.error(err)
-                }); 
-                res.send(db);
-            }else{
-                console.log("Register failed");
-                db = { state: 200, message: '注册失败', content: isregister }; 
-                res.send(db);
-            };
-        });
+        console.log(arr);
+        // registerphone = arr[0];
+        // pool.query(selsql, (error,results,fields)=> {
+        // //error,results,fields:错误对象，json数组，数据信息数组
+        //     isregister = true;
+        //     if (error) console.log(error.message);
+        //     for(let i=0;i<results.rows.length;i++){
+        //         if(results.rows[i].phone === registerphone){
+        //             isregister = false;
+        //             break;
+        //         }
+        //     }
+        //     if(isregister){
+        //         console.log("Register successfully");
+        //         db =  {state: 200, message: '注册成功', content: isregister }; 
+        //         pool.query('insert into users(phone,password) values($1,$2)',arr)
+        //         .catch(err=>{
+        //             console.error(err)
+        //         }); 
+        //         res.send(db);
+        //     }else{
+        //         console.log("Register failed");
+        //         db = { state: 200, message: '注册失败', content: isregister }; 
+        //         res.send(db);
+        //     };
+        // });
     });
 });
 router.get('/register',(req,res)=>{
