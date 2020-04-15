@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View ,Switch} from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 // import { SafeView } from 'react-navigation';
 import { ListItem, Avatar, Header } from 'react-native-elements';
@@ -13,21 +13,21 @@ export default class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      muteVal: false,
-      pushVal: false,
-      token: 'e10adc3949ba59abbe56e057f20f883e',
+      // muteVal: false,
+      // pushVal: false,
+      // token: 'e10adc3949ba59abbe56e057f20f883e',
     };
   }
-  setMuteVal = (val) => {
-    this.setState({
-      muteVal: val,
-    });
-  }
-  setPushVal = (val) => {
-    this.setState({
-      pushVal: val,
-    });
-  }
+  // setMuteVal = (val) => {
+  //   this.setState({
+  //     muteVal: val,
+  //   });
+  // }
+  // setPushVal = (val) => {
+  //   this.setState({
+  //     pushVal: val,
+  //   });
+  // }
   render() {
     const myInfo = this.props.nimStore.myInfo || {};
     const { navigation } = this.props;
@@ -61,7 +61,7 @@ export default class Page extends Component {
             }
             bottomDivider
           />
-          <ListItem
+          {/* <ListItem
             key={1}
             title="消息提醒"
             rightTitle={
@@ -72,7 +72,7 @@ export default class Page extends Component {
             }
             topDivider
             bottomDivider
-            containerStyle={{ marginTop: 15 }}
+            containerStyle={{ marginTop: 30 }}
           />
           <ListItem
             key={2}
@@ -84,29 +84,9 @@ export default class Page extends Component {
               />
             }
             bottomDivider
-          />
+          /> */}
           <ListItem
             key={3}
-            title="我的钱包"
-            onPress={() => {
-              this.props.navigation.navigate('money');
-            }}
-            chevron
-            chevronColor={baseBlueColor}
-            bottomDivider
-          />
-          <ListItem
-            key={4}
-            title="我的收藏"
-            onPress={() => {
-              this.props.navigation.navigate('collect');
-            }}
-            chevron
-            chevronColor={baseBlueColor}
-            bottomDivider
-          />
-          <ListItem
-            key={5}
             title="关于"
             onPress={() => {
               this.props.navigation.navigate('about');
@@ -115,7 +95,6 @@ export default class Page extends Component {
             chevronColor={baseBlueColor}
             bottomDivider
           />
-          
         </ScrollView>
         <NavBottom navigation={navigation} />
       </View>

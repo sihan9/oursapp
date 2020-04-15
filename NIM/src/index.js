@@ -26,6 +26,25 @@ const App = createStackNavigator(
     chat: {
       screen: Pages.chat,
     },
+    reNick:{
+      screen: Pages.reNick,
+    },
+    reEmail:{
+      screen: Pages.reEmail,
+    },
+    reGender:{
+      screen: Pages.reGender,
+    },
+    reBirth:{
+      screen: Pages.reBirth,
+    },
+    rePhone:{
+      screen: Pages.rePhone,
+    },
+    reSign:{
+      screen: Pages.reSign,
+    },
+    
     chatHistroy: {
       screen: Pages.chatHistroy,
     },
@@ -44,12 +63,6 @@ const App = createStackNavigator(
     },
     about: {
       screen: Pages.about,
-    },
-    money:{
-      screen: Pages.money,
-    },
-    collect:{
-      screen:Pages.collect,
     },
     test: {
       screen: Pages.test,

@@ -19,7 +19,7 @@ export default class Page extends Component {
           centerComponent={{ text: '关于', style: headerStyle.center }}
         />
         <ScrollView>
-          <Text>校小圈团队</Text>
+          <Text>1529653709700</Text>
         </ScrollView>
       </View>
     );

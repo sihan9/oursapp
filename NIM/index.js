@@ -8,5 +8,5 @@ if (Platform.OS.toLowerCase() === 'android') {
 } else if (Platform.OS.toLowerCase() === 'ios') {
   global.ISIOS = true;
 }
-console.disableYellowBox=true;
+
 AppRegistry.registerComponent('NIM_ReactNative_Demo', () => App);

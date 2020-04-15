@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, ActionSheetIOS } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 // import { View } from 'react-navigation';
 import { ListItem, Button, Header } from 'react-native-elements';
@@ -11,20 +11,42 @@ import { RVW } from '../common';
 
 @inject('nimStore', 'linkAction')
 @observer
+
+
 export default class Page extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+       myInfo :this.props.nimStore.myInfo || {}
+    }
+   
+ }
+
+ componentWillReceiveProps(nextProps) {
+   this.setState({myInfo :nextProps.nimStore.myInfo || {}});
+}
   logout = () => {
     this.props.linkAction.logout();
   }
-  render() {
-    const myInfo = this.props.nimStore.myInfo || {};
+  componentDidMount=()=>{
     let gender = '未知';
-    if (myInfo.gender === 'female') {
+    if (this.state.myInfo.gender === 'female') {
       gender = '女';
-    } else if (myInfo.gender === 'male') {
+    } else if (this.state.myInfo.gender === 'male') {
       gender = '男';
     }
-    const { navigation } = this.props;
-    return (
+    const myInfo = this.props.nimStore.myInfo || {};
+    myInfo.gender=gender;
+    this.setState({
+      myInfo:myInfo
+    })
+  }
+
+  render() {
+   
+  
+    const { navigation } = this.props; 
+    return ( 
       <View style={globalStyle.container}>
         <Header
           outerContainerStyles={headerStyle.wrapper}
@@ -33,51 +55,88 @@ export default class Page extends Component {
         />
         <ListItem
           key={0}
-          leftAvatar={<LeftAvatar uri={myInfo.avatar} />}
-          title={myInfo.nick}
-          subtitle={`账号：${myInfo.account}`}
+          leftAvatar={<LeftAvatar uri={this.state.myInfo.avatar} />}
+          title={this.state.myInfo.nick}
+          subtitle={`账号：${this.state.myInfo.account}`}
           containerStyle={{ marginVertical: 20 }}
         />
         <ScrollView>
+          {/* {
+          information.map((item,key)=>(
+            
+              <ListItem
+              onPress={()=>
+              
+                this.props.navigation.navigate('reNick')
+
+              }
+                key={key}
+                title={item.title}
+                rightTitle={item.name}
+                rightTitleStyle={globalStyle.listItemRight}
+                containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
+          />
+          
+          ))
+          } */}
           <ListItem
+            onPress={()=>{}}
             key={1}
             title="昵称"
-            rightTitle={myInfo.nick}
+            onPress={()=>
+              this.props.navigation.navigate('reNick')
+            }
+            rightTitle={this.state.myInfo.nick}
             rightTitleStyle={globalStyle.listItemRight}
             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
           />
           <ListItem
             key={2}
             title="性别"
-            rightTitle={gender}
+            rightTitle={this.state.myInfo.gender}
             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
+            onPress={()=>
+              this.props.navigation.navigate('reGender')
+            }
           />
           <ListItem
             key={3}
             title="生日"
-            rightTitle={myInfo.birth}
+            rightTitle={this.state.myInfo.birth}
             rightTitleStyle={globalStyle.listItemRight}
             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
+            onPress={()=>
+              this.props.navigation.navigate('reBirth')
+            }
           />
           <ListItem
             key={4}
             title="手机"
-            rightTitle={myInfo.tel}
+            rightTitle={this.state.myInfo.tel}
             rightTitleStyle={globalStyle.listItemRight}
             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
+            onPress={()=>
+              this.props.navigation.navigate('rePhone')
+            }
           />
           <ListItem
             key={5}
             title="邮箱"
-            rightTitle={myInfo.email}
+            rightTitle={this.state.myInfo.email}
             rightTitleStyle={globalStyle.listItemRight}
             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
+            onPress={()=>
+              this.props.navigation.navigate('reEmail')
+            }
           />
           <ListItem
             key={6}
             title="签名"
-            rightTitle={myInfo.sign}
+            rightTitle={this.state.myInfo.sign}
             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
+            onPress={()=>
+              this.props.navigation.navigate('reSign')
+            }
           />
 
           <Button

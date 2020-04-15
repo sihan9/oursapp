@@ -4,6 +4,7 @@ class Stores {
   @observable imLastMsg = '';
   @observable imSendMsg = '';
   // 登录账户ID
+  
   @observable userID = null
   // 用户名片
   @observable myInfo = null

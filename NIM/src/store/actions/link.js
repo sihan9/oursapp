@@ -231,7 +231,13 @@ class Actions {
       onupdatesysmsg: onSysMsgs, // 通过、拒绝好友申请会收到此回调
     });
   }
-
+  @action
+  onupdatemyinfo(info) {
+    
+    set(nimStore, 'myInfo', Object.assign(nimStore.myInfo, info));
+    alert(globalStatus);
+    // nimStore.myInfo = Object.assign(nimStore.myInfo, info);
+  }
   @action
   destroyNIM = () => new Promise((resolve, reject) => {
     if (constObj.nim) {

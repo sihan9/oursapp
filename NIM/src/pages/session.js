@@ -132,7 +132,7 @@ export default class Page extends Component {
       <View style={globalStyle.container}>
         <Header
           outerContainerStyles={headerStyle.wrapper}
-          centerComponent={{ text: '消息', style: headerStyle.center }}
+          centerComponent={{ text: '云信demo', style: headerStyle.center }}
         />
         <TouchableOpacity
           style={globalStyle.container}

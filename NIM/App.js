@@ -9,7 +9,7 @@ import App from './src';
 //     <App />
 //   </Provider>
 // );
-
+console.disableYellowBox=true;
 const handleConnectivityChange = () => {
   NetInfo.isConnected.fetch().then((isConnected) => {
     if (!isConnected) {

@@ -1,6 +1,6 @@
 import { RVW, RFT, RPX } from '../common';
 
-export const baseBlueColor = '#26bdb0';
+export const baseBlueColor = '#0091e4';
 export const lightBlueColor = '#a5d8ff';
 export const baseRedColor = '#f04d64';
 
@@ -44,7 +44,7 @@ export const headerStyle = {
   wrapper: {
     paddingVertical: 0,
     minHeight: Math.round(14 * RVW),
-    backgroundColor: '#26bdb0',
+    backgroundColor: baseBlueColor,
     borderBottomWidth: 0,
   },
   center: {

@@ -4,7 +4,10 @@ import constObj from '../constant';
 
 class Actions {
   @observable nimStore
-
+  @action
+  UserInfo_Update_Gender=(gender)=>{
+    console.log(nimStore.myInfo)
+  }
   @action
   getUserInfo = (account, callback) => {
     if (constObj.nim) {
