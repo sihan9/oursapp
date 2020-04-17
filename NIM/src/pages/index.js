@@ -12,13 +12,15 @@ import chat from './chat';
 import chatHistroy from './chatHistroy';
 import sysmsg from './sysmsg';
 import test from './test';
+import money from './money';
+import collect from './collect';
 import reNick from './reNick';
 import reEmail from './reEmail';
 import rePhone from './rePhone';
 import reSign from './reSign';
 import reBirth from './reBirth';
 import reGender from './reGender';
-import schoolInfo from './schoolInfo'
+import schoolInfo from './schoolInfo';
 
 export default {
   login,
@@ -35,12 +37,13 @@ export default {
   chatHistroy,
   sysmsg,
   test,
+  money,
+  collect,
   reNick,
   reEmail,
   reGender,
   rePhone,
   reSign,
   reBirth,
-  schoolInfo
-  
+  schoolInfo,
 };

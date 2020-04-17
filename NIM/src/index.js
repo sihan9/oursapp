@@ -70,6 +70,12 @@ const App = createStackNavigator(
     test: {
       screen: Pages.test,
     },
+    collect: {
+      screen: Pages.collect,
+    },
+    money: {
+      screen: Pages.money,
+    }
   },
   {
     initialRouteName: 'session',

@@ -16,10 +16,10 @@ export default class Page extends Component {
         <Header
           outerContainerStyles={headerStyle.wrapper}
           leftComponent={<GoBack navigation={navigation} />}
-          centerComponent={{ text: '我的收藏', style: headerStyle.center }}
+          centerComponent={{ text: '关于', style: headerStyle.center }}
         />
         <ScrollView>
-          <Text>正在开发中</Text>
+          <Text>1529653709700</Text>
         </ScrollView>
       </View>
     );
