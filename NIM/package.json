@@ -8,6 +8,7 @@
     "dev:ios": "react-native run-ios"
   },
   "dependencies": {
+    "@ant-design/react-native": "^3.3.0",
     "mobx": "^4.2.1",
     "mobx-react": "^5.4.3",
     "react": "^16.7.0",
@@ -16,11 +17,13 @@
     "react-native-easy-toast": "^1.1.0",
     "react-native-elements": "1.0.0-beta5",
     "react-native-image-picker": "^0.27.2",
+    "react-native-radio-master": "^1.0.1",
     "react-native-sound": "^0.10.9",
     "react-native-vector-icons": "^6.1.0",
     "react-native-video": "^4.2.0",
     "react-navigation": "^2.18.2",
-    "realm": "^2.21.1"
+    "realm": "^2.21.1",
+    "save": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

@@ -105,6 +105,7 @@ export default class Page extends Component {
             title="昵称"
             onPress={()=>
               this.props.navigation.navigate('reNick')
+              
             }
             rightTitle={this.state.myInfo.nick}
             rightTitleStyle={globalStyle.listItemRight}
@@ -160,13 +161,13 @@ export default class Page extends Component {
           />
 
           <Button
-            title="注销"
+            title="退出登录"
             titleStyle={{ color: '#fff' }}
             onPress={this.logout}
             buttonStyle={{
               marginLeft: 10 * RVW,
               width: 80 * RVW,
-              backgroundColor: baseRedColor,
+              backgroundColor: '#26bdb0',
               marginVertical: 20,
               borderRadius: 3,
             }}
