@@ -52,7 +52,7 @@ export default class Page extends Component {
             <Text style={{fontSize:20,textAlign:'center'}}>email</Text>
             <TextInput
                 style={styles.style_user_input}
-                placeholder={this.state.myInfo.nick}
+                placeholder={this.state.myInfo.email}
                 autoFocus={true}
                 placeholderTextColor="#ccc"
                 onChangeText={this.onchange}

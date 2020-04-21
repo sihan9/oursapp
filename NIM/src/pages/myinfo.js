@@ -62,9 +62,9 @@ export default class Page extends Component {
 
   componentDidMount=()=>{
     let gender = '未知';
-    if (this.state.myInfo.gender === 'female') {
+    if (this.state.myInfo.gender === 'female'||this.state.myInfo.gender==="女") {
       gender = '女';
-    } else if (this.state.myInfo.gender === 'male') {
+    } else if (this.state.myInfo.gender === 'male'||this.state.myInfo.gender==="男") {
       gender = '男';
     }
     const myInfo = this.props.nimStore.myInfo || {};
@@ -76,7 +76,7 @@ export default class Page extends Component {
 
   render() {
    
-  
+   
     const { navigation } = this.props; 
     return ( 
       <View style={globalStyle.container}>

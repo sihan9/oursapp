@@ -29,7 +29,7 @@ export default class Page extends Component {
   onchange=(value)=>{
     
     var peo=this.state.myInfo;
-    peo.email=value;
+    peo.phone=value;
     this.props.linkAction.onupdatemyinfo(peo);
    this.setState({
     myInfo:this.props.nimStore.myInfo || {}
@@ -49,10 +49,10 @@ export default class Page extends Component {
           centerComponent={{ text: '修改电话', style: headerStyle.center }}
         />
         <View>
-            <Text style={{fontSize:20,textAlign:'center'}}>email</Text>
+            
             <TextInput
                 style={styles.style_user_input}
-                placeholder={this.state.myInfo.nick}
+                placeholder={this.state.myInfo.phone}
                 autoFocus={true}
                 placeholderTextColor="#ccc"
                 onChangeText={this.onchange}

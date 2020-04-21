@@ -16,7 +16,8 @@ export default class Page extends Component {
   constructor(props){
      super(props);
      this.state={
-        myInfo :this.props.nimStore.myInfo || {}
+        myInfo :this.props.nimStore.myInfo || {},
+        nick:''
      }
     
   }
@@ -27,14 +28,10 @@ export default class Page extends Component {
     this.props.linkAction.logout();
   }
   onchange=(value)=>{
-    
-    var peo=this.state.myInfo;
-    peo.nick=value;
-    this.props.linkAction.onupdatemyinfo(peo);
-   this.setState({
-    myInfo:this.props.nimStore.myInfo || {}
-   })
-   this.props.navigation.navigate('session');
+    this.setState({
+      nick:value
+    })
+  
   }
   render() {
     const { navigation } = this.props;
@@ -55,6 +52,28 @@ export default class Page extends Component {
                 onChangeText={this.onchange}
             />
         </View>
+        <Button
+            title="保存修改"
+            titleStyle={{ color: '#fff' }}
+            onPress={()=>{
+              var peo=this.state.myInfo;
+              peo.nick=this.state.nick;
+               this.props.linkAction.onupdatemyinfo(peo);
+               this.setState({
+                 myInfo:peo
+               })
+
+              this.props.navigation.navigate('session');
+
+            }}
+            buttonStyle={{
+              marginLeft: 10 * RVW,
+              width: 80 * RVW,
+              backgroundColor: '#26bdb0',
+              marginVertical: 20,
+              borderRadius: 3,
+            }}
+          />
       </View>
     );
   }
