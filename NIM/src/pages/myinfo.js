@@ -133,7 +133,7 @@ export default class Page extends Component {
           <ListItem
             key={4}
             title="手机"
-            rightTitle={this.state.myInfo.tel}
+            rightTitle={this.state.myInfo.account}
             rightTitleStyle={globalStyle.listItemRight}
             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
             onPress={()=>
