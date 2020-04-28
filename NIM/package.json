@@ -40,6 +40,7 @@
     "jsrsasign": "8.0.12",
     "metro-react-native-babel-preset": "^0.54.1",
     "react-native-date-picker": "^2.7.9",
+    "react-router-dom": "^5.1.2",
     "react-test-renderer": "16.7.0"
   },
   "jest": {

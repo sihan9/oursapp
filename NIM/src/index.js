@@ -75,6 +75,9 @@ const App = createStackNavigator(
     },
     money: {
       screen: Pages.money,
+    },
+    schoolxiangqing:{
+      screen:Pages.schoolxiangqing
     }
   },
   {

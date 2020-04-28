@@ -1,26 +1,120 @@
 import React, { Component } from 'react'
-import { Text, View,ScrollView,Switch} from 'react-native'
+import { Text, View,ScrollView,StyleSheet, TouchableOpacity,Image, FlatList} from 'react-native'
 import NavBottom from '../components/navBottom';
 import { headerStyle, globalStyle, baseBlueColor } from '../themes';
 import { inject, observer } from 'mobx-react/native';
-import { ListItem, Avatar, Header } from 'react-native-elements';
-import { RVW, RFT } from '../common';
+import {Header } from 'react-native-elements';
+import { RVW, RFT,RVH } from '../common';
 @inject('nimStore')
 @observer
 export default class Page extends Component {
+    constructor(){
+        super();
+        this.state={
+            pro:'',
+            school:[{name:"河北师范大学"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"}]
+        }
+    }
+    change=(key,e)=>{
+       
+        this.setState({
+            school:[{name:"大学2"},{name:"大学2"},{name:"大学2"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"}]
+        })
+    }
     render() {
         const { navigation } = this.props;
         return (
             <View style={globalStyle.container}>
                 <Header
                     outerContainerStyles={headerStyle.wrapper}
-                    centerComponent={{ text: '动态', style: headerStyle.center }}
+                    centerComponent={{ text: '学校', style: headerStyle.center }}
                 />
                 <ScrollView containerStyle={{ height: 30 * RVW }}>  
-                    <Text>动态页</Text>
+                <View style={styles.content}>
+                   <View style={styles.left}>
+                       <TouchableOpacity  onPress={(e)=>{this.change("北京",e)}}>
+                       <View style={styles.item}>
+                            <Text style={{color:'white'}}>北京</Text>
+                       </View>
+                       </TouchableOpacity>
+                       <TouchableOpacity  onPress={(e)=>{this.change("天津",e)}}>
+                       <View style={styles.item}>
+                            <Text style={{color:'white'}}>天津</Text>
+                       </View>
+                       </TouchableOpacity>
+                       <TouchableOpacity onPress={(e)=>{this.change("河北",e)}}>
+                       <View style={styles.item}>
+                            <Text style={{color:'white'}}>河北</Text>
+                       </View>
+                       </TouchableOpacity>
+                       <TouchableOpacity  onPress={(e)=>{this.change("上海",e)}}>
+                        <View style={styles.item}>
+                            <Text style={{color:'white'}}>上海</Text>
+                        </View>
+                       </TouchableOpacity>
+
+                    </View>
+                    <View style={styles.right}>
+                    {
+                        this.state.school.map((item)=>(
+                            <TouchableOpacity  style={styles.sch} onPress={()=>{this.props.navigation.navigate('schoolxiangqing',{name:item.name})}}>
+                           
+                                <Image resizeMode='contain' style={{width:'80%',height:"80%"}}
+                                source={{uri:'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1588062144&di=3c06efe0790fd654d288a776517933d8&src=http://image.worldjingsai.com/worldjingsai/university/logo/21051.jpg'}}
+                            />
+                                <Text>{item.name}</Text>
+                        
+                            </TouchableOpacity>
+                        ))
+                    }
+                   
+                    </View>
+                </View>
                 </ScrollView>
                 <NavBottom navigation={navigation} />
             </View>
         )
     }
 }
+const styles=StyleSheet.create({
+    content:{
+        flexDirection:"row",
+        height:RVH*90,
+
+    },
+    left:{
+        width:RVW*20,
+        height:RVH*90,
+        paddingTop:20,
+        backgroundColor:'white'
+    },
+    item:{
+        width:'100%',
+        height:60,
+        marginTop:10,
+        fontSize:20,
+        backgroundColor:'#26bdb0',
+        alignItems:'center',
+        justifyContent:'center',
+
+       
+    },
+    right:{
+        paddingTop:20,
+        width:RVW*80,
+        height:RVH*90,
+        backgroundColor:'white',
+        marginLeft:10,
+        flexDirection:"row",
+        flexWrap:'wrap',
+        justifyContent:'space-between'
+    },
+    sch:{
+        width:'30%',
+        height:140,
+        justifyContent:'center',
+        alignItems:'center',
+        // backgroundColor:'red',
+       marginBottom:20
+    }
+})

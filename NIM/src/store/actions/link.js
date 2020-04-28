@@ -104,7 +104,7 @@ class Actions {
   initNIM = (account, token, callback) => {
     const self = this;
     constObj.nim = SDK.NIM.getInstance({
-      debug: false,
+      debug: true,
       appKey: configs.appkey,
       account,
       db: true,
@@ -139,7 +139,7 @@ class Actions {
         // callback(event);
       },
       onsyncdone() {
-        Alert.alert('提示', '账号及离线消息同步完成');
+        // Alert.alert('提示', '账号及离线消息同步完成');
       },
       onmyinfo(info) {
         set(nimStore, 'myInfo', Object.assign(nimStore.myInfo, info));
