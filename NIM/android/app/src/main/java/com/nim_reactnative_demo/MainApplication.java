@@ -3,6 +3,7 @@ package com.nim_reactnative_demo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
 import io.realm.react.RealmReactPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -17,7 +18,7 @@ import com.netease.nim.rn.push.NIMPushPackage;
 
 import java.util.Arrays;
 import java.util.List;
-
+import com.brentvatne.react.ReactVideoPackage;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -30,13 +31,16 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactVideoPackage(),
             new RealmReactPackage(),
             new ReactVideoPackage(),
             new VectorIconsPackage(),
             new RNSoundPackage(),
             new ImagePickerPackage(),
             new ReactNativeAudioPackage(),
+            new ReactVideoPackage(),
             new NIMPushPackage()
+            
       );
     }
 
