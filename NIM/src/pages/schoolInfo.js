@@ -12,14 +12,22 @@ export default class Page extends Component {
         super();
         this.state={
             pro:'',
-            school:[{name:"河北师范大学"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"}]
+            school:[]
         }
     }
+    componentDidMount() {
+        fetch('http://129.211.62.80:8015/school/info?province=北京')
+          .then(res => res.json())
+          .then(res => {
+            this.setState({school: res.content});
+          });
+      }
     change=(key,e)=>{
-       
-        this.setState({
-            school:[{name:"大学2"},{name:"大学2"},{name:"大学2"},{name:"大学1"},{name:"大学1"},{name:"大学1"},{name:"大学1"}]
-        })
+        fetch('http://129.211.62.80:8015/school/info?province='+key)
+          .then(res => res.json())
+          .then(res => {
+            this.setState({school: res.content});
+          });
     }
     render() {
         const { navigation } = this.props;
@@ -58,12 +66,10 @@ export default class Page extends Component {
                     {
                         this.state.school.map((item)=>(
                             <TouchableOpacity  style={styles.sch} onPress={()=>{this.props.navigation.navigate('schoolxiangqing',{name:item.name})}}>
-                           
-                                <Image resizeMode='contain' style={{width:'80%',height:"80%"}}
-                                source={{uri:'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1588062144&di=3c06efe0790fd654d288a776517933d8&src=http://image.worldjingsai.com/worldjingsai/university/logo/21051.jpg'}}
+                                <Image resizeMode='contain' style={{width:'60%',height:'60%'}}
+                                source={{uri:item.badge}}
                             />
-                                <Text>{item.name}</Text>
-                        
+                                <Text style={{textAlign:'center',width:'90%'}}>{item.cname}</Text>
                             </TouchableOpacity>
                         ))
                     }
@@ -95,26 +101,23 @@ const styles=StyleSheet.create({
         fontSize:20,
         backgroundColor:'#26bdb0',
         alignItems:'center',
-        justifyContent:'center',
-
-       
+        justifyContent:'center'
     },
     right:{
         paddingTop:20,
         width:RVW*80,
         height:RVH*90,
         backgroundColor:'white',
-        marginLeft:10,
+        marginLeft:5,
         flexDirection:"row",
         flexWrap:'wrap',
         justifyContent:'space-between'
     },
     sch:{
-        width:'30%',
+        width:RVW*25,
         height:140,
         justifyContent:'center',
         alignItems:'center',
-        // backgroundColor:'red',
-       marginBottom:20
+        marginBottom:15
     }
 })
