@@ -57,7 +57,7 @@ export default class Page extends Component {
                     <View style={styles.right}>
                     {
                         this.state.school.map((item)=>(
-                            <TouchableOpacity  style={styles.sch} onPress={()=>{this.props.navigation.navigate('schoolxiangqing',{name:item.name})}}>
+                            <TouchableOpacity  style={styles.sch} onPress={()=>{this.props.navigation.navigate('school',{name:item.name})}}>
                            
                                 <Image resizeMode='contain' style={{width:'80%',height:"80%"}}
                                 source={{uri:'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1588062144&di=3c06efe0790fd654d288a776517933d8&src=http://image.worldjingsai.com/worldjingsai/university/logo/21051.jpg'}}

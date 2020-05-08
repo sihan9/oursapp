@@ -100,7 +100,7 @@ export default class Page extends Component {
         <ScrollView>
          
           <ListItem
-            onPress={()=>{}}
+           
             key={1}
             title="昵称"
             onPress={()=>

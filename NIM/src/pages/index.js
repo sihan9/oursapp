@@ -21,7 +21,8 @@ import reSign from './reSign';
 import reBirth from './reBirth';
 import reGender from './reGender';
 import schoolInfo from './schoolInfo';
-import schoolxiangqing from './SchooXiangqing'
+import schoolxiangqing from './SchooXiangqing';
+import school from './school';
 export default {
   login,
   register,
@@ -46,5 +47,6 @@ export default {
   reSign,
   reBirth,
   schoolInfo,
-  schoolxiangqing
+  schoolxiangqing,
+  school
 };

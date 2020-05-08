@@ -74,7 +74,7 @@ stop=()=>{
                     ref={(ref) => {
                         this.player = ref
                       }} 
-                    source={require('../video/1.mp4')} 
+                    source={{uri:'https://vd3.bdstatic.com/mda-jkr5pe4v4ucy1vse/mda-jkr5pe4v4ucy1vse.mp4?playlist=%5B%22hd%22%2C%22sc%22%5D'}} 
                     style={{width:'100%',height:'100%'}}//组件样式
                     rate={this.state.rate}//播放速率
                     paused={this.state.paused}//暂停
