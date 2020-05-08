@@ -16,7 +16,18 @@ export default class SchooXiangqing extends Component {
             duration: 0.0,
             currentTime: 0.0,
             paused:false,
+            uri:''
         }
+    }
+    componentDidMount=()=>{
+        fetch('http://129.211.62.80:8015/school/message?cname='+this.state.schoolName)
+        .then(res=>res.json())
+        .then((res)=>{
+           let schoolInfo=res.content[0];
+           this.setState({
+               url:res.content[0].url
+           })
+        }).catch(error => alert(error));
     }
     onLoad = (data) => {
         

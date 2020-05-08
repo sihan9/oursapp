@@ -65,7 +65,7 @@ export default class Page extends Component {
                     <View style={styles.right}>
                     {
                         this.state.school.map((item)=>(
-                            <TouchableOpacity  style={styles.sch} onPress={()=>{this.props.navigation.navigate('schoolxiangqing',{name:item.name})}}>
+                            <TouchableOpacity  style={styles.sch} onPress={()=>{this.props.navigation.navigate('school',{name:item.cname})}}>
                                 <Image resizeMode='contain' style={{width:'60%',height:'60%'}}
                                 source={{uri:item.badge}}
                             />

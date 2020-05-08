@@ -22,21 +22,21 @@ export default class School extends Component {
                 tmajor:'王牌专业',
                 bspot:'亮点',
                 province:'河北省',
-                img:[
-                    'https://zsb.nankai.edu.cn/attachments/20141117092514610.jpg',
-                    'https://zsb.nankai.edu.cn/attachments/20141117092525206.jpg',
-                    'https://zsb.nankai.edu.cn/attachments/20141117092536452.jpg',
-                    'https://zsb.nankai.edu.cn/attachments/20141117092546307.jpg',
-                ]
+                img:"'http://upload.univs.cn/2012/1012/thumb_940__1350026173430.jpg'|'http://upload.univs.cn/2012/1012/thumb_940__1350026050955.jpg'|'http://5b0988e595225.cdn.sohucs.com/images/20171113/baf83394745a4fc5a2e16cc1267c5c40.jpeg'|'http://img.mp.itc.cn/upload/20170109/088b6da7efd9454f974b95e4f04b7e97_th.JPG'"
+                   
+                
 
             }
+            
+            
+
         }
     }
+   
     componentDidMount=()=>{
         fetch('http://129.211.62.80:8015/school/message?cname='+this.state.schoolName)
         .then(res=>res.json())
         .then((res)=>{
-           let schoolInfo=res.content[0];
            this.setState({
                schoolInfo:res.content[0]
            })
@@ -44,9 +44,15 @@ export default class School extends Component {
     }
     render() {
         const { navigation } = this.props;
+        var img=JSON.stringify(this.state.schoolInfo.img)
+        img=img.slice(1,img.length-1);
+        img=img.split('|')
+     
         return (
             <ScrollView>
+              
             <View>
+           
                <Header
                     outerContainerStyles={headerStyle.wrapper}
                     leftComponent={<GoBack navigation={navigation} />}
@@ -59,7 +65,8 @@ export default class School extends Component {
                       />}
                     centerComponent={{ text:this.state.schoolName, style: headerStyle.center }}
                 />
-                {/* <View style={{height:200}}>
+                <View style={{height:200}}>
+               
                  <Swiper  
                     horizontal={true} 
                     showsPagination={true}
@@ -69,21 +76,21 @@ export default class School extends Component {
                     
                     >
                     <View style={styles.slide}>
-                    <Image  style={{width:'100%',height:200}} source={{uri:this.state.schoolInfo.img[0]}}/>
+                    <Image  style={{width:'100%',height:200}} source={{uri:img[0].slice(1,img[0].length-1)}}/>
                     </View>
                     <View style={styles.slide}>
-                    <Image  style={{width:'100%',height:200}} source={{uri:this.state.schoolInfo.img[1]}}/>
+                    <Image  style={{width:'100%',height:200}} source={{uri:img[1].slice(1,img[1].length-1)}}/>
                     </View>
                     <View style={styles.slide}>
-                    <Image  style={{width:'100%',height:200}} source={{uri:this.state.schoolInfo.img[2]}}/>
+                    <Image  style={{width:'100%',height:200}} source={{uri:img[2].slice(1,img[2].length-1)}}/>
                     </View>
                     <View style={styles.slide}>
-                    <Image  style={{width:'100%',height:200}} source={{uri:this.state.schoolInfo.img[3]}}/>
+                    <Image  style={{width:'100%',height:200}} source={{uri:img[3].slice(1,img[3].length-1)}}/>
                     </View>
                     </Swiper>
                     
-                </View> */}
-                <View style={{backgroundColor:'white',width:RVW*100,marginTop:10,height:RVH*90}}>
+                </View>
+                <View style={{backgroundColor:'white',width:RVW*100,marginTop:3,height:RVH*90}}>
                     <Text style={{fontWeight:'bold',fontSize:20,color:'#26bdb0'}}>基本资料</Text>
                     
          
