@@ -96,14 +96,14 @@ export default class School extends Component {
                             key={1}
                             title="中文名"
                             rightTitle={this.state.schoolInfo.cname}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                         />
                         <ListItem
                             key={2}
                             title="英文名"
                             rightTitle={this.state.schoolInfo.ename}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                            
                         />
@@ -111,7 +111,7 @@ export default class School extends Component {
                             key={3}
                             title="简称"
                             rightTitle={this.state.schoolInfo.abbre}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                            
                         />
@@ -119,7 +119,7 @@ export default class School extends Component {
                             key={4}
                             title="校训"
                             rightTitle={this.state.schoolInfo.smotto}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                           
                         />
@@ -127,7 +127,7 @@ export default class School extends Component {
                             key={5}
                             title="创办时间"
                             rightTitle={this.state.schoolInfo.time}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                            
                         />
@@ -135,7 +135,7 @@ export default class School extends Component {
                             key={6}
                             title="校庆日"
                             rightTitle={this.state.schoolInfo.anniversary}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                            
                         />
@@ -143,7 +143,7 @@ export default class School extends Component {
                             key={7}
                             title="属性"
                             rightTitle={this.state.schoolInfo.attribute}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                           
                         />
@@ -151,7 +151,7 @@ export default class School extends Component {
                             key={8}
                             title="类型"
                             rightTitle={this.state.schoolInfo.type}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                           
                         />
@@ -159,7 +159,7 @@ export default class School extends Component {
                             key={9}
                             title="王牌专业"
                             rightTitle={this.state.schoolInfo.tmajor}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                           
                         />
@@ -167,7 +167,7 @@ export default class School extends Component {
                             key={10}
                             title="高校所在地"
                             rightTitle={this.state.schoolInfo.province}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }}
                           
                         />
@@ -175,7 +175,7 @@ export default class School extends Component {
                             key={11}
                             title="亮点"
                             rightTitle={this.state.schoolInfo.bspot}
-                            rightTitleStyle={globalStyle.listItemRight}
+                            rightTitleStyle={globalStyle.listItemRight1}
                             containerStyle={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }} 
                         />
                 </View>

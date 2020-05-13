@@ -28,6 +28,11 @@ export const globalStyle = {
   },
   listItemRight: {
     width: 60 * RVW,
+    textAlign: 'right',
+    color:'#555'
+  },
+  listItemRight1: {
+    width: 60 * RVW,
     textAlign: 'left',
     color:'#555'
   },

@@ -42,22 +42,22 @@ export default class Page extends Component {
                     <View style={styles.left}>
                         <TouchableOpacity  onPress={(e)=>{this.change("北京",e)}}>
                             <View style={styles.item}>
-                                    <Text style={{color:'white'}}>北京</Text>
+                                <Text style={{color:'white',fontSize:17}}>北京</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity  onPress={(e)=>{this.change("天津",e)}}>
                             <View style={styles.item}>
-                                    <Text style={{color:'white'}}>天津</Text>
+                                <Text style={{color:'white',fontSize:17}}>天津</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={(e)=>{this.change("河北",e)}}>
                             <View style={styles.item}>
-                                    <Text style={{color:'white'}}>河北</Text>
+                                <Text style={{color:'white',fontSize:17}}>河北</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity  onPress={(e)=>{this.change("上海",e)}}>
                             <View style={styles.item}>
-                                <Text style={{color:'white'}}>上海</Text>
+                                <Text style={{color:'white',fontSize:17}}>上海</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
