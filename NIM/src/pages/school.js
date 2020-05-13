@@ -90,12 +90,9 @@ export default class School extends Component {
                     </Swiper>
                     
                 </View>
-                <View style={{backgroundColor:'white',width:RVW*100,marginTop:3,height:RVH*90}}>
-                    <Text style={{fontWeight:'bold',fontSize:20,color:'#26bdb0'}}>基本资料</Text>
-                    
-         
+                <View style={{backgroundColor:'white',width:RVW*100,marginTop:3,height:RVH*100}}>
+                    <Text style={{fontWeight:'bold',fontSize:20,color:'#26bdb0',marginTop:10,marginLeft:10}}>基本资料</Text>
                         <ListItem
-                        
                             key={1}
                             title="中文名"
                             rightTitle={this.state.schoolInfo.cname}

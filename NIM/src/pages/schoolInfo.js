@@ -39,28 +39,27 @@ export default class Page extends Component {
                 />
                 <ScrollView containerStyle={{ height: 30 * RVW }}>  
                 <View style={styles.content}>
-                   <View style={styles.left}>
-                       <TouchableOpacity  onPress={(e)=>{this.change("北京",e)}}>
-                       <View style={styles.item}>
-                            <Text style={{color:'white'}}>北京</Text>
-                       </View>
-                       </TouchableOpacity>
-                       <TouchableOpacity  onPress={(e)=>{this.change("天津",e)}}>
-                       <View style={styles.item}>
-                            <Text style={{color:'white'}}>天津</Text>
-                       </View>
-                       </TouchableOpacity>
-                       <TouchableOpacity onPress={(e)=>{this.change("河北",e)}}>
-                       <View style={styles.item}>
-                            <Text style={{color:'white'}}>河北</Text>
-                       </View>
-                       </TouchableOpacity>
-                       <TouchableOpacity  onPress={(e)=>{this.change("上海",e)}}>
-                        <View style={styles.item}>
-                            <Text style={{color:'white'}}>上海</Text>
-                        </View>
-                       </TouchableOpacity>
-
+                    <View style={styles.left}>
+                        <TouchableOpacity  onPress={(e)=>{this.change("北京",e)}}>
+                            <View style={styles.item}>
+                                    <Text style={{color:'white'}}>北京</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity  onPress={(e)=>{this.change("天津",e)}}>
+                            <View style={styles.item}>
+                                    <Text style={{color:'white'}}>天津</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={(e)=>{this.change("河北",e)}}>
+                            <View style={styles.item}>
+                                    <Text style={{color:'white'}}>河北</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity  onPress={(e)=>{this.change("上海",e)}}>
+                            <View style={styles.item}>
+                                <Text style={{color:'white'}}>上海</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.right}>
                     {
@@ -91,7 +90,7 @@ const styles=StyleSheet.create({
     left:{
         width:RVW*20,
         height:RVH*90,
-        paddingTop:20,
+        // paddingTop:10,
         backgroundColor:'white'
     },
     item:{

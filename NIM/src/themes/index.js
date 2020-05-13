@@ -28,7 +28,7 @@ export const globalStyle = {
   },
   listItemRight: {
     width: 60 * RVW,
-    textAlign: 'right',
+    textAlign: 'left',
     color:'#555'
   },
 };
