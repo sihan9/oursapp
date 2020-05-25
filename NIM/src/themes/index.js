@@ -33,7 +33,7 @@ export const globalStyle = {
   },
   listItemRight1: {
     width: 60 * RVW,
-    textAlign: 'left',
+    textAlign: 'right',
     color:'#555'
   },
 };

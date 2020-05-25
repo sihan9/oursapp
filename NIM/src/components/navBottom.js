@@ -40,7 +40,7 @@ export default (props) => {
       </TouchableOpacity>
       <TouchableOpacity style={[localStyle.tab, ]} onPress={() => { navigation.navigate('schoolInfo'); }}>
         <Icon name="group-work" color = {routeName === 'schoolInfo' ? baseBlueColor : '#333'} />
-        <Text style={[localStyle.label, { color: routeName === 'schoolInfo' ? baseBlueColor : '#333' }]}>动态</Text>
+        <Text style={[localStyle.label, { color: routeName === 'schoolInfo' ? baseBlueColor : '#333' }]}>学校</Text>
       </TouchableOpacity>
       <TouchableOpacity style={[localStyle.tab, ]} onPress={() => { navigation.navigate('general'); }}>
         <Icon name="perm-identity" color = {routeName === 'general' ? baseBlueColor : '#333'} />

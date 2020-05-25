@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View,ScrollView,StyleSheet, TouchableOpacity,Image, FlatList} from 'react-native'
+import { Text, View,ScrollView,StyleSheet, TouchableOpacity,Image, FlatList, Alert} from 'react-native'
 import NavBottom from '../components/navBottom';
 import { headerStyle, globalStyle, baseBlueColor } from '../themes';
 import { inject, observer } from 'mobx-react/native';
 import {Header } from 'react-native-elements';
 import { RVW, RFT,RVH } from '../common';
+import getPinyin from '../util/pinyin';
 @inject('nimStore')
 @observer
 export default class Page extends Component {
@@ -12,7 +13,8 @@ export default class Page extends Component {
         super();
         this.state={
             pro:'',
-            school:[]
+            school:[],
+            list:[]
         }
     }
     componentDidMount() {
@@ -21,6 +23,12 @@ export default class Page extends Component {
           .then(res => {
             this.setState({school: res.content});
           });
+        // for(let i in this.state.school){
+        //   let pinyin = getPinyin(this.state.school[i].cname, '');
+        //   this.state.list.push(pinyin);
+        // }
+        // this.state.list.sort();
+        // alert(this.state.list);
       }
     change=(key,e)=>{
         fetch('http://129.211.62.80:8015/school/info?province='+key)
@@ -28,7 +36,15 @@ export default class Page extends Component {
           .then(res => {
             this.setState({school: res.content});
           });
+          //拼音
+        //   for(let i in this.state.school){
+        //     let pinyin = getPinyin(this.state.school[i].cname, '');
+        //     this.state.list.push(pinyin);
+        //   }
+        //   this.state.list.sort();
+        //   alert(this.state.list); 
     }
+    
     render() {
         const { navigation } = this.props;
         return (
