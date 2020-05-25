@@ -9,9 +9,10 @@ var Manager = require('./Routes/Manager');
 var Artical = require('./Routes/Artical');
 var Feedback = require('./Routes/Feedback');
 var Usersx = require('./Routes/Usersx');
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());//数据JSON类型
-app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
+var School = require('./Routes/School');
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json());//数据JSON类型
+// app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
 // var Register = require('./Routes/Register');
 //const pool = require('./pg');
 /**
@@ -29,4 +30,5 @@ app.use('/title',Artical);
 app.use('/feedback',Feedback);
 app.use('/usersx',Usersx);
 app.use('/images',Images);
+app.use('/school',School);
 app.listen(8015);
