@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react/native';
-import { View, Image, AsyncStorage, NetInfo, TouchableOpacity, Text} from 'react-native';
+import { View, Image, AsyncStorage, NetInfo, TouchableOpacity, Text, ImageBackground} from 'react-native';
 import { Header, Input, Button } from 'react-native-elements';
 import Toast from 'react-native-easy-toast';
 import { globalStyle, baseBlueColor, headerStyle } from '../themes';
@@ -136,8 +136,9 @@ export default class Page extends React.Component {
     return (
       // View 用以适配iPhoneX
       <View style={globalStyle.container}>
+        <ImageBackground style={{width:'100%',height:'100%'}} source={require('../img/bg.jpg')}>
         <Header
-          outerContainerStyles={headerStyle.wrapper}
+          outerContainerStyles={headerStyle.loginwrapper}
           // rightComponent={<Button
           //   title="完成"
           //   titleStyle={{
@@ -163,7 +164,7 @@ export default class Page extends React.Component {
         >
           <View
             style={{
-              width: 80 * RVW,alignItems:'center'
+              width: 70 * RVW,alignItems:'center'
             }}
           >
             {/* <View style={{ marginVertical: 3 * RVW, flexDirection: 'row', justifyContent: 'center' }} >
@@ -171,60 +172,62 @@ export default class Page extends React.Component {
             </View> */}
             <Input
               inputContainerStyle={{ width: 80 * RVW }}
-              inputStyle={{ color: '#000', top: 2 }}
-              leftIcon={{ type: 'font-awesome', name: 'user', color: '#9ac6f7' }}
+              inputStyle={{ color: '#fff', top: 2 }}
+              leftIcon={{ type: 'font-awesome', name: 'user', color: '#fff' }}
               placeholder="账号：限20位字母或者数字"
               maxLength={20}
-              placeholderTextColor="gray"
+              placeholderTextColor="#fff"
               onChangeText={this.setAccount}
               onBlur={this.checkAccount}
               value={this.state.account}
-              selectionColor="#000"
+              selectionColor="#fff"
             />
             <Input
               inputContainerStyle={{ width: 80 * RVW }}
-              inputStyle={{ color: '#000', top: 2 }}
-              leftIcon={{ type: 'font-awesome', name: 'user-o', color: '#9ac6f7' }}
+              inputStyle={{ color: '#fff', top: 2 }}
+              leftIcon={{ type: 'font-awesome', name: 'user-o', color: '#fff' }}
               placeholder="昵称：限10位汉字、字母或者数字"
               maxLength={10}
-              placeholderTextColor="gray"
+              placeholderTextColor="#fff"
               onChangeText={this.setNickname}
               onBlur={this.checkNickname}
               value={this.state.nickname}
-              selectionColor="#000"
+              selectionColor="#fff"
             />
             <Input
               secureTextEntry
               inputContainerStyle={{ width: 80 * RVW }}
-              inputStyle={{ color: '#000', top: 2 }}
-              leftIcon={{ type: 'font-awesome', name: 'lock', color: '#9ac6f7' }}
+              inputStyle={{ color: '#fff', top: 2 }}
+              leftIcon={{ type: 'font-awesome', name: 'lock', color: '#fff' }}
               placeholder="密码：6~20位字母或者数字"
               maxLength={20}
-              placeholderTextColor="gray"
+              placeholderTextColor="#fff"
               onChangeText={this.setToken}
               onFocus={this.clearPwd}
               onBlur={this.checkPwd}
               value={this.state.password}
-              selectionColor="#000"
+              selectionColor="#fff"
             />
             <TouchableOpacity onPress={this.toLoginPage} >
               <Text style={{
                 marginTop: 5 * RVW,
-                color: 'gray',
+                color: '#000',
                 textAlign: 'center'
               }}>已有账号？直接登录</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.register} style={[localStyle.wrapper,
-              {marginTop: 5 * RVW,width:200,height:50,borderRadius:25,flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
+            <TouchableOpacity onPress={this.register} style={[
+              { borderWidth:1,borderColor:'#fff',marginTop: 5 * RVW,width:200,height:50,borderRadius:25,flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
               <Text style={{
                 // marginTop: 10 * RVW,
                 color: '#fff',
+                
                 textAlign: 'center'
               }}>立即注册</Text>
             </TouchableOpacity>
           </View>
           <Toast ref={(ref) => { this.toast = ref; }} position="center" />
         </View>
+        </ImageBackground>
       </View>
     );
   }

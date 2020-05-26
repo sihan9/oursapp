@@ -8,6 +8,7 @@ import globalStatus from '../stores/status';
 import util from '../../util';
 import { showNotification } from '../../../nim/NIM_Android_Push';
 
+
 const SDK = require('../../../nim/NIM_Web_SDK_rn_v6.1.0.js');
 const Realm = require('realm');
 
@@ -265,7 +266,10 @@ class Actions {
 
   @action
   logout = () => {
+   
     if (constObj.nim) {
+      
+      
       constObj.nim.logout({
         done(error) {
           if (error) {

@@ -1,4 +1,5 @@
 import { RVW, RFT, RPX } from '../common';
+import { urlToPathAndParams } from 'react-navigation/src/routers/pathUtils';
 
 export const baseBlueColor = '#26bdb0';
 export const lightBlueColor = '#a5d8ff';
@@ -8,6 +9,13 @@ export const globalStyle = {
   container: {
     flex: 1,
     paddingVertical: 0,
+  },
+  bagImg:{
+  
+    width:'100%',
+    height:'100%',
+    // backgroundColor:'rgba(0, 0, 0, 0.4)',
+   
   },
   center: {
     justifyContent: 'center',
@@ -52,6 +60,21 @@ export const headerStyle = {
     minHeight: Math.round(14 * RVW),
     backgroundColor: '#26bdb0',
     borderBottomWidth: 0,
+  },
+  loginwrapper:{
+    paddingVertical: 0,
+    minHeight: Math.round(14 * RVW),
+    backgroundColor: 'transparent',
+    borderBottomWidth: 0,
+  },
+  loginBtn:{
+    paddingVertical: 0,
+    minHeight: Math.round(14 * RVW),
+    backgroundColor: 'white',
+    color:'#ddd',
+    borderBottomWidth: 1,
+    borderColor:'white',
+    
   },
   center: {
     color: '#fff',
