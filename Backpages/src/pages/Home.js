@@ -29,11 +29,11 @@ export default class Home extends Component {
                 </div>
                 <div className='box-2-1'>
                   <img src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.png?raw=true'/>
-                  <Link to='/home/post'>帖子管理</Link>
+                  <Link to='/home/post'>学校管理</Link>
                 </div>
                 <div className='box-2-1'>
                   <img src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/%E5%8F%8D%E9%A6%88,%E6%96%B0%E5%BB%BA,%E5%86%99,feedback.png?raw=true'/>
-                  <Link to='/home/feedback'>反馈管理</Link>
+                  <Link to='/home/feedback'>添加学校</Link>
                 </div>
                 <div className='box-2-1'>
                   <img src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/%E5%B9%B3%E5%8F%B0%E7%AE%A1%E7%90%86%E2%80%94%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png?raw=true'/>

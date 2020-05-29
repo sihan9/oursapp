@@ -75,7 +75,7 @@ export default class Add extends Component {
        e.preventDefault();
         // 把表单用的最终数据从state中提取出来,传入请求
      console.log(this.state);
-        fetch('http://101.37.172.74:8080/manager',{
+        fetch('http://129.211.62.80:8015/manager/add',{
             // post提交
             method:"POST",
             body:JSON.stringify(this.state)//把提交的内容转字符串

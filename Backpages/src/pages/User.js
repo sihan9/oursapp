@@ -7,7 +7,7 @@ export default class User extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/user')
+        fetch('http://129.211.62.80:8015/user')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -18,7 +18,7 @@ export default class User extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:8080/user')
+        fetch('http://129.211.62.80:8015/user')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
@@ -34,7 +34,7 @@ export default class User extends Component {
         console.log(idx)
         var data = localStorage.getItem('data')
         if(JSON.parse(data).jurisdiction==1 || JSON.parse(data).jurisdiction == 2){
-            fetch('http://101.37.172.74:8080/user/delete?phone='+idx.phone)
+            fetch('http://129.211.62.80:8015/user/delete?phone='+idx.phone)
             .then(res=>res.json())
             .then((res)=>{
                 console.log('ok')

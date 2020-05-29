@@ -8,7 +8,7 @@ export default class Manager extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://101.37.172.74:8080/manager')
+        fetch('http://129.211.62.80:8015/manager')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -19,7 +19,7 @@ export default class Manager extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://101.37.172.74:8080/manager')
+        fetch('http://129.211.62.80:8015/manager')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
@@ -35,7 +35,7 @@ export default class Manager extends Component {
         console.log(idx)
         var data = localStorage.getItem('data')
         if(JSON.parse(data).jurisdiction == 1){
-            fetch('http://101.37.172.74:8080/manager/delete?id='+idx.id)
+            fetch('http://129.211.62.80:8015/manager/delete?id='+idx.id)
             .then(res=>res.json())
             .then((res)=>{
                 console.log('ok')
@@ -70,7 +70,7 @@ export default class Manager extends Component {
                     <p style={{paddingLeft:'50px'}}>性别</p>
                     <p style={{paddingLeft:'45px'}}>职位</p>
                     <p style={{paddingLeft:'70px'}}>手机号</p>
-                    <p style={{paddingLeft:'115px'}}>邮箱</p>
+                    <p style={{paddingLeft:'85px'}}>邮箱</p>
                     <p style={{paddingLeft:'90px'}}>操作</p>
                 </div>
                 {

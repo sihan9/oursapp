@@ -45,7 +45,7 @@ export default class Login extends Component {
     check=()=>{
         var islogin =false;
         for(var i=0;i<this.state.data.length;i++){
-            if(this.state.user === this.state.data[i].username && this.state.password === this.state.data[i].password){
+            if(this.state.user == this.state.data[i].username && this.state.password == this.state.data[i].password){
                 islogin = true
                 localStorage.setItem('data',JSON.stringify(this.state.data[i]))
             }
