@@ -81,6 +81,9 @@ const App = createStackNavigator(
     },
     school:{
       screen:Pages.school
+    },
+    feedback:{
+      screen:Pages.feedback
     }
   },
   {

@@ -23,6 +23,7 @@ import reGender from './reGender';
 import schoolInfo from './schoolInfo';
 import schoolxiangqing from './SchooXiangqing';
 import school from './school';
+import feedback from './feedback'
 export default {
   login,
   register,
@@ -48,5 +49,6 @@ export default {
   reBirth,
   schoolInfo,
   schoolxiangqing,
-  school
+  school,
+  feedback
 };

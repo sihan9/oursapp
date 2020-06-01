@@ -115,6 +115,16 @@ export default class Page extends Component {
             chevronColor={baseBlueColor}
             bottomDivider
           />
+          <ListItem
+            key={6}
+            title="用户反馈"
+            onPress={() => {
+              this.props.navigation.navigate('feedback');
+            }}
+            chevron
+            chevronColor={baseBlueColor}
+            bottomDivider
+          />
           
         </ScrollView>
         <NavBottom navigation={navigation} />
