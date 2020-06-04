@@ -6,6 +6,7 @@ import Feedback from './Feedback'
 import {BrowserRouter as Router,Route,Link,Switch,Redirect} from 'react-router-dom'
 import Manager from './Manager'
 import Add from './Add'
+import School from './School'
 export default class Home extends Component {
     
 
@@ -33,7 +34,7 @@ export default class Home extends Component {
                 </div>
                 <div className='box-2-1'>
                   <img src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/%E5%8F%8D%E9%A6%88,%E6%96%B0%E5%BB%BA,%E5%86%99,feedback.png?raw=true'/>
-                  <Link to='/home/feedback'>添加学校</Link>
+                  <Link to='/home/feedback'>反馈管理</Link>
                 </div>
                 <div className='box-2-1'>
                   <img src='https://github.com/sihan9/oursapp/blob/master/images/Backstage/%E5%B9%B3%E5%8F%B0%E7%AE%A1%E7%90%86%E2%80%94%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png?raw=true'/>
@@ -56,6 +57,7 @@ export default class Home extends Component {
                   <Route path='/home/feedback' component={Feedback}/>
                   <Route path='/home/manager' component={Manager}/>
                   <Route path='/home/add' component={Add}/>
+                  <Route path='/home/school' component={School}/>
                   <Redirect from='/' to='/shouye'/>
                 </Switch>
               </div>

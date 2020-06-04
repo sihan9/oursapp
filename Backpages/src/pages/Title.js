@@ -38,6 +38,9 @@ export default class Title extends Component {
                 console.log('ok')
             })
     }
+    check=()=>{
+        this.props.history.push('/home/School')
+    }
 
 
     render() {
@@ -48,6 +51,7 @@ export default class Title extends Component {
                     <input type='search' placeholder='请查询要查询的用户ID或用户名' onKeyDown={(e)=>this.search(e)}></input>
                 </div>
                 <p className='title-1'>学校管理</p>
+                <button onClick={this.check} className='boxButton'>添加学校</button>
                 <div className='title-2'>
                     <input type='checkbox'/>
                     <p style={{paddingLeft:'65px'}}>名称</p>

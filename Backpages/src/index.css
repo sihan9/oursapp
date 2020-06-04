@@ -168,6 +168,18 @@ body{
   font-size: 12px;
   color: gray;
 }
+.boxButton{
+  float: left;
+  background-color: #6485e4;
+  border:1px solid #6485e4;
+  height: 30px;
+  width: 85px;
+  border-radius: 10px;
+  font-size: 17px;
+  color: white;
+  margin-top: 18px;
+  margin-left: 750px;
+}
 .component{
   float: left;
   width: 950px;
@@ -246,6 +258,7 @@ body{
 /* 帖子管理 */
 .title-1{
   font-size: 20px;
+  float: left;
 }
 .title-2{
   float: left;
