@@ -60,20 +60,24 @@ export default class Title extends Component {
                     <p style={{paddingLeft:'142px'}}>位置</p>
                     <p style={{paddingLeft:'90px'}}>操作</p>
                 </div>
+                <div style={{height:'550px',overflowY:'scroll',float:'left'}}>
                 {
                     this.state.data.map((item,idx)=>{
                         return(
-                            <div className='title-3' key={idx}>
-                                <input type='checkbox'/>
-                                <p style={{width:'110px'}}>{item.cname}</p>
-                                <p style={{width:'135px'}}>{item.attribute}</p>
-                                <p style={{width:'330px'}}>{item.time}</p>
-                                <p>{item.province}</p>
-                                <button onClick={()=>this.delete(item)}>删除</button>
-                            </div>
+                           
+                                <div className='title-3' key={idx}>
+                                    <input type='checkbox'/>
+                                    <p style={{width:'110px'}}>{item.cname}</p>
+                                    <p style={{width:'135px'}}>{item.attribute}</p>
+                                    <p style={{width:'330px'}}>{item.time}</p>
+                                    <p>{item.province}</p>
+                                    <button onClick={()=>this.delete(item)}>删除</button>
+                                </div>
+                            
                         )
                     })
                 }
+                </div>
             </div>
         )
     }

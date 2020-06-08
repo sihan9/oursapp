@@ -7,7 +7,7 @@ export default class User extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://129.211.62.80:8015/user')
+        fetch('http://129.211.62.80:8015/users')
         .then((res)=>res.json())
         .then((res)=>{
                 this.setState({
@@ -18,7 +18,7 @@ export default class User extends Component {
     }
     componentDidUpdate(){
 
-        fetch('http://129.211.62.80:8015/user')
+        fetch('http://129.211.62.80:8015/users')
             .then((res)=>res.json())
             .then((res)=>{
                     this.setState({data:res.content});
@@ -34,7 +34,7 @@ export default class User extends Component {
         console.log(idx)
         var data = localStorage.getItem('data')
         if(JSON.parse(data).jurisdiction==1 || JSON.parse(data).jurisdiction == 2){
-            fetch('http://129.211.62.80:8015/user/delete?phone='+idx.phone)
+            fetch('http://129.211.62.80:8015/users/delete?phone='+idx.phone)
             .then(res=>res.json())
             .then((res)=>{
                 console.log('ok')
@@ -56,21 +56,17 @@ export default class User extends Component {
                 <div className='user-2'>
                     <input type='checkbox'/>
                     <p>用户ID</p>
-                    <p>用户名</p>
-                    <p style={{paddingLeft:'92px'}}>性别</p>
-                    <p style={{paddingLeft:'155px'}}>学校</p>
-                    <p style={{paddingLeft:'195px'}}>操作</p>
+                    <p style={{paddingLeft:'280px'}}>用户名</p>
+                    <p style={{paddingLeft:'295px'}}>密码</p>
                 </div>
                 {
                     this.state.data.map((item,idx)=>{
                         return(
                             <div className='user-3' key={idx}>
                                 <input type='checkbox'/>
-                                <p>{item.phone}</p>
-                                <p style={{width:'60px'}}>{item.name}</p>
-                                <p>{item.sex}</p>
-                                <p style={{width:'160px'}}>{item.school}</p>
-                                <button onClick={()=>this.delete(item)}>删除</button>
+                                <p>{item.account}</p>
+                                <p style={{width:'120px',paddingLeft:'235px'}}>{item.nickname}</p>
+                                <p style={{paddingLeft:'235px'}}>{item.password}</p>
                             </div>
                         )
                     })

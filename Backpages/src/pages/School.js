@@ -14,7 +14,10 @@ export default class Add extends Component {
             type:'',
             tmajor:'',
             bspot:'',
-            smotto:''
+            smotto:'',
+            img:'',
+            video:'',
+            badge:''
         }
     }
    
@@ -83,6 +86,24 @@ export default class Add extends Component {
         })
         
     }
+    changeImg=(e)=>{
+        this.setState({
+            img:e.target.value
+        })
+        
+    }
+    changeVideo=(e)=>{
+        this.setState({
+            video:e.target.value
+        })
+        
+    }
+    changeBadge=(e)=>{
+        this.setState({
+            badge:e.target.value
+        })
+        
+    }
   
     onSubmit=(e)=>{
         // 阻止事件传递
@@ -118,6 +139,9 @@ export default class Add extends Component {
                     <div><p>类型</p><input onChange={this.changeAttribute} type='text' name='attribute'/></div>
                     <div><p>王牌专业</p><input onChange={this.changeTmajor} type='text' name='tmajor'/></div>
                     <div><p>亮点</p><input onChange={this.changeBspot} type='text' name='bspot'/></div>
+                    <div><p>图片</p><input onChange={this.changeImg} type='text' name='bspot'/></div>
+                    <div><p>视频</p><input onChange={this.changeVideo} type='text' name='bspot'/></div>
+                    <div><p>校徽</p><input onChange={this.changeBadge} type='text' name='bspot'/></div>
                     <input type='submit' value='添加' className='add-2' onClick={this.onClick} style={{marginLeft:'120px'}} />               
                 </form>
                 
