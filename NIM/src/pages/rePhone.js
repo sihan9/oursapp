@@ -19,7 +19,7 @@ export default class Page extends Component {
         myInfo :this.props.nimStore.myInfo || {},
         phone:''
      }
-    
+
   }
   componentWillReceiveProps(nextProps) {
     this.setState({myInfo :nextProps.nimStore.myInfo || {}});

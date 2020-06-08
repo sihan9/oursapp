@@ -9,6 +9,35 @@ import { RVW, RVH } from '../common';
 @inject('nimStore')
 @observer
 export default class Page extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+       account:this.props.nimStore.myInfo.account,
+       content:'',
+       email:''
+    };
+ }
+  changeContent=(value)=>{
+    this.setState({
+    content:value
+    })
+  }
+  changeEmail=(value)=>{
+    this.setState({
+     email:value
+    })
+  }
+  onSubmit = ()=>{
+    fetch('http://129.211.62.80:8015/feedback/add',{
+    // post提交
+      method:"POST",
+      body:JSON.stringify(this.state)//把提交的内容转字符串
+    })
+    .then(res =>res.json())
+    .then(res =>{
+      this.toast.show('提交成功');
+    })
+  }
   render() {
     const { navigation } = this.props;
     return (
@@ -29,6 +58,7 @@ export default class Page extends Component {
                 placeholderTextColor = {'#BBBBBB'}
                 underlineColorAndroid = {'transparent'} 
                 style = {{paddingVertical: 0, paddingLeft: 5, fontSize: 16}}
+                onChangeText={this.changeContent}
             />
          </View>
          <View style={styles.slide}>
@@ -39,8 +69,12 @@ export default class Page extends Component {
                 placeholderTextColor = {'#BBBBBB'}
                 underlineColorAndroid = {'transparent'} 
                 style = {{paddingVertical: 0, paddingLeft: 5, fontSize: 16}}
+                onChangeText={this.changeEmail}
           />
-          <TouchableOpacity style={{justifyContent:'center',alignItems:'center',marginTop:20}}>
+          <TouchableOpacity
+            style={{justifyContent:'center',alignItems:'center',marginTop:20}}
+            onPress={this.onSubmit}
+          >
               <View style={{backgroundColor:"#26bdb0",width:200,height:30,justifyContent:'center',alignItems:'center'}}>
                 <Text>提交</Text>
               </View>

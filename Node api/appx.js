@@ -4,11 +4,9 @@ var Images = require('./Routes/Images')
 const bodyParser = require('body-parser');
 var showdata = require('./Routes/showdata')
 var Login = require('./Routes/Login');
-var Users = require('./Routes/Users');
 var Manager = require('./Routes/Manager');
-var Artical = require('./Routes/Artical');
 var Feedback = require('./Routes/Feedback');
-var Usersx = require('./Routes/Usersx');
+var Users = require('./Routes/Users');
 var School = require('./Routes/School');
 // const bodyParser = require('body-parser');
 // app.use(bodyParser.json());//数据JSON类型
@@ -24,11 +22,9 @@ var School = require('./Routes/School');
  */
 // app.use(bodyParser.json());
 app.use('/login',Login);
-app.use('/user',Users);
 app.use('/manager',Manager);
-app.use('/title',Artical);
 app.use('/feedback',Feedback);
-app.use('/usersx',Usersx);
+app.use('/users',Users);
 app.use('/images',Images);
 app.use('/school',School);
 app.listen(8015);

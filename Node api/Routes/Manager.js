@@ -35,17 +35,17 @@ router.post('/add',(req,res)=>{
         console.log(data);
         pool.query('select * from manager', (error,results,fields)=> {
         //error,results,fields:错误对象，json数组，数据信息数组
-            isregister = true;
+            isAdd = true;
             if (error) console.log(error.message);
             for(var i=0;i<results.rows.length;i++){
-                if(results.rows[i].username === data.username){
-                    isregister = false;
+                if(results.rows[i].username === data.user){
+                    isAdd = false;
                     break;
                 }
             }
-            console.log(isregister)
-            if(isregister){
-                db = { state: 200, message: '添加成功', content: isregister };
+            console.log(isAdd)
+            if(isAdd){
+                db = { state: 200, message: '添加成功', content: isAdd };
                 var arr = [];
                 for(let i in data){
                     arr.push(data[i]);
@@ -57,7 +57,7 @@ router.post('/add',(req,res)=>{
                 });
                 res.send(db);
             }else{
-                db = { state: 200, message: '添加失败', content: isregister };
+                db = { state: 200, message: '添加失败', content: isAdd };
                 res.send(db);
             };
         });

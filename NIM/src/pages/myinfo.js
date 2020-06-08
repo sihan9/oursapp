@@ -74,6 +74,15 @@ export default class Page extends Component {
     })
   }
 
+  delete=(e)=>{
+    fetch('http://129.211.62.80:8015/users/delete?account='+e.account)
+    .then(res=>res.json())
+    .then((res)=>{
+      if(res.content){
+        this.props.linkAction.logout();
+      }
+    })
+  }
   render() {
    
    
@@ -164,6 +173,19 @@ export default class Page extends Component {
             title="退出登录"
             titleStyle={{ color: '#fff' }}
             onPress={this.logout}
+            buttonStyle={{
+              marginLeft: 10 * RVW,
+              width: 80 * RVW,
+              backgroundColor: '#26bdb0',
+              marginVertical: 20,
+              borderRadius: 3,
+            }}
+          />
+
+          <Button
+            title="注销账号"
+            titleStyle={{ color: '#fff' }}
+            onPress={()=>this.delete(this.state.myInfo)}
             buttonStyle={{
               marginLeft: 10 * RVW,
               width: 80 * RVW,

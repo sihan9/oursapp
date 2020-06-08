@@ -81,6 +81,7 @@ export default class Page extends React.Component {
   register = () => {
     NetInfo.isConnected.fetch().then((isConnected) => {
       if (isConnected) {
+        this.isregister();
         this.doRegister();
       } else {
         this.toast.show('网络状况不佳');
@@ -94,7 +95,6 @@ export default class Page extends React.Component {
     let { account, nickname, password } = this.state;
     const sdktoken = MD5(password)
     let accountLowerCase = account.toLowerCase()//将账号转换成小写
-    alert(accountLowerCase);
     fetch(`${configs.postUrl}/api/createDemoUser`,{
        method:'POST',
        mode: 'cors',
@@ -131,7 +131,20 @@ export default class Page extends React.Component {
   toLoginPage = () => {
     this.props.navigation.navigate('login');
   }
-
+  isregister = ()=>{
+    if (!this.checkAccount() || !this.checkNickname() || !this.checkPwd()) {
+      return
+    }
+    fetch('http://129.211.62.80:8015/users/register',{
+      // post提交
+      method:"POST",
+      body:JSON.stringify(this.state)//把提交的内容转字符串
+    })
+    .then(res =>res.json())
+    .then(res =>{
+        console.log(res)
+    })
+  }
   render() {
     return (
       // View 用以适配iPhoneX
@@ -139,22 +152,6 @@ export default class Page extends React.Component {
         <ImageBackground style={{width:'100%',height:'100%'}} source={require('../img/bg.jpg')}>
         <Header
           outerContainerStyles={headerStyle.loginwrapper}
-          // rightComponent={<Button
-          //   title="完成"
-          //   titleStyle={{
-          //     padding: 0,
-          //     lineHeight: 7 * RFT,
-          //     fontSize: 3.6 * RFT,
-          //     color: baseBlueColor,
-          //   }}
-          //   onPress={this.register}
-          //   disabled={this.state.account.trim() === '' || this.state.nickname.trim() === '' || this.state.password.trim() === ''}  buttonStyle={{
-          //     width: 12 * RVW,
-          //     height: 7 * RFT,
-          //     backgroundColor: '#fff',
-          //     borderRadius: 3
-          //   }}
-          // />}
           centerComponent={{ text: '注册', style: headerStyle.center }}
         />
         <View
@@ -164,7 +161,9 @@ export default class Page extends React.Component {
         >
           <View
             style={{
-              width: 70 * RVW,alignItems:'center'
+              width: 70 * RVW,
+              alignItems:'center',
+              // justifyContent:'space-between'
             }}
           >
             {/* <View style={{ marginVertical: 3 * RVW, flexDirection: 'row', justifyContent: 'center' }} >
@@ -211,7 +210,7 @@ export default class Page extends React.Component {
             <TouchableOpacity onPress={this.toLoginPage} >
               <Text style={{
                 marginTop: 5 * RVW,
-                color: '#000',
+                color: '#fff',
                 textAlign: 'center'
               }}>已有账号？直接登录</Text>
             </TouchableOpacity>
@@ -220,7 +219,6 @@ export default class Page extends React.Component {
               <Text style={{
                 // marginTop: 10 * RVW,
                 color: '#fff',
-                
                 textAlign: 'center'
               }}>立即注册</Text>
             </TouchableOpacity>

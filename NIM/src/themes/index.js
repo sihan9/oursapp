@@ -18,9 +18,10 @@ export const globalStyle = {
    
   },
   center: {
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
+    marginTop:20*RVW
   },
   avatarWrapper: {
     width: (9 * RVW) + 1,

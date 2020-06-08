@@ -128,23 +128,6 @@ export default class Page extends React.Component {
         <ImageBackground style={{width:'100%',height:'100%'}} source={require('../img/bg.jpg')}>
         <Header
           outerContainerStyles={headerStyle.loginwrapper}
-          // rightComponent={<Button
-          //   title="完成"
-          //   titleStyle={{
-          //     padding: 0,
-          //     lineHeight: 7 * RFT,
-          //     fontSize: 3.6 * RFT,
-          //     color: baseBlueColor,
-          //   }}
-          //   onPress={this.login}
-          //   disabled={this.state.account.trim() === '' || this.state.password.trim() === ''}
-          //   buttonStyle={{
-          //     width: 12 * RVW,
-          //     height: 7 * RFT,
-          //     backgroundColor: '#fff',
-          //     borderRadius: 3
-          //   }}
-          // />}
           centerComponent={{ text: '登录', style: headerStyle.center }}
         />
         <View
@@ -161,7 +144,7 @@ export default class Page extends React.Component {
               <Image style={{ width: 50 * RVW, height: 20 * RVW }} source={require('../res/logo.png')} />
             </View> */}
             <Input
-              inputContainerStyle={{ width: 80 * RVW }}
+              inputContainerStyle={{ width: 65 * RVW }}
               inputStyle={{ color: 'white', top: 2 }}
               leftIcon={{ type: 'font-awesome', name: 'user', color: 'white' }}
               placeholder="请输入账号"
@@ -174,7 +157,7 @@ export default class Page extends React.Component {
             />
             <Input
               secureTextEntry
-              inputContainerStyle={{ width: 80 * RVW }}
+              inputContainerStyle={{ width: 65 * RVW }}
               inputStyle={{ color: 'white', top: 2 }}
               leftIcon={{ type: 'font-awesome', name: 'lock', color: 'white' }}
               placeholder="请输入密码"
@@ -199,7 +182,6 @@ export default class Page extends React.Component {
             <TouchableOpacity onPress={this.toRegisterPage} style={[
               { borderWidth:1,borderColor:'#fff',marginTop: 2 * RVW,width:200,height:40,borderRadius:25,flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
               <Text style={{
-                // marginTop: 10 * RVW,
                 color: '#fff',
                 fontSize:20,
                 textAlign: 'center'
